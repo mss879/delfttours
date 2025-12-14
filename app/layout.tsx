@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Olanka Travels - Start Your Holiday Planning',
-  description: 'Connect with local destination experts and plan your perfect holiday',
+  title: 'Delft Tours - Unforgettable Travel Experiences',
+  description: 'Discover the world with Delft Tours. Expert guides, customizable itineraries, and handpicked destinations for your perfect holiday.',
 };
 
 export default function RootLayout({
