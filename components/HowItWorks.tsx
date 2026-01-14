@@ -139,7 +139,7 @@ export default function HowItWorks() {
                       <span className="mb-8 text-xs font-semibold uppercase tracking-[0.35em] text-green-700">
                         Step {step.number}
                       </span>
-                      <div className="flex h-[80px] w-[80px] items-center justify-center rounded-full bg-green text-center text-3xl text-white shadow-[0_12px_30px_rgba(34,197,94,0.25)] ring-4 ring-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_40px_rgba(21,128,61,0.25)]">
+                      <div className="flex h-[80px] w-[80px] items-center justify-center rounded-full bg-green text-center text-3xl text-white shadow-[0_12px_30px_rgba(23,157,170,0.25)] ring-4 ring-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_40px_rgba(15,118,110,0.25)]">
                         <Icon />
                       </div>
                       <p
@@ -170,7 +170,7 @@ export default function HowItWorks() {
                   className="flex items-start gap-4 rounded-2xl border border-green-100 bg-white p-4 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-md"
                 >
                   <div className="flex-shrink-0">
-                    <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-green text-white shadow-[0_10px_25px_rgba(34,197,94,0.25)] ring-4 ring-white">
+                    <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-green text-white shadow-[0_10px_25px_rgba(23,157,170,0.25)] ring-4 ring-white">
                       <Icon />
                     </div>
                   </div>

@@ -10,11 +10,11 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 const currencies = [
-  { code: 'LKR', symbol: 'Rs', label: 'Sri Lankan Rupee' },
-  { code: 'USD', symbol: '$', label: 'US Dollar' },
-  { code: 'EUR', symbol: '€', label: 'Euro' },
-  { code: 'GBP', symbol: '£', label: 'British Pound' },
-  { code: 'AUD', symbol: 'A$', label: 'Australian Dollar' },
+  { code: 'LKR', symbol: 'Rs', label: 'Sri Lankan Rupee', flagCode: 'lk' },
+  { code: 'USD', symbol: '$', label: 'US Dollar', flagCode: 'us' },
+  { code: 'EUR', symbol: '€', label: 'Euro', flagCode: 'eu' },
+  { code: 'GBP', symbol: '£', label: 'British Pound', flagCode: 'gb' },
+  { code: 'AUD', symbol: 'A$', label: 'Australian Dollar', flagCode: 'au' },
 ];
 
 export default function Header() {
@@ -48,10 +48,10 @@ export default function Header() {
           </a>
           <a
             className="flex items-center gap-2 transition-colors duration-200 hover:text-white/70"
-            href="tel:+61483909556"
+            href="tel:+94112852455"
           >
             <Phone className="h-4 w-4" />
-            <span className="hidden sm:inline">1800 930 516</span>
+            <span className="hidden sm:inline">+94 11 285 2455</span>
           </a>
         </div>
       </div>
@@ -75,7 +75,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                className="rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900"
+                className="rounded-full px-4 py-2 text-base font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900"
                 href={link.href}
               >
                 {link.label}
@@ -83,34 +83,47 @@ export default function Header() {
             ))}
             <a
               href="/contact-us"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900"
+              className="rounded-full px-4 py-2 text-base font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900"
             >
               Contact Us
             </a>
           </div>
 
           <div className="hidden items-center gap-4 lg:flex lg:justify-end">
-            <button className="rounded-full bg-[#0b3e63] px-5 py-2 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(11,62,99,0.25)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#0a3554]">
+            <button className="rounded-full bg-[#0b3e63] px-5 py-2 text-base font-semibold text-white shadow-[0_12px_24px_rgba(11,62,99,0.25)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#0a3554]">
               Get a Quote
             </button>
             <DropdownMenu>
               <DropdownMenuTrigger className="outline-none">
                 <div className="flex items-center gap-2 rounded-full border border-slate-200/60 px-3 py-1 text-sm text-slate-500 transition-colors duration-200 hover:border-slate-400 hover:text-slate-700 cursor-pointer">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 text-[10px] font-bold text-slate-600">
-                    {currency.symbol}
-                  </div>
+                  <span className="flex h-6 w-6 items-center justify-center">
+                    <img 
+                      src={`https://flagcdn.com/w40/${currency.flagCode}.png`}
+                      srcSet={`https://flagcdn.com/w80/${currency.flagCode}.png 2x`}
+                      alt={currency.code}
+                      className="h-4 w-6 object-cover rounded-sm"
+                    />
+                  </span>
                   <span>{currency.code}</span>
                   <ChevronDown className="h-3 w-3 opacity-50" />
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuContent align="end" className="w-56">
                 {currencies.map((c) => (
                   <DropdownMenuItem
                     key={c.code}
                     onClick={() => setCurrency(c)}
                     className="flex items-center justify-between cursor-pointer"
                   >
-                    <span className="font-medium">{c.code}</span>
+                    <div className="flex items-center gap-2">
+                       <img 
+                        src={`https://flagcdn.com/w40/${c.flagCode}.png`}
+                        srcSet={`https://flagcdn.com/w80/${c.flagCode}.png 2x`}
+                        alt={c.code}
+                        className="h-3.5 w-5 object-cover rounded-sm shadow-sm"
+                      />
+                      <span className="font-medium">{c.code}</span>
+                    </div>
                     <span className="text-slate-500 text-xs">{c.label}</span>
                   </DropdownMenuItem>
                 ))}
@@ -146,7 +159,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={closeMenu}
-                  className="rounded-2xl bg-slate-900/5 px-4 py-3 text-sm font-semibold text-slate-700 transition-colors duration-200 hover:bg-slate-900/10"
+                  className="rounded-2xl bg-slate-900/5 px-4 py-3 text-base font-semibold text-slate-700 transition-colors duration-200 hover:bg-slate-900/10"
                 >
                   {link.label}
                 </a>
@@ -156,11 +169,11 @@ export default function Header() {
               <a
                 href="/contact-us"
                 onClick={closeMenu}
-                className="rounded-2xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition-colors duration-200 hover:border-slate-400 hover:text-slate-900"
+                className="rounded-2xl border border-slate-200 px-4 py-3 text-base font-semibold text-slate-600 transition-colors duration-200 hover:border-slate-400 hover:text-slate-900"
               >
                 Contact Us
               </a>
-              <button className="rounded-2xl bg-[#0b3e63] px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-[rgba(11,62,99,0.25)] transition-colors duration-200 hover:bg-[#0a3554]">
+              <button className="rounded-2xl bg-[#0b3e63] px-4 py-3 text-base font-semibold text-white shadow-lg shadow-[rgba(11,62,99,0.25)] transition-colors duration-200 hover:bg-[#0a3554]">
                 Get a Quote
               </button>
             </div>

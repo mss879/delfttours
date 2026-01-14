@@ -125,7 +125,7 @@ export default function AboutSection() {
 
           <Link
             href="/tour"
-            className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-green-500 px-8 py-3 text-base font-semibold text-white shadow-[0_20px_50px_rgba(34,197,94,0.35)] transition hover:bg-green-600"
+            className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-green-500 px-8 py-3 text-base font-semibold text-white shadow-[0_20px_50px_rgba(23,157,170,0.35)] transition hover:bg-green-600"
           >
             <span>Find Tours</span>
             <svg

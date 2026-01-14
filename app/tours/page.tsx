@@ -133,6 +133,10 @@ export default function ToursPage() {
     ],
     []
   );
+  const travellerTypes = useMemo(
+    () => ['Family', 'Couple', 'Solo', 'Friends', 'Group'],
+    []
+  );
 
   const [selectedDestinations, setSelectedDestinations] = useState<
     Record<string, boolean>
@@ -141,6 +145,7 @@ export default function ToursPage() {
     {}
   );
   const [selectedThemes, setSelectedThemes] = useState<Record<string, boolean>>({});
+  const [selectedTravellerTypes, setSelectedTravellerTypes] = useState<Record<string, boolean>>({});
 
   const tours: Tour[] = useMemo(
     () => [
@@ -443,6 +448,25 @@ export default function ToursPage() {
       </div>
 
       <div className="border-t border-slate-200/50 pt-6">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-900">Who&apos;s Travelling</h2>
+        <div className="mt-4 space-y-3">
+          {travellerTypes.map((type) => (
+            <FilterCheckboxRow
+              key={type}
+              label={type}
+              checked={selectedTravellerTypes[type] === true}
+              onCheckedChange={(checked) =>
+                setSelectedTravellerTypes((prev) => ({
+                  ...prev,
+                  [type]: checked,
+                }))
+              }
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="border-t border-slate-200/50 pt-6">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-slate-900">Tour Theme</h2>
         <div className="mt-4 space-y-3">
           {tourThemes.map((theme) => (
@@ -470,7 +494,7 @@ export default function ToursPage() {
       <main className="mx-auto max-w-[1440px] px-4 py-12 lg:px-8">
         <div className="space-y-4 text-center lg:text-left">
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            Tours <span className="text-slate-400">&amp; Destinations</span>
+            Tours <span className="text-black">&amp; Destinations</span>
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl">
             Discover the world with our premium, curated travel experiences.

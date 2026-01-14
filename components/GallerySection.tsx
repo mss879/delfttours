@@ -28,7 +28,7 @@ export default function GallerySection() {
           Discover the Moments
         </h2>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          Explore our gallery for stunning travel photos and the best vibes from MonksTrip!
+          Explore our gallery for stunning travel photos and the best vibes from Delft Tours!
         </p>
       </div>
 

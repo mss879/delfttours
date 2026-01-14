@@ -102,14 +102,14 @@ export default function Footer() {
             </div>
 
             <div className="space-y-3 text-sm text-white/80 lg:max-w-xs">
-              <a href="tel:8881234567" className="block text-base font-semibold text-white">
-                (888) 123 4567
+              <a href="tel:+94112852455" className="block text-base font-semibold text-white">
+                +94 11 285 2455
               </a>
-              <a href="mailto:contact@exemple.com" className="block text-base font-semibold text-white">
-                contact@exemple.com
+              <a href="mailto:support@delfttours.com" className="block text-base font-semibold text-white">
+                support@delfttours.com
               </a>
               <p className="leading-relaxed">
-                410 Sandtown, California 94001, United State of America
+                No 29/5 Jayasinghe Road, Kirullapone, Colombo 06, Sri Lanka
               </p>
             </div>
           </div>

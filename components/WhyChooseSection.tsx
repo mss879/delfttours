@@ -36,9 +36,9 @@ export default function WhyChooseSection() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-6">
           <div className="max-w-xl space-y-4">
-            <h2 className="text-4xl font-bold text-slate-900">Why Choose MonksTrip?</h2>
+            <h2 className="text-4xl font-bold text-slate-900">Why Choose Delft Tours?</h2>
             <p className="text-lg text-slate-600">
-              At MonksTrip, we’re proud to partner with some of the most innovative and trusted companies in the world.
+              At Delft Tours, we’re proud to partner with some of the most innovative and trusted companies in the world.
             </p>
           </div>
           
@@ -56,7 +56,7 @@ export default function WhyChooseSection() {
         </div>
 
         {/* Video Section */}
-        <div className="relative w-full aspect-[21/9] rounded-[32px] overflow-hidden">
+        <div className="relative w-full max-w-5xl mx-auto aspect-[21/9] rounded-[32px] overflow-hidden">
           <video 
             src="https://framerusercontent.com/assets/0OHtSMgrBACOp6V9EqV3e6KtlSQ.mp4" 
             className="w-full h-full object-cover"
