@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,29 +9,64 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
+import { submitInquiry } from '@/app/actions/submit-inquiry';
+
+import emailjs from '@emailjs/browser';
+import SuccessModal from '@/components/SuccessModal';
 
 export default function ContactPage() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted');
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+
+    try {
+      await emailjs.sendForm(
+        'service_bh4m7kr',
+        'template_6qzswnb',
+        form,
+        'ZvEmfrY7ik6bouEZH'
+      );
+
+      setShowSuccessModal(true);
+      form.reset();
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-white font-sans">
       <Header />
-      
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={() => setShowSuccessModal(false)}
+      />
+
       <main>
         {/* Hero Section */}
         <section className="relative bg-slate-900 py-24 text-center">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute inset-0 z-10 bg-gradient-to-b from-slate-900/90 to-slate-900/60" />
-            <video 
-              src="/contact-hero.mp4" 
+            <video
+              src="/contact-hero.mp4"
               className="h-full w-full object-cover"
-              autoPlay 
-              loop 
-              muted 
+              autoPlay
+              loop
+              muted
               playsInline
             />
           </div>
@@ -44,7 +80,7 @@ export default function ContactPage() {
 
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
-            
+
             {/* Contact Details */}
             <div className="space-y-8">
               <div>
@@ -105,41 +141,43 @@ export default function ContactPage() {
                 <div className="grid gap-6 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First name</Label>
-                    <Input id="firstName" placeholder="Enter your first name" required />
+                    <Input id="firstName" name="firstName" placeholder="Enter your first name" required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last name</Label>
-                    <Input id="lastName" placeholder="Enter your last name" required />
+                    <Input id="lastName" name="lastName" placeholder="Enter your last name" required />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="Enter your email" required />
+                  <Input id="email" name="email" type="email" placeholder="Enter your email" required />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone number</Label>
-                  <Input id="phone" type="tel" placeholder="+94 77 123 4567" />
+                  <Input id="phone" name="phone" type="tel" placeholder="+94 77 123 4567" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea 
-                    id="message" 
-                    placeholder="Tell us about your travel plans..." 
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell us about your travel plans..."
                     className="min-h-[150px]"
-                    required 
+                    required
                   />
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   className="w-full bg-[#179daa] text-lg font-semibold hover:bg-[#0f766e]"
                   size="lg"
+                  disabled={isSubmitting}
                 >
                   <Send className="mr-2 h-5 w-5" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
               </form>
             </div>

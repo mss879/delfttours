@@ -3,21 +3,21 @@
 import { motion } from 'framer-motion';
 
 const topImages = [
-  'https://framerusercontent.com/images/MCPK7p5lTLN6GtYpPFkZlnYj0.png',
-  'https://framerusercontent.com/images/irxbxcWqTT1XF46oYdrlKLmKfOE.png',
-  'https://framerusercontent.com/images/0cyrgdyFgH4HXcbQey3Id3OdM.png',
-  'https://framerusercontent.com/images/qzaQswFpybM7ehhvBpCnIyQR1D0.png',
-  'https://framerusercontent.com/images/0YhgQURqbt0V1jk5DnLxnr8lQGM.png',
-  'https://framerusercontent.com/images/NIOzuaQtTENMPhLTK3Aq3wMU3q0.png',
+  '/assets/external/gallery-top-1.png',
+  '/assets/external/gallery-top-2.png',
+  '/assets/external/gallery-top-3.png',
+  '/assets/external/gallery-top-4.png',
+  '/assets/external/gallery-top-5.png',
+  '/assets/external/gallery-top-6.png',
 ];
 
 const bottomImages = [
-  'https://framerusercontent.com/images/aXMmKMkmbaftgXqgLW6l6Ne4Yw.jpg',
-  'https://framerusercontent.com/images/dW9aMqWFmgP5lFVORYj19sfPXlc.jpg',
-  'https://framerusercontent.com/images/I8tMu3NoQxnNKS3uTWK08UyrtU.jpg',
-  'https://framerusercontent.com/images/LLXplKFJHbnVubPwKelRdMqHmkI.jpg',
-  'https://framerusercontent.com/images/bWR2wFJxD0uj0cXXJhXUQOFMJU.jpg',
-  'https://framerusercontent.com/images/VyUdS5a2DU5hdC28yUIwCzIq43E.jpg',
+  '/assets/external/gallery-bottom-1.jpg',
+  '/assets/external/gallery-bottom-2.jpg',
+  '/assets/external/gallery-bottom-3.jpg',
+  '/assets/external/gallery-bottom-4.jpg',
+  '/assets/external/gallery-bottom-5.jpg',
+  '/assets/external/gallery-bottom-6.jpg',
 ];
 
 export default function GallerySection() {

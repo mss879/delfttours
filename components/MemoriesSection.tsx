@@ -56,7 +56,7 @@ export default function MemoriesSection() {
   return (
     <section className="py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-4">
-        <div className="relative overflow-hidden rounded-[38px] border border-[#E1E8DC] bg-[#F7FBF6] px-6 py-14 sm:px-12 sm:py-18">
+        <div className="relative overflow-hidden rounded-[38px] border border-[#E1E8DC]/50 bg-[#F7FBF6]/60 backdrop-blur-md px-6 py-14 sm:px-12 sm:py-18">
           <div className="pointer-events-none absolute inset-0">
             <div
               className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-contain bg-center bg-no-repeat opacity-20"

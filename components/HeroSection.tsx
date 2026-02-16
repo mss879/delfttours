@@ -14,14 +14,12 @@ const slideData: Slide[] = [
   {
     title: 'Explore stays in traditional destinations',
     description: 'Lorem ipsum dolor sit amet consectetur massa pulvinar.',
-    image:
-      'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1600&q=80',
+    image: '/assets/external/hero-slide-1.jpg',
   },
   {
     title: 'Discover the wonders of the frozen frontier',
     description: 'Lorem ipsum dolor sit amet consectetur massa pulvinar.',
-    image:
-      'https://images.unsplash.com/photo-1476610182048-b716b8518aae?auto=format&fit=crop&w=1600&q=80',
+    image: '/assets/external/hero-slide-2.jpg',
   },
 ];
 
@@ -79,9 +77,8 @@ export default function HeroSection() {
           {slides.map((slide, index) => (
             <article
               key={slide.title}
-              className={`absolute inset-0 flex h-full w-full flex-col items-center justify-center px-6 text-center transition-opacity duration-700 ease-out ${
-                index === current ? 'z-20 opacity-100' : 'pointer-events-none opacity-0'
-              }`}
+              className={`absolute inset-0 flex h-full w-full flex-col items-center justify-center px-6 text-center transition-opacity duration-700 ease-out ${index === current ? 'z-20 opacity-100' : 'pointer-events-none opacity-0'
+                }`}
               role="group"
               aria-roledescription="slide"
               aria-label={`${index + 1} of ${slides.length}`}
@@ -110,9 +107,8 @@ export default function HeroSection() {
             <button
               key={slide.title}
               type="button"
-              className={`h-2 w-2 rounded-full border border-white/50 transition-all duration-300 ease-out ${
-                index === current ? 'scale-110 bg-white shadow-[0_0_0_4px_rgba(255,255,255,0.35)]' : 'bg-white/30 hover:bg-white/60'
-              }`}
+              className={`h-2 w-2 rounded-full border border-white/50 transition-all duration-300 ease-out ${index === current ? 'scale-110 bg-white shadow-[0_0_0_4px_rgba(255,255,255,0.35)]' : 'bg-white/30 hover:bg-white/60'
+                }`}
               onClick={() => handleDotClick(index)}
               aria-label={`Show slide ${index + 1}`}
               aria-pressed={index === current}
@@ -124,62 +120,68 @@ export default function HeroSection() {
       {/* Floating Reviews Box (Replacing Logo Carousel) */}
       <div className="relative -mt-12 z-30 flex justify-center px-4">
         <div className="relative z-30 w-full max-w-[1080px] rounded-[48px] bg-white px-8 py-10 shadow-[0_30px_120px_rgba(15,23,42,0.12)]">
-           <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center justify-center">
-              {/* Review 1 */}
-              <div className="flex flex-col items-center gap-3">
-                <img 
-                  src="https://framerusercontent.com/images/mTpOnAfGxjZE7Z7TD3u2q9l1nG0.svg?width=75&height=32" 
-                  alt="Logo" 
-                  className="h-8 w-auto object-contain" 
-                />
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
-                  ))}
-                </div>
-                <p className="text-sm font-medium text-slate-900">
-                  <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
-                </p>
+          <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center justify-center">
+            {/* Review 1 */}
+            <div className="flex flex-col items-center gap-3">
+              <Image
+                src="/assets/external/review-logo-1.svg"
+                alt="Logo"
+                width={75}
+                height={32}
+                className="h-8 w-auto object-contain"
+              />
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
+                ))}
               </div>
-
-              <div className="hidden md:block w-px h-16 bg-slate-200" />
-
-              {/* Review 2 */}
-              <div className="flex flex-col items-center gap-3">
-                <img 
-                  src="https://framerusercontent.com/images/HuoVn1mDCC4O7up0AjLEAe3EQ0o.svg?width=75&height=32" 
-                  alt="Logo" 
-                  className="h-8 w-auto object-contain" 
-                />
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
-                  ))}
-                </div>
-                <p className="text-sm font-medium text-slate-900">
-                  <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
-                </p>
-              </div>
-
-              <div className="hidden md:block w-px h-16 bg-slate-200" />
-
-              {/* Review 3 */}
-              <div className="flex flex-col items-center gap-3">
-                <img 
-                  src="https://framerusercontent.com/images/irZerHv0KOVqAzYvSe5OSulXw.svg?width=128&height=32" 
-                  alt="Logo" 
-                  className="h-8 w-auto object-contain" 
-                />
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
-                  ))}
-                </div>
-                <p className="text-sm font-medium text-slate-900">
-                  <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
-                </p>
-              </div>
+              <p className="text-sm font-medium text-slate-900">
+                <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
+              </p>
             </div>
+
+            <div className="hidden md:block w-px h-16 bg-slate-200" />
+
+            {/* Review 2 */}
+            <div className="flex flex-col items-center gap-3">
+              <Image
+                src="/assets/external/review-logo-2.svg"
+                alt="Logo"
+                width={75}
+                height={32}
+                className="h-8 w-auto object-contain"
+              />
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
+                ))}
+              </div>
+              <p className="text-sm font-medium text-slate-900">
+                <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
+              </p>
+            </div>
+
+            <div className="hidden md:block w-px h-16 bg-slate-200" />
+
+            {/* Review 3 */}
+            <div className="flex flex-col items-center gap-3">
+              <Image
+                src="/assets/external/review-logo-3.svg"
+                alt="Logo"
+                width={128}
+                height={32}
+                className="h-8 w-auto object-contain"
+              />
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
+                ))}
+              </div>
+              <p className="text-sm font-medium text-slate-900">
+                <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

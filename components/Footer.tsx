@@ -27,27 +27,10 @@ const quickLinks = [
   { href: '/destination-two', label: 'Our destination' },
   { href: '/contact-three', label: 'Contact' },
   { href: '/faq', label: 'FAQ' },
+  { href: '/admin/login', label: 'Admin' },
 ];
 
-const locations = [
-  { href: 'https://exploreza.webflow.io/countries/usa', label: 'USA' },
-  { href: 'https://exploreza.webflow.io/countries/france', label: 'France' },
-  { href: 'https://exploreza.webflow.io/countries/switzerland', label: 'Switzerland' },
-  { href: 'https://exploreza.webflow.io/countries/new-zealand', label: 'New Zealand' },
-  { href: 'https://exploreza.webflow.io/countries/australia', label: 'Australia' },
-  { href: 'https://exploreza.webflow.io/countries/venezuela', label: 'Venezuela' },
-  { href: 'https://exploreza.webflow.io/countries/colombia', label: 'Colombia' },
-  { href: 'https://exploreza.webflow.io/countries/cameroon', label: 'Cameroon' },
-  { href: 'https://exploreza.webflow.io/countries/argentina', label: 'Argentina' },
-  { href: 'https://exploreza.webflow.io/countries/brazil', label: 'Brazil' },
-  { href: 'https://exploreza.webflow.io/countries/egypt', label: 'Egypt' },
-  { href: 'https://exploreza.webflow.io/countries/south-africa', label: 'South Africa' },
-  { href: 'https://exploreza.webflow.io/countries/sri-lanka', label: 'Sri Lanka' },
-  { href: 'https://exploreza.webflow.io/countries/thailand', label: 'Thailand' },
-  { href: 'https://exploreza.webflow.io/countries/united-arab-emirates', label: 'UAE' },
-  { href: 'https://exploreza.webflow.io/countries/bhutan', label: 'Bhutan' },
-  { href: 'https://exploreza.webflow.io/countries/india', label: 'India', last: true },
-];
+
 
 function LinkTag({ href, label }: { href: string; label: string }) {
   return (
@@ -77,7 +60,7 @@ export default function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-12 w-12 items-center justify-center rounded-full bg-[#ff623b] transition-transform duration-200 hover:-translate-y-1 hover:brightness-105"
+                    className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0b3e63] transition-transform duration-200 hover:-translate-y-1 hover:brightness-105"
                   >
                     <Image
                       src={social.src}
@@ -125,7 +108,7 @@ export default function Footer() {
         </div>
       </section>
 
-  <section className="border-t border-white/10 bg-black/95">
+      <section className="border-t border-white/10 bg-black/95">
         <div className="mx-auto w-full max-w-[1200px] px-4 py-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="text-sm text-white/70">
@@ -160,19 +143,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-sm text-white/50">
-            {locations.map((location) => (
-              <Link
-                key={location.label}
-                href={location.href}
-                className={`border-b border-transparent pb-1 transition-colors duration-200 hover:border-white/30 hover:text-white ${location.last ? 'border-none pb-0' : ''}`.trim()}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {location.label}
-              </Link>
-            ))}
-          </div>
+
         </div>
       </section>
     </footer>

@@ -8,28 +8,24 @@ import { cn } from "@/lib/utils";
 
 const destinations = [
   {
-    title: 'USA',
-    href: '/countries/usa',
-    image:
-      'https://cdn.prod.website-files.com/672d8f75dabc438e6086ed62/6784dd34cc05ca74225ca27c_USA%20Three%20Portrait.avif',
+    title: 'Sigiriya',
+    href: '/tours?destination=Sigiriya',
+    image: '/sigiriya.webp',
   },
   {
-    title: 'France',
-    href: '/countries/france',
-    image:
-      'https://cdn.prod.website-files.com/672d8f75dabc438e6086ed62/6784d7a28dac16562602e81b_France%20Three%20Portrait.webp',
+    title: 'Kandy',
+    href: '/tours?destination=Kandy',
+    image: '/kandy.jpg',
   },
   {
-    title: 'Switzerland',
-    href: '/countries/switzerland',
-    image:
-      'https://cdn.prod.website-files.com/672d8f75dabc438e6086ed62/6784d4b72f1341751c68a2e4_Switzerland%20Three%20Portrait.webp',
+    title: 'Nuwara Eliya',
+    href: '/tours?destination=Nuwara%20Eliya',
+    image: '/nuwaraeliya.webp',
   },
   {
-    title: 'New Zealand',
-    href: '/countries/new-zealand',
-    image:
-      'https://cdn.prod.website-files.com/672d8f75dabc438e6086ed62/6784d1c387a0f6ff9d700ec3_New%20Zealand%20Two%20Portrait.webp',
+    title: 'Galle',
+    href: '/tours?destination=Galle',
+    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2039&auto=format&fit=crop',
   },
 ];
 
