@@ -1,14 +1,12 @@
-import { MetadataRoute } from 'next';
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-    const baseUrl = 'https://delfttours.com'; // Replace with actual domain
-
     return {
         rules: {
-            userAgent: '*',
-            allow: '/',
-            disallow: '/private/',
+            userAgent: "*",
+            allow: "/",
+            disallow: ["/admin/", "/api/"],
         },
-        sitemap: `${baseUrl}/sitemap.xml`,
+        sitemap: "https://delfttours.com/sitemap.xml",
     };
 }

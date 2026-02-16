@@ -10,6 +10,18 @@ import BlogSection from '@/components/BlogSection';
 import ReelsSection from '@/components/ReelsSection';
 import Footer from '@/components/Footer';
 
+import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "Delft Tours - Unforgettable Sri Lankan Travel Experiences",
+  description: "Discover the wonder of Sri Lanka with Delft Tours. We offer expert-guided, customizable tour packages, luxury travel experiences, and unforgettable holidays in Sri Lanka.",
+  keywords: ["Sri Lanka tours", "travel agency Sri Lanka", "custom tours", "luxury travel", "holiday packages", "Delft Tours", "vacation in Sri Lanka"],
+  alternates: {
+    canonical: "https://delfttours.com",
+  },
+};
+
 export default function Home() {
   return (
     <div className="min-h-screen glass-gradient">

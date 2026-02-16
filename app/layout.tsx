@@ -7,39 +7,47 @@ import { AiChatWidget } from '@/components/ai-chat-widget';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://delfttours.com'), // Replace with actual domain
+  metadataBase: new URL('https://delfttours.com'),
   title: {
-    default: 'Delft Tours - Unforgettable Travel Experiences',
+    default: 'Delft Tours - Unforgettable Sri Lankan Travel Experiences',
     template: '%s | Delft Tours',
   },
-  description: 'Discover the world with Delft Tours. Expert guides, customizable itineraries, and handpicked destinations for your perfect holiday in Sri Lanka and beyond.',
-  keywords: ['travel', 'tours', 'sri lanka', 'holiday', 'vacation', 'delft tours', 'custom itinerary', 'travel agency'],
-  authors: [{ name: 'Delft Tours' }],
+  description: 'Discover the wonder of Sri Lanka with Delft Tours. We offer expert-guided, customizable tour packages, luxury travel experiences, and unforgettable holidays in Sri Lanka.',
+  keywords: ['Sri Lanka tours', 'travel agency Sri Lanka', 'custom tours', 'luxury travel', 'holiday packages', 'Delft Tours', 'vacation in Sri Lanka', 'tour operators'],
+  authors: [{ name: 'Delft Tours', url: 'https://delfttours.com' }],
   creator: 'Delft Tours',
+  publisher: 'Delft Tours',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
+    title: 'Delft Tours - Unforgettable Sri Lankan Travel Experiences',
+    description: 'Explore Sri Lanka with our expert-curated tour packages. From beaches to hill country, wildlife to culture, we create your perfect holiday.',
     url: 'https://delfttours.com',
-    title: 'Delft Tours - Unforgettable Travel Experiences',
-    description: 'Discover the world with Delft Tours. Expert guides, customizable itineraries, and handpicked destinations.',
     siteName: 'Delft Tours',
     images: [
       {
-        url: '/delgyortoginallogo.png', // Using the logo as default OG image for now
+        url: '/delgyortoginallogo.png',
         width: 1200,
         height: 630,
-        alt: 'Delft Tours',
+        alt: 'Delft Tours Logo',
       },
     ],
+    locale: 'en_US',
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Delft Tours - Unforgettable Travel Experiences',
-    description: 'Discover the world with Delft Tours. Expert guides, customizable itineraries, and handpicked destinations.',
+    title: 'Delft Tours - Your Gateway to Sri Lanka',
+    description: 'Experience the best of Sri Lanka with Delft Tours. Tailor-made holidays and expert guides.',
     images: ['/delgyortoginallogo.png'],
+    creator: '@delfttours', // Assuming handle, can be updated
   },
   icons: {
     icon: '/delftfavicon.png',
+    shortcut: '/delftfavicon.png',
     apple: '/delftfavicon.png',
   },
   robots: {
@@ -53,7 +61,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'verification_code_here', // Placeholder for actual verification code
+  },
 };
+
 
 export default function RootLayout({
   children,

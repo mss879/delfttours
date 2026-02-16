@@ -18,11 +18,32 @@ import { Button } from '@/components/ui/button';
 import QuoteDialog from '@/components/QuoteDialog';
 import StickyBookingCard from '@/components/StickyBookingCard';
 import { tourDetails } from '../tour-data';
+import { Metadata } from 'next';
 
 export function generateStaticParams() {
   return tourDetails.map((tour) => ({
     id: tour.id,
   }));
+}
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const tour = tourDetails.find((t) => t.id === params.id);
+
+  if (!tour) {
+    return {
+      title: 'Tour Not Found',
+    };
+  }
+
+  return {
+    title: tour.title,
+    description: tour.description,
+    openGraph: {
+      title: tour.title,
+      description: tour.description,
+      images: tour.images && tour.images.length > 0 ? [tour.images[0]] : [],
+    },
+  };
 }
 
 export default function TourPage({ params }: { params: { id: string } }) {

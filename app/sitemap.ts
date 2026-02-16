@@ -1,27 +1,31 @@
-import { MetadataRoute } from 'next';
-import { tourDetails as tours } from './tours/tour-data';
+import { MetadataRoute } from "next";
+import { tourDetails } from "./tours/tour-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://delfttours.com'; // Replace with actual domain
+    const baseUrl = "https://delfttours.com";
 
-    const tourRoutes = tours.map((tour) => ({
-        url: `${baseUrl}/tours/${tour.id}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly' as const,
-        priority: 0.8,
-    }));
-
-    const routes = [
-        '',
-        '/tours',
-        '/about-us',
-        '/contact-us',
+    // Static pages
+    const staticPages = [
+        "",
+        "/about-us",
+        "/contact-us",
+        "/faq",
+        "/get-quote",
+        "/tours",
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
-        priority: 1.0,
+        changeFrequency: "monthly" as const,
+        priority: route === "" ? 1 : 0.8,
     }));
 
-    return [...routes, ...tourRoutes];
+    // Dynamic pages (Tour Packages)
+    const tourPages = tourDetails.map((tour) => ({
+        url: `${baseUrl}/tours/${tour.id}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const, // Tours might update price/details
+        priority: 0.9, // High priority for product pages
+    }));
+
+    return [...staticPages, ...tourPages];
 }
