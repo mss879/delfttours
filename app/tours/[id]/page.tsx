@@ -33,9 +33,11 @@ export default function TourPage({ params }: { params: { id: string } }) {
   }
 
   // Helper to safely split title
-  const titleParts = tour.title.split('-');
-  const mainTitle = titleParts[0];
-  const subTitle = titleParts.slice(1).join('-');
+  // Helper to safely split title
+  // Matches "Title (Duration)" format
+  const titleMatch = tour.title.match(/^(.*?)\s*\((.*?)\)$/);
+  const mainTitle = titleMatch ? titleMatch[1] : tour.title;
+  const subTitle = titleMatch ? `(${titleMatch[2]})` : '';
 
   return (
     <div className="mx-auto flex max-w-[1440px] px-4 flex-col pb-12">

@@ -54,7 +54,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-4D3N-STD-01",
-    "title": "4 Days Essence of Sri Lanka",
+    "title": "Essence of Sri Lanka (4 days)",
     "startingPrice": "$450",
     "description": "Duration: 4 days / 3 nights\nType: Private escorted tour\nSuitable For: Families, couples, and friends",
     "days": [
@@ -97,7 +97,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-5D4N-STD-01",
-    "title": "5 Days Essence of Sri Lanka",
+    "title": "Essence of Sri Lanka (5 days)",
     "startingPrice": "$800",
     "description": "Duration: 5 days / 4 nights\nType: Private escorted tour\nSuitable For: Families, couples, and friends",
     "days": [
@@ -145,7 +145,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-5D4N-STD-02",
-    "title": "5 Days Island Escape",
+    "title": "Island Escape (5 days)",
     "startingPrice": "$585",
     "description": "Duration: 5 days / 4 nights\nType: Private escorted tour\nSuitable For: Families",
     "days": [
@@ -192,7 +192,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-5D4N-WLD-03",
-    "title": "5 Days Temples Wildlife Beach",
+    "title": "Temples, Wildlife and Beach (5 days)",
     "startingPrice": "$800",
     "description": "Duration: 5 days / 4 nights\nType: Private escorted tour\nSuitable For: Families",
     "days": [
@@ -239,7 +239,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-5D4N-BCH-04",
-    "title": "5 Days Taste of Paradise",
+    "title": "Taste of Paradise (5 days)",
     "startingPrice": "$750",
     "description": "Duration: 5 days / 4 nights\nType: Private escorted tour\nSuitable For: Families, couples, and friends",
     "days": [
@@ -332,7 +332,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-5D4N-HNM-06",
-    "title": "5 Days Romantic Paradise",
+    "title": "Romantic Days in Paradise (5 days)",
     "startingPrice": "$1,850",
     "description": "Duration: 5 days / 4 nights\nType: Superior private honeymoon tour\nSuitable For: Couples",
     "days": [
@@ -380,7 +380,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-6D5N-STD-01",
-    "title": "6 Days Island Charm",
+    "title": "Island Charm Express (6 days)",
     "startingPrice": "$890",
     "description": "Duration: 6 days / 5 nights\nType: Private escorted tour\nSuitable For: Family, Couple, Friends",
     "days": [
@@ -433,7 +433,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-6D5N-STD-02",
-    "title": "6 Days Tropical Trails",
+    "title": "Tropical Trails (6 days)",
     "startingPrice": "$980",
     "description": "Duration: 6 days / 5 nights\nType: Private escorted tour\nSuitable For: Family, Couple, Friends",
     "days": [
@@ -485,7 +485,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-6D5N-WLD-03",
-    "title": "Sri Lanka Tour - 6 days / 5 nights",
+    "title": "Temples, Wildlife and Beach (6 days)",
     "startingPrice": "$730",
     "description": "Duration: 6 days / 5 nights\nType: Tailor-made private tour\nSuitable For: Families",
     "days": [
@@ -537,7 +537,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-7D6N-HNM-01",
-    "title": "7 Day Love And Adventure",
+    "title": "Love and Adventure (7 days)",
     "startingPrice": "$3,470",
     "description": "Duration: 7 days / 6 nights\nType: Private luxury honeymoon tour\nSuitable For: Couples",
     "days": [
@@ -595,7 +595,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-7D6N-NGBE-02",
-    "title": "7 Day Whisper Of Lanka",
+    "title": "Whispers of Lanka (7 days)",
     "startingPrice": "$1,100",
     "description": "Duration: 7 days / 6 nights\nType: Private luxury honeymoon tour\nSuitable For: Couples",
     "days": [
@@ -653,7 +653,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-7D6N-STD-02",
-    "title": "8 Days Rhythm Of Ceylon",
+    "title": "Rhythms of Ceylon (8 days)",
     "startingPrice": "$1,250",
     "description": "Duration: 7 days / 6 nights\nType: Private escorted tour\nSuitable For: Families, couples, and friends",
     "days": [
@@ -716,7 +716,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-9D8N-STD-01",
-    "title": "Sri Lanka Tour - 9 days / a8 nights",
+    "title": "Pearl Island Getaway (9 days)",
     "startingPrice": "$1,360",
     "description": "Duration: 9 days / a8 nights\nType: Private escorted tour\nSuitable For: Family, Couple, Friends",
     "days": [
@@ -783,7 +783,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-10D9N-STD-01",
-    "title": "SL-10D9N-STD-01 - 10 days / 9 nights",
+    "title": "Sri Lanka Dream Route (10 days)",
     "startingPrice": "$1,500",
     "description": "Duration: 10 days / 9 nights\nType: Private escorted tour\nSuitable For: Family, Couple, Friends",
     "days": [
@@ -856,7 +856,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-10D9N-STD-02",
-    "title": "SL-10D9N-STD-02 - 10 days / 9 nights",
+    "title": "Amazing Sri Lanka Tour (10 days)",
     "startingPrice": "$1,500",
     "description": "Duration: 10 days / 9 nights\nType: Private escorted tour\nSuitable For: Couples, families, friends, solo travelers",
     "days": [
@@ -929,7 +929,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-11D10N-STD-01",
-    "title": "11 Days Full Spectrum",
+    "title": "Full Spectrum Journey (11 days)",
     "startingPrice": "$2,000",
     "description": "Duration: 11 days / 10 nights\nType: Private escorted tour\nSuitable For: Family, Couple, Friends",
     "days": [
@@ -1006,7 +1006,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-12D11N-STD-01",
-    "title": "12 Days Ceylon Panorama",
+    "title": "Ceylon Panorama Journey (12 days)",
     "startingPrice": "$1,800",
     "description": "Duration: 12 days / 11 nights\nType: Private escorted tour\nSuitable For: Families, couples, and friends",
     "days": [
@@ -1089,7 +1089,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-12D11N-HNM-02",
-    "title": "12 Days Dreamy Honeymoon",
+    "title": "Dreamy Honeymoon Days (12 days)",
     "startingPrice": "$4,850",
     "description": "Duration: 12 days / 11 nights\nType: Private honeymoon tour\nSuitable For: Couples",
     "days": [
@@ -1172,7 +1172,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-14D13N-CLT-01",
-    "title": "14 Days Culture Nature",
+    "title": "Journey Culture and Nature (14 days)",
     "startingPrice": "$2,670",
     "description": "Duration: 14 days / 13 nights\nType: Private escorted tour\nSuitable For: Couples, families",
     "days": [
@@ -1264,7 +1264,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-13D12N-STD-01",
-    "title": "13 Days Grand Discovery",
+    "title": "Sri Lanka Grand Discovery Tour (13 days)",
     "startingPrice": "$1,880",
     "description": "Duration: 13 days / 12 nights\nType: Private escorted tour\nSuitable For: Anyone",
     "days": [
@@ -1351,7 +1351,7 @@ export const tourDetails: TourDetail[] = [
 
   {
     "id": "SL-15D14N-HNM-01",
-    "title": "SL-15D14N-HNM-01 - 15 days / 14 nights",
+    "title": "Romantic Bliss (15 days)",
     "startingPrice": "$6,190",
     "description": "Duration: 15 days / 14 nights\nType: Tailor-made private honeymoon tour\nSuitable For: Couples",
     "days": [
