@@ -77,6 +77,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "dotenv": "^17.3.1",
     "sharp": "^0.34.5"
   }
 }
