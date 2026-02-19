@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const topImages = [
   '/assets/external/gallery-top-1.png',
@@ -50,10 +51,12 @@ export default function GallerySection() {
                 key={`top-${index}`}
                 className="relative h-[200px] md:h-[300px] w-auto shrink-0 rounded-xl overflow-hidden"
               >
-                <img
+                <Image
                   src={src}
                   alt={`Gallery image ${index + 1}`}
-                  className="h-full w-auto object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 200px, 300px"
                 />
               </div>
             ))}
@@ -78,10 +81,12 @@ export default function GallerySection() {
                 key={`bottom-${index}`}
                 className="relative h-[200px] md:h-[300px] w-auto shrink-0 rounded-xl overflow-hidden"
               >
-                <img
+                <Image
                   src={src}
                   alt={`Gallery image ${index + 1}`}
-                  className="h-full w-auto object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 200px, 300px"
                 />
               </div>
             ))}

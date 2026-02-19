@@ -56,10 +56,13 @@ export default function Header() {
         >
           <div className="flex items-center gap-4 lg:gap-6">
             <a href="/" className="flex items-center">
-              <img
+              <Image
                 src="/delgyortoginallogo.png"
                 alt="Delft Tours Logo"
+                width={200}
+                height={74}
                 className="h-[74px] w-auto object-contain transition-transform duration-300 hover:scale-105"
+                priority
               />
             </a>
           </div>
@@ -84,7 +87,7 @@ export default function Header() {
 
           <div className="hidden items-center gap-4 lg:flex lg:justify-end">
             <QuoteDialog>
-              <div className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-6 py-2.5 rounded-full font-bold hover:bg-[#ffbf29] transition-all transform hover:scale-105 shadow-md">
+              <div className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-6 py-2.5 rounded-full font-bold hover:bg-[#ffbf29] transition-all transform hover:scale-105 shadow-md btn-pulse">
                 Get a Quote
               </div>
             </QuoteDialog>

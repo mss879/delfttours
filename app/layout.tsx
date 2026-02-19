@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Providers from './providers';
 import { AiChatWidget } from '@/components/ai-chat-widget';
+import { MeetingWidget } from '@/components/MeetingWidget';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -114,6 +115,7 @@ export default function RootLayout({
         />
         <Providers>
           {children}
+          <MeetingWidget />
           <AiChatWidget />
         </Providers>
       </body>

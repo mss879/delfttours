@@ -95,7 +95,7 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
 
           {/* Quick Stats Bar */}
           <div className="flex flex-col sm:flex-row items-center justify-evenly gap-8 p-8 bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-            
+
             <div className="flex flex-col items-center justify-center text-center gap-3 min-w-[120px]">
               <div className="p-3.5 bg-indigo-50 rounded-2xl text-indigo-600">
                 <Clock className="w-6 h-6" />
@@ -144,7 +144,7 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
           <div className="bg-indigo-50/50 rounded-2xl p-8 border border-indigo-100">
             <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
               <CheckCircle2 className="w-6 h-6 text-green-600" />
-              What's Included
+              What&apos;s Included
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-8">
               {(tour.inclusions && tour.inclusions.length > 0) ? tour.inclusions.map((inc, i) => (

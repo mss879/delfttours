@@ -119,65 +119,65 @@ export default function HeroSection() {
 
       {/* Floating Reviews Box (Replacing Logo Carousel) */}
       <div className="relative -mt-12 z-30 flex justify-center px-4">
-        <div className="relative z-30 w-full max-w-[1080px] rounded-[48px] bg-white px-8 py-10 shadow-[0_30px_120px_rgba(15,23,42,0.12)]">
-          <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-center justify-center">
+        <div className="relative z-30 w-full max-w-[1080px] rounded-[28px] md:rounded-[48px] bg-white px-4 py-6 md:px-8 md:py-10 shadow-[0_30px_120px_rgba(15,23,42,0.12)]">
+          <div className="flex flex-row gap-4 md:gap-24 items-center justify-center">
             {/* Review 1 */}
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center gap-1.5 md:gap-3">
               <Image
                 src="/assets/external/review-logo-1.svg"
                 alt="Logo"
                 width={75}
                 height={32}
-                className="h-8 w-auto object-contain"
+                className="h-5 md:h-8 w-auto object-contain"
               />
-              <div className="flex gap-1">
+              <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
+                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-[#FFC947] text-[#FFC947]" />
                 ))}
               </div>
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-[10px] md:text-sm font-medium text-slate-900">
                 <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
               </p>
             </div>
 
-            <div className="hidden md:block w-px h-16 bg-slate-200" />
+            <div className="block w-px h-12 md:h-16 bg-slate-200" />
 
             {/* Review 2 */}
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center gap-1.5 md:gap-3">
               <Image
                 src="/assets/external/review-logo-2.svg"
                 alt="Logo"
                 width={75}
                 height={32}
-                className="h-8 w-auto object-contain"
+                className="h-5 md:h-8 w-auto object-contain"
               />
-              <div className="flex gap-1">
+              <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
+                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-[#FFC947] text-[#FFC947]" />
                 ))}
               </div>
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-[10px] md:text-sm font-medium text-slate-900">
                 <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
               </p>
             </div>
 
-            <div className="hidden md:block w-px h-16 bg-slate-200" />
+            <div className="block w-px h-12 md:h-16 bg-slate-200" />
 
             {/* Review 3 */}
-            <div className="flex flex-col items-center gap-3">
+            <div className="flex flex-col items-center gap-1.5 md:gap-3">
               <Image
                 src="/assets/external/review-logo-3.svg"
                 alt="Logo"
                 width={128}
                 height={32}
-                className="h-8 w-auto object-contain"
+                className="h-5 md:h-8 w-auto object-contain"
               />
-              <div className="flex gap-1">
+              <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#FFC947] text-[#FFC947]" />
+                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-[#FFC947] text-[#FFC947]" />
                 ))}
               </div>
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-[10px] md:text-sm font-medium text-slate-900">
                 <span className="font-bold">4.5/5</span> <span className="text-slate-500">Rating</span>
               </p>
             </div>

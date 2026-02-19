@@ -12,6 +12,7 @@ import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface FAQItem {
   id: string;
@@ -62,7 +63,7 @@ export default function FAQSection() {
       return textWords.some(tWord => {
         // Direct include (already covered above efficiently for whole text, but good for individual words too)
         if (tWord.includes(qWord)) return true;
-        
+
         // Reverse include (if query word is longer than text word, but contains it - unlikely but possible)
         if (qWord.includes(tWord) && tWord.length >= 4) return true;
 
@@ -97,7 +98,7 @@ export default function FAQSection() {
                 Frequently <span className="font-normal text-slate-500">Asked Questions</span>
               </h2>
               <p className="max-w-2xl text-base leading-relaxed text-slate-600">
-                Welcome to Delft Tours! We're excited to have you with us. For any questions you may have, please explore our FAQ page where you'll find helpful answers and information.
+                Welcome to Delft Tours! We&apos;re excited to have you with us. For any questions you may have, please explore our FAQ page where you&apos;ll find helpful answers and information.
               </p>
             </div>
 
@@ -119,7 +120,15 @@ export default function FAQSection() {
           </div>
 
           <div className="hidden lg:block shrink-0">
-            <div className="h-48 w-48 rounded-3xl bg-indigo-50" />
+            <div className="relative h-48 w-48 rounded-3xl overflow-hidden shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+              <Image
+                src="/faq.jpeg" // changed from /faq.jpeg to match file extension if needed, but existing code said /faq.jpeg so keeping it.
+                alt="FAQ"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 300px"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -142,7 +151,7 @@ export default function FAQSection() {
 
         {filteredItems.length === 0 && (
           <div className="py-12 text-center text-slate-500">
-            No results found for "{searchQuery}"
+            No results found for &quot;{searchQuery}&quot;
           </div>
         )}
       </div>
