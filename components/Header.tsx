@@ -135,9 +135,11 @@ export default function Header() {
           </div>
 
           <div className="flex items-center gap-3 lg:hidden">
-            <button className="rounded-full bg-[#0b3e63] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-md shadow-[rgba(11,62,99,0.25)] transition-transform duration-200 hover:scale-[1.03] hover:bg-[#0a3554]">
-              Quote
-            </button>
+            <QuoteDialog>
+              <div className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide shadow-md btn-pulse transition-all hover:bg-[#ffbf29] hover:scale-105">
+                Get a Quote
+              </div>
+            </QuoteDialog>
             <button
               type="button"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-colors duration-200 hover:border-slate-400"
@@ -153,37 +155,52 @@ export default function Header() {
 
         <div
           id="primary-mobile-menu"
-          className={`lg:hidden transition-[max-height] duration-300 ease-out ${isMenuOpen ? 'max-h-96' : 'max-h-0 overflow-hidden'}`}
+          className={`lg:hidden absolute left-0 right-0 top-full z-50 transition-all duration-300 ease-out ${isMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
         >
-          <div className="mx-4 mb-4 rounded-3xl border border-slate-200/80 bg-white p-5 shadow-lg shadow-slate-900/5">
-            <div className="flex flex-col gap-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="rounded-2xl bg-slate-900/5 px-4 py-3 text-base font-semibold text-slate-700 transition-colors duration-200 hover:bg-slate-900/10"
-                >
-                  {link.label}
-                </a>
+          <div className="mx-3 mt-2 rounded-2xl bg-[#0b3e63] p-6 shadow-2xl shadow-black/30">
+            {/* Nav Links */}
+            <div className="flex flex-col">
+              {navLinks.map((link, index) => (
+                <div key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={closeMenu}
+                    className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
+                  >
+                    {link.label}
+                    <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
+                  </a>
+                  {index < navLinks.length - 1 && (
+                    <div className="h-px bg-white/10" />
+                  )}
+                </div>
               ))}
-            </div>
-            <div className="mt-5 flex flex-col gap-3">
+              <div className="h-px bg-white/10" />
               <a
                 href="/contact-us"
                 onClick={closeMenu}
-                className="rounded-2xl border border-slate-200 px-4 py-3 text-base font-semibold text-slate-600 transition-colors duration-200 hover:border-slate-400 hover:text-slate-900"
+                className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
               >
                 Contact Us
+                <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
               </a>
-              {/* Mobile CTA */}
-              <div className="mt-6 flex flex-col gap-4">
-                <QuoteDialog>
-                  <button className="w-full rounded-full bg-[#0b3e63] px-5 py-3 text-base font-semibold text-white shadow-lg active:scale-95 transition-transform duration-200">
-                    Get a Quote
-                  </button>
-                </QuoteDialog>
-              </div>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mt-5">
+              <QuoteDialog>
+                <button className="w-full rounded-xl bg-[#FFC947] text-[#0b3e63] px-5 py-3.5 text-base font-bold shadow-lg shadow-[#FFC947]/20 btn-pulse active:scale-[0.97] transition-all duration-200 hover:bg-[#ffbf29]">
+                  Get a Quote
+                </button>
+              </QuoteDialog>
+            </div>
+
+            {/* Contact Info */}
+            <div className="mt-5 flex items-center justify-center gap-4 border-t border-white/10 pt-4">
+              <a href="mailto:info@delfttours.com" className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white/80 transition-colors">
+                <Mail className="h-3.5 w-3.5" />
+                <span>info@delfttours.com</span>
+              </a>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ const bottomImages = [
 
 export default function GallerySection() {
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section className="hidden md:block py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 mb-12 text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
           Discover the Moments

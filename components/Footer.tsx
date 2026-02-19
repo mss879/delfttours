@@ -112,7 +112,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-16 flex justify-center">
-            <span className="relative text-center text-[clamp(3.5rem,9vw,7.5rem)] font-black uppercase tracking-[0.25em] text-white/90 whitespace-nowrap">
+            <span className="relative text-center text-[clamp(2rem,9vw,7.5rem)] font-black uppercase tracking-[0.1em] md:tracking-[0.25em] text-white/90 whitespace-nowrap">
               <span className="relative z-10 bg-gradient-to-b from-white via-white/70 to-white/10 bg-clip-text text-transparent">
                 Delft Tours
               </span>
