@@ -30,10 +30,10 @@ export const metadata: Metadata = {
     siteName: 'Delft Tours',
     images: [
       {
-        url: '/delgyortoginallogo.png',
+        url: '/hero1.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Delft Tours Logo',
+        alt: 'Delft Tours - Experience Sri Lanka',
       },
     ],
     locale: 'en_US',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Delft Tours - Your Gateway to Sri Lanka',
     description: 'Experience the best of Sri Lanka with Delft Tours. Tailor-made holidays and expert guides.',
-    images: ['/delgyortoginallogo.png'],
+    images: ['/hero1.jpeg'],
     creator: '@delfttours', // Assuming handle, can be updated
   },
   icons: {
