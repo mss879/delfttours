@@ -130,7 +130,7 @@ export default function ContactForm() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-[#179daa] hover:text-[#0f766e] transition-colors"
-                                            aria-label="Instagram"
+                                            aria-label="Visit our Instagram page"
                                         >
                                             <Instagram className="h-6 w-6" />
                                         </a>
@@ -139,7 +139,7 @@ export default function ContactForm() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-[#179daa] hover:text-[#0f766e] transition-colors"
-                                            aria-label="Facebook"
+                                            aria-label="Visit our Facebook page"
                                         >
                                             <Facebook className="h-6 w-6" />
                                         </a>
@@ -148,7 +148,7 @@ export default function ContactForm() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-[#179daa] hover:text-[#0f766e] transition-colors"
-                                            aria-label="TikTok"
+                                            aria-label="Visit our TikTok page"
                                         >
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +165,7 @@ export default function ContactForm() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="text-[#179daa] hover:text-[#0f766e] transition-colors"
-                                            aria-label="YouTube"
+                                            aria-label="Visit our YouTube channel"
                                         >
                                             <Youtube className="h-6 w-6" />
                                         </a>

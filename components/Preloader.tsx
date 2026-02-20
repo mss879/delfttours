@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 
 const phrases = [
     "Packing your bags...",
@@ -38,7 +37,7 @@ export default function Preloader() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 3500); // Keep preloader for 3.5 seconds
+        }, 1500); // Keep preloader for 1.5 seconds for a snappier feel
 
         return () => clearTimeout(timer);
     }, []);
@@ -95,16 +94,11 @@ export default function Preloader() {
                         <motion.div
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1, transition: { duration: 0.5 } }}
-                            className="mb-8 relative w-24 h-24 sm:w-32 sm:h-32"
+                            className="mb-8 relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-teal-400 rounded-full opacity-20 animate-pulse" />
-                            <Image
-                                src="/delftfavicon.png"
-                                alt="Delft Tours"
-                                fill
-                                className="object-contain p-4"
-                                priority
-                            />
+                            {/* Pure CSS pulsing indicator instead of image */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-teal-400 rounded-full opacity-30 animate-ping" />
+                            <div className="relative w-12 h-12 bg-gradient-to-tr from-blue-600 to-teal-500 rounded-full shadow-lg" />
                         </motion.div>
 
                         {/* Typing Text */}

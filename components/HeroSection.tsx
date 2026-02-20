@@ -14,27 +14,27 @@ const slideData: Slide[] = [
   {
     title: 'Discover the ancient wonders of Sigiriya',
     description: 'Climb the legendary Lion Rock fortress and explore centuries of Sri Lankan heritage.',
-    image: '/hero1.jpeg',
+    image: '/hero5.jpeg',
   },
   {
     title: 'Experience the sacred beauty of Kandy',
     description: 'Visit the Temple of the Tooth and stroll along the serene Kandy Lake at dusk.',
-    image: '/hero2.jpeg',
+    image: '/hero4.jpeg',
   },
   {
     title: 'Wander through the misty hills of Nuwara Eliya',
     description: 'Immerse yourself in lush tea plantations and breathtaking highland scenery.',
-    image: '/hero3.jpeg',
+    image: '/hero2.jpeg',
   },
   {
     title: 'Unwind on the golden shores of the south coast',
     description: 'Relax on pristine beaches and watch spectacular sunsets over the Indian Ocean.',
-    image: '/hero4.jpeg',
+    image: '/hero1.jpeg',
   },
   {
     title: 'Explore the wild heart of Yala National Park',
     description: 'Encounter leopards, elephants, and exotic wildlife on an unforgettable safari adventure.',
-    image: '/hero5.jpeg',
+    image: '/hero3.jpeg',
   },
 ];
 
@@ -100,8 +100,9 @@ export default function HeroSection() {
             >
               <Image
                 src={slide.image}
-                alt="Hero background"
+                alt={`Hero background featuring ${slide.title}`}
                 fill
+                sizes="(max-width: 768px) 100vw, 100vw"
                 className="-z-10 object-cover"
                 priority={index === 0}
               />

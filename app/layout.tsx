@@ -5,7 +5,7 @@ import Providers from './providers';
 import { AiChatWidget } from '@/components/ai-chat-widget';
 import { MeetingWidget } from '@/components/MeetingWidget';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://delfttours.com'),

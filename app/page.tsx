@@ -1,17 +1,17 @@
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import WhyChooseSection from '@/components/WhyChooseSection';
-import MemoriesSection from '@/components/MemoriesSection';
-import HowItWorks from '@/components/HowItWorks';
-import AboutSection from '@/components/AboutSection';
-import GallerySection from '@/components/GallerySection';
-import TopDestinations from '@/components/TopDestinations';
-import BlogSection from '@/components/BlogSection';
-import ReelsSection from '@/components/ReelsSection';
-import Footer from '@/components/Footer';
 import Preloader from '@/components/Preloader';
-
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
+
+const WhyChooseSection = dynamic(() => import('@/components/WhyChooseSection'));
+const AboutSection = dynamic(() => import('@/components/AboutSection'));
+const GallerySection = dynamic(() => import('@/components/GallerySection'));
+const HowItWorks = dynamic(() => import('@/components/HowItWorks'));
+const TopDestinations = dynamic(() => import('@/components/TopDestinations'));
+const BlogSection = dynamic(() => import('@/components/BlogSection'));
+const ReelsSection = dynamic(() => import('@/components/ReelsSection'));
+const Footer = dynamic(() => import('@/components/Footer'));
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

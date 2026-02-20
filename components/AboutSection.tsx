@@ -44,11 +44,11 @@ export default function AboutSection() {
             />
           </div>
 
-          <div className="absolute -top-16 right-6 hidden h-[160px] w-[160px] sm:block">
+          <div className="absolute -top-16 right-6 hidden h-[160px] w-[160px] sm:block" aria-hidden="true">
             <div className="relative h-full w-full animate-[spin_18s_linear_infinite]">
               <Image
                 src="https://cdn.prod.website-files.com/66b5d6635ee4014275999ec3/66b9a8c77bb06b7704a261b3_Group%201000008415.avif"
-                alt="Contact us circle"
+                alt="Decorative spinning graphic"
                 fill
                 className="object-contain"
                 sizes="160px"

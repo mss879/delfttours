@@ -236,6 +236,7 @@ export default function TourListing() {
                                             max={21}
                                             step={1}
                                             className="cursor-pointer"
+                                            aria-label="Trip Duration Days Slider"
                                         />
                                         <div className="mt-4 flex items-center justify-between text-sm">
                                             <span className="text-slate-500">Min: 3</span>
@@ -428,6 +429,7 @@ export default function TourListing() {
                                 variant="ghost"
                                 size="sm"
                                 className="text-slate-500 hover:text-red-600"
+                                aria-label="Clear all applied filters"
                                 onClick={() => {
                                     setDays([21]);
                                     setSelectedDestinations({});
@@ -463,7 +465,7 @@ export default function TourListing() {
                 </div>
 
                 <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {displayTours.map((tour) => {
+                    {displayTours.map((tour, index) => {
                         const fullDetail = tour.detail;
                         if (!fullDetail) return null;
                         return (
@@ -505,6 +507,7 @@ export default function TourListing() {
                                                     fill
                                                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                                    priority={index < 4}
                                                 />
                                             ) : (
                                                 <div className="h-full w-full bg-slate-200 transition-transform duration-500 group-hover:scale-110" />

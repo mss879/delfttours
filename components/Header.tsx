@@ -52,10 +52,10 @@ export default function Header() {
       <div className="border-b border-white/20 bg-white/70 backdrop-blur-md shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
         <nav
           className="relative mx-auto flex max-w-[1440px] items-center justify-between px-4 py-4 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-6 lg:px-8"
-          aria-label="Global"
+          aria-label="Primary Desktop Navigation"
         >
           <div className="flex items-center gap-4 lg:gap-6">
-            <a href="/" className="flex items-center">
+            <Link href="/" className="flex items-center">
               <Image
                 src="/delgyortoginallogo.png"
                 alt="Delft Tours Logo"
@@ -64,25 +64,25 @@ export default function Header() {
                 className="h-[74px] w-auto object-contain transition-transform duration-300 hover:scale-105"
                 priority
               />
-            </a>
+            </Link>
           </div>
 
           <div className="hidden items-center justify-center lg:flex lg:gap-2">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 className="rounded-full px-4 py-2 text-base font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900"
                 href={link.href}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a
+            <Link
               href="/contact-us"
               className="rounded-full px-4 py-2 text-base font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
 
           <div className="hidden items-center gap-4 lg:flex lg:justify-end">
@@ -162,28 +162,28 @@ export default function Header() {
             <div className="flex flex-col">
               {navLinks.map((link, index) => (
                 <div key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     onClick={closeMenu}
                     className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
                   >
                     {link.label}
                     <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
-                  </a>
+                  </Link>
                   {index < navLinks.length - 1 && (
                     <div className="h-px bg-white/10" />
                   )}
                 </div>
               ))}
               <div className="h-px bg-white/10" />
-              <a
+              <Link
                 href="/contact-us"
                 onClick={closeMenu}
                 className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
               >
                 Contact Us
                 <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
-              </a>
+              </Link>
             </div>
 
             {/* CTA Button */}

@@ -63,10 +63,9 @@ export default function TopDestinations() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 280px"
                   className="object-cover"
-                  priority={destination.title === 'USA'}
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.18)_60%,rgba(0,0,0,0.48)_100%)] pointer-events-none" />
-                
+
                 <div className="absolute inset-x-0 bottom-8 flex justify-center px-2 pointer-events-none z-10">
                   <motion.span
                     className={cn(
@@ -76,8 +75,8 @@ export default function TopDestinations() {
                     )}
                     style={{ textShadow: '0 8px 24px rgba(0,0,0,0.5)' }}
                     animate={{
-                        opacity: 1,
-                        scale: activeId === index ? 1.1 : 1,
+                      opacity: 1,
+                      scale: activeId === index ? 1.1 : 1,
                     }}
                   >
                     {destination.title}
