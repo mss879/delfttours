@@ -63,7 +63,7 @@ export default function ReelsSection() {
       else if (window.innerWidth < 1024) setItemsToShow(2);
       else setItemsToShow(4);
     };
-    
+
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -113,15 +113,15 @@ export default function ReelsSection() {
 
         <div className="relative">
           <div className="overflow-hidden" ref={containerRef}>
-            <motion.div 
+            <motion.div
               className="flex"
               animate={{ x: `-${currentIndex * (100 / itemsToShow)}%` }}
               transition={{ duration: isResetting ? 0 : 0.5, ease: "easeInOut" }}
               onAnimationComplete={handleAnimationComplete}
             >
               {extendedReels.map((reel, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="shrink-0 px-2"
                   style={{ width: `${100 / itemsToShow}%` }}
                 >
@@ -136,7 +136,7 @@ export default function ReelsSection() {
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />
-                    
+
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                       <div className="flex items-center gap-2 mb-2">
                         <MapPin className="w-5 h-5 text-white" />
@@ -152,14 +152,16 @@ export default function ReelsSection() {
 
           {/* Navigation Buttons */}
           <div className="flex justify-center gap-4 mt-12">
-            <button 
+            <button
               onClick={prevSlide}
+              aria-label="Previous video"
               className="w-14 h-14 rounded-full bg-[#0b3e63] flex items-center justify-center hover:bg-[#082c46] transition-colors shadow-lg"
             >
               <ArrowLeft className="w-6 h-6 text-white" />
             </button>
-            <button 
+            <button
               onClick={nextSlide}
+              aria-label="Next video"
               className="w-14 h-14 rounded-full bg-[#0b3e63] flex items-center justify-center hover:bg-[#082c46] transition-colors shadow-lg"
             >
               <ArrowRight className="w-6 h-6 text-white" />

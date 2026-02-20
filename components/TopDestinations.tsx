@@ -56,7 +56,7 @@ export default function TopDestinations() {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 onHoverStart={() => setActiveId(index)}
               >
-                <Link href={destination.href} className="absolute inset-0 z-20" />
+                <Link href={destination.href} className="absolute inset-0 z-20" aria-label={`View tours in ${destination.title}`} />
                 <Image
                   src={destination.image}
                   alt={destination.title}

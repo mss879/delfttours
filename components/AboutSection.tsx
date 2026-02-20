@@ -76,7 +76,7 @@ export default function AboutSection() {
 
         <div className="relative flex flex-col gap-6">
 
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-600">About Us</span>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-700">About Us</span>
           <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
             Your Gateway To Amazing Experiences
           </h2>
@@ -125,7 +125,7 @@ export default function AboutSection() {
 
           <Link
             href="/tour"
-            className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-green-500 px-8 py-3 text-base font-semibold text-white shadow-[0_20px_50px_rgba(23,157,170,0.35)] transition hover:bg-green-600"
+            className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-green-600 px-8 py-3 text-base font-semibold text-white shadow-[0_20px_50px_rgba(23,157,170,0.35)] transition hover:bg-green-700"
           >
             <span>Find Tours</span>
             <svg

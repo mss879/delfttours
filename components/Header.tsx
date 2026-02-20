@@ -61,6 +61,7 @@ export default function Header() {
                 alt="Delft Tours Logo"
                 width={200}
                 height={74}
+                quality={60}
                 className="h-[74px] w-auto object-contain transition-transform duration-300 hover:scale-105"
                 priority
               />
@@ -87,9 +88,9 @@ export default function Header() {
 
           <div className="hidden items-center gap-4 lg:flex lg:justify-end">
             <QuoteDialog>
-              <div className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-6 py-2.5 rounded-full font-bold hover:bg-[#ffbf29] transition-all transform hover:scale-105 shadow-md btn-pulse">
+              <button type="button" className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-6 py-2.5 rounded-full font-bold hover:bg-[#ffbf29] transition-all transform hover:scale-105 shadow-md btn-pulse">
                 Get a Quote
-              </div>
+              </button>
             </QuoteDialog>
             <DropdownMenu>
               <DropdownMenuTrigger className="outline-none">
@@ -136,9 +137,9 @@ export default function Header() {
 
           <div className="flex items-center gap-3 lg:hidden">
             <QuoteDialog>
-              <div className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide shadow-md btn-pulse transition-all hover:bg-[#ffbf29] hover:scale-105">
+              <button type="button" className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide shadow-md btn-pulse transition-all hover:bg-[#ffbf29] hover:scale-105">
                 Get a Quote
-              </div>
+              </button>
             </QuoteDialog>
             <button
               type="button"

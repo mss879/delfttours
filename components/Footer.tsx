@@ -125,7 +125,7 @@ export default function Footer() {
       <section className="border-t border-white/10 bg-black/95">
         <div className="mx-auto w-full max-w-[1200px] px-4 py-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="text-sm text-white/70">
+            <div className="text-sm text-white/90">
               Designed by{' '}
               <span className="inline-block align-middle relative h-10 w-32 ml-0 mr-2">
                 <Image src="/arc logo.png" alt="ARC AI" fill className="object-contain" />
@@ -133,14 +133,14 @@ export default function Footer() {
               powered by{' '}
               <Link
                 href="https://nextjs.org"
-                className="text-white transition-colors duration-200 hover:text-[#ff623b]"
+                className="font-medium text-white transition-colors duration-200 hover:text-[#ff623b]"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Next.js
               </Link>
             </div>
-            <div className="flex items-center gap-3 text-sm text-white/70">
+            <div className="flex items-center gap-3 text-sm text-white/90">
               <Link
                 href="/information/license"
                 className="transition-colors duration-200 hover:text-white"

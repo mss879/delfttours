@@ -103,6 +103,7 @@ export default function HeroSection() {
                 alt={`Hero background featuring ${slide.title}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 100vw"
+                quality={60}
                 className="-z-10 object-cover"
                 priority={index === 0}
               />
