@@ -2,13 +2,15 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ChevronDown, ChevronUp, CheckCircle2, MessageCircle } from 'lucide-react';
+import Link from 'next/link';
+import { ChevronDown, ChevronUp, CheckCircle2, MessageCircle, CalendarCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import QuoteDialog from './QuoteDialog';
 import { useCurrency } from './CurrencyProvider';
 import CurrencySwitcher from './CurrencySwitcher';
 
 interface StickyBookingCardProps {
+  id?: string;
   destination?: string;
   duration: string;
   tourType?: string;
@@ -18,6 +20,7 @@ interface StickyBookingCardProps {
 }
 
 export default function StickyBookingCard({
+  id,
   destination = 'Sri Lanka',
   duration,
   tourType = 'Tailor Made',
@@ -129,15 +132,29 @@ export default function StickyBookingCard({
 
         {/* CTA */}
         <div className="space-y-3 pt-2">
-          <QuoteDialog defaultTheme={defaultTheme}>
-            <Button className="w-full rounded-full bg-green-600 hover:bg-green-700 text-white font-semibold py-6 text-base shadow-lg shadow-green-100 transition-all hover:shadow-green-200 hover:scale-[1.02]">
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Get a Quote
-            </Button>
-          </QuoteDialog>
-          <p className="text-center font-light text-[13px] text-slate-400">
-            *Our reply time is almost instant
-          </p>
+          {id ? (
+            <Link href={`/tours/${id}/checkout`} className="block w-full">
+              <Button className="w-full rounded-full bg-green-600 hover:bg-green-700 text-white font-semibold py-6 text-base shadow-lg shadow-green-100 transition-all hover:shadow-green-200 hover:scale-[1.02]">
+                <CalendarCheck className="w-5 h-5 mr-2" />
+                Book Now
+              </Button>
+            </Link>
+          ) : (
+            <QuoteDialog defaultTheme={defaultTheme}>
+              <Button className="w-full rounded-full bg-green-600 hover:bg-green-700 text-white font-semibold py-6 text-base shadow-lg shadow-green-100 transition-all hover:shadow-green-200 hover:scale-[1.02]">
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Get a Quote
+              </Button>
+            </QuoteDialog>
+          )}
+
+          <div className="text-center">
+            <QuoteDialog defaultTheme={defaultTheme}>
+              <button className="text-xs text-slate-400 hover:text-[#0b3e63] underline">
+                Or stick to requesting a custom quote
+              </button>
+            </QuoteDialog>
+          </div>
         </div>
       </div>
     </div>

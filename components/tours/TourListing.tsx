@@ -255,8 +255,8 @@ export default function TourListing() {
                                 <Button
                                     variant="outline"
                                     className={`rounded-full border-slate-300 h-9 ${Object.values(selectedDestinations).some(Boolean)
-                                            ? "bg-indigo-50 border-indigo-200 text-indigo-700"
-                                            : "bg-white"
+                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        : "bg-white"
                                         }`}
                                 >
                                     Destinations
@@ -296,8 +296,8 @@ export default function TourListing() {
                                 <Button
                                     variant="outline"
                                     className={`rounded-full border-slate-300 h-9 ${Object.values(selectedThemes).some(Boolean)
-                                            ? "bg-indigo-50 border-indigo-200 text-indigo-700"
-                                            : "bg-white"
+                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        : "bg-white"
                                         }`}
                                 >
                                     Themes
@@ -331,8 +331,8 @@ export default function TourListing() {
                                 <Button
                                     variant="outline"
                                     className={`rounded-full border-slate-300 h-9 ${Object.values(selectedActivities).some(Boolean)
-                                            ? "bg-indigo-50 border-indigo-200 text-indigo-700"
-                                            : "bg-white"
+                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        : "bg-white"
                                         }`}
                                 >
                                     Activities
@@ -366,8 +366,8 @@ export default function TourListing() {
                                 <Button
                                     variant="outline"
                                     className={`rounded-full border-slate-300 h-9 ${Object.values(selectedTripTypes).some(Boolean)
-                                            ? "bg-indigo-50 border-indigo-200 text-indigo-700"
-                                            : "bg-white"
+                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        : "bg-white"
                                         }`}
                                 >
                                     Style
@@ -396,8 +396,8 @@ export default function TourListing() {
                                 <Button
                                     variant="outline"
                                     className={`rounded-full border-slate-300 h-9 ${Object.values(selectedTravellerTypes).some(Boolean)
-                                            ? "bg-indigo-50 border-indigo-200 text-indigo-700"
-                                            : "bg-white"
+                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        : "bg-white"
                                         }`}
                                 >
                                     Travellers
@@ -487,11 +487,15 @@ export default function TourListing() {
                                                 ))}
                                             </div>
 
-                                            {/* Wishlist Button (Visual Only) */}
+                                            {/* Book Now Button (Replaces Wishlist) */}
                                             <div className="absolute top-4 right-4 z-10">
-                                                <div className="p-2 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/40 transition-colors">
-                                                    <Heart className="w-5 h-5" />
-                                                </div>
+                                                <a
+                                                    href={`/tours/${tour.id}/checkout`}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="flex items-center gap-1.5 bg-green-600/90 hover:bg-green-700 text-white backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm transition-all hover:scale-105"
+                                                >
+                                                    <span>Book Now</span>
+                                                </a>
                                             </div>
 
                                             {fullDetail.images && fullDetail.images.length > 0 ? (

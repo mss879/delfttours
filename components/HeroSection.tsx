@@ -12,14 +12,29 @@ type Slide = {
 
 const slideData: Slide[] = [
   {
-    title: 'Discover the Magic of Sri Lanka',
-    description: 'From misty highlands to golden beaches — experience the island like never before.',
-    image: '/assets/external/hero-slide-1.jpg',
+    title: 'Discover the ancient wonders of Sigiriya',
+    description: 'Climb the legendary Lion Rock fortress and explore centuries of Sri Lankan heritage.',
+    image: '/hero1.jpeg',
   },
   {
-    title: 'Unforgettable Journeys Across the Pearl of the Indian Ocean',
-    description: 'Ancient temples, lush tea plantations, and wildlife safaris await your adventure.',
-    image: '/assets/external/hero-slide-2.jpg',
+    title: 'Experience the sacred beauty of Kandy',
+    description: 'Visit the Temple of the Tooth and stroll along the serene Kandy Lake at dusk.',
+    image: '/hero2.jpeg',
+  },
+  {
+    title: 'Wander through the misty hills of Nuwara Eliya',
+    description: 'Immerse yourself in lush tea plantations and breathtaking highland scenery.',
+    image: '/hero3.jpeg',
+  },
+  {
+    title: 'Unwind on the golden shores of the south coast',
+    description: 'Relax on pristine beaches and watch spectacular sunsets over the Indian Ocean.',
+    image: '/hero4.jpeg',
+  },
+  {
+    title: 'Explore the wild heart of Yala National Park',
+    description: 'Encounter leopards, elephants, and exotic wildlife on an unforgettable safari adventure.',
+    image: '/hero5.jpeg',
   },
 ];
 
@@ -69,7 +84,7 @@ export default function HeroSection() {
         className="relative z-10 overflow-hidden rounded-[36px]"
         role="region"
         aria-roledescription="carousel"
-        aria-label="Featured destinations"
+        aria-label="Featured Sri Lankan destinations"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >

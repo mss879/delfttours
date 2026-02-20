@@ -234,6 +234,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
             startingPrice={tour.startingPrice}
             inclusions={tour.inclusions}
             defaultTheme={tour.themes?.[0]}
+            id={tour.id}
           />
         </div>
       </div>

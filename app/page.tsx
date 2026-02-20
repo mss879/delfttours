@@ -9,6 +9,7 @@ import TopDestinations from '@/components/TopDestinations';
 import BlogSection from '@/components/BlogSection';
 import ReelsSection from '@/components/ReelsSection';
 import Footer from '@/components/Footer';
+import Preloader from '@/components/Preloader';
 
 import Link from 'next/link';
 import { Metadata } from 'next';
@@ -26,6 +27,7 @@ export default function Home() {
   return (
     <div className="min-h-screen glass-gradient">
       <Header />
+      <Preloader />
       <main>
         <HeroSection />
         <WhyChooseSection />
