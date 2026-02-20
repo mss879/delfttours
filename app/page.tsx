@@ -1,6 +1,5 @@
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import Preloader from '@/components/Preloader';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
@@ -27,7 +26,6 @@ export default function Home() {
   return (
     <div className="min-h-screen glass-gradient">
       <Header />
-      <Preloader />
       <main>
         <HeroSection />
         <WhyChooseSection />
