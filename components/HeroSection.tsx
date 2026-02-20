@@ -12,13 +12,13 @@ type Slide = {
 
 const slideData: Slide[] = [
   {
-    title: 'Explore stays in traditional destinations',
-    description: 'Lorem ipsum dolor sit amet consectetur massa pulvinar.',
+    title: 'Discover the Magic of Sri Lanka',
+    description: 'From misty highlands to golden beaches — experience the island like never before.',
     image: '/assets/external/hero-slide-1.jpg',
   },
   {
-    title: 'Discover the wonders of the frozen frontier',
-    description: 'Lorem ipsum dolor sit amet consectetur massa pulvinar.',
+    title: 'Unforgettable Journeys Across the Pearl of the Indian Ocean',
+    description: 'Ancient temples, lush tea plantations, and wildlife safaris await your adventure.',
     image: '/assets/external/hero-slide-2.jpg',
   },
 ];
