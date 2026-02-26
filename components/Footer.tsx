@@ -126,19 +126,18 @@ export default function Footer() {
         <div className="mx-auto w-full max-w-[1200px] px-4 py-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="text-sm text-white/90">
-              Designed by{' '}
-              <span className="inline-block align-middle relative h-10 w-32 ml-0 mr-2">
-                <Image src="/arc logo.png" alt="ARC AI" fill className="object-contain" />
-              </span>{' '}
-              powered by{' '}
-              <Link
-                href="https://nextjs.org"
-                className="font-medium text-white transition-colors duration-200 hover:text-[#ff623b]"
+              <a
+                href="https://www.arcai.agency"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
+                title="ARC AI - Web Design & Digital Solutions"
+                className="inline-flex items-center gap-1 transition-colors duration-200 hover:text-white"
               >
-                Next.js
-              </Link>
+                Designed &amp; Developed by{' '}
+                <span className="inline-block align-middle relative h-10 w-32">
+                  <Image src="/arc-logo.png" alt="ARC AI - Web Design & Digital Solutions" fill className="object-contain" />
+                </span>
+              </a>
             </div>
             <div className="flex items-center gap-3 text-sm text-white/90">
               <Link
