@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: 'Delft Tours',
     images: [
       {
-        url: '/hero1.jpeg',
+        url: '/hero1.webp',
         width: 1200,
         height: 630,
         alt: 'Delft Tours - Experience Sri Lanka',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Delft Tours - Your Gateway to Sri Lanka',
     description: 'Experience the best of Sri Lanka with Delft Tours. Tailor-made holidays and expert guides.',
-    images: ['/hero1.jpeg'],
+    images: ['/hero1.webp'],
     creator: '@delfttours', // Assuming handle, can be updated
   },
   icons: {
@@ -83,7 +83,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'TravelAgency',
               name: 'Delft Tours',
-              image: 'https://delfttours.com/delgyortoginallogo.png',
+              image: 'https://delfttours.com/delgyortoginallogo.webp',
               '@id': 'https://delfttours.com',
               url: 'https://delfttours.com',
               telephone: '+94770000000', // Update with actual phone

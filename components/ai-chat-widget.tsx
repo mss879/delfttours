@@ -149,7 +149,7 @@ export function AiChatWidget() {
                                     <div className="flex items-center gap-2">
                                         <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white overflow-hidden border border-gray-200">
                                             <Image
-                                                src="/delgyortoginallogo.png"
+                                                src="/delgyortoginallogo.webp"
                                                 alt="Delft Tours"
                                                 fill
                                                 className="object-contain p-1"

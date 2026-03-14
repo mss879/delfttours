@@ -122,7 +122,7 @@ export default function FAQSection() {
           <div className="hidden lg:block shrink-0">
             <div className="relative h-48 w-48 rounded-3xl overflow-hidden shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <Image
-                src="/faq.jpeg" // changed from /faq.jpeg to match file extension if needed, but existing code said /faq.jpeg so keeping it.
+                src="/faq.webp" // changed from /faq.jpeg to match file extension if needed, but existing code said /faq.jpeg so keeping it.
                 alt="FAQ"
                 fill
                 className="object-cover"

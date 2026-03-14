@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
 import SuccessModal from "@/components/SuccessModal";
+import { createClient } from "@/lib/supabase/client";
 
 export default function ContactForm() {
     const { toast } = useToast();
@@ -21,8 +22,21 @@ export default function ContactForm() {
         setIsSubmitting(true);
 
         const form = e.currentTarget;
+        const formData = new FormData(form);
 
         try {
+            // Save to Supabase inquiries table
+            const supabase = createClient();
+            await supabase.from('inquiries').insert({
+                first_name: formData.get('firstName') as string,
+                last_name: formData.get('lastName') as string,
+                email: formData.get('email') as string,
+                phone: formData.get('phone') as string || null,
+                message: formData.get('message') as string,
+                status: 'pending',
+            });
+
+            // Also send email notification via EmailJS
             await emailjs.sendForm(
                 'service_bh4m7kr',
                 'template_6qzswnb',
@@ -33,7 +47,7 @@ export default function ContactForm() {
             setShowSuccessModal(true);
             form.reset();
         } catch (error) {
-            console.error('EmailJS Error:', error);
+            console.error('Submission Error:', error);
             toast({
                 variant: "destructive",
                 title: "Error",

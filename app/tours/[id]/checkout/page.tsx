@@ -57,7 +57,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden sticky top-24">
                                 <div className="relative h-48 w-full">
                                     <Image
-                                        src={tour.images && tour.images.length > 0 ? tour.images[0] : '/assets/external/placeholder-tour.png'}
+                                        src={tour.images && tour.images.length > 0 ? tour.images[0] : '/assets/external/placeholder-tour.webp'}
                                         alt={tour.title}
                                         fill
                                         className="object-cover"

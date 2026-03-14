@@ -12,11 +12,11 @@ const phrases = [
 ];
 
 const imagesToPreload = [
-    '/hero1.jpeg',
-    '/hero2.jpeg',
-    '/hero3.jpeg',
-    '/hero4.jpeg',
-    '/hero5.jpeg',
+    '/hero1.webp',
+    '/hero2.webp',
+    '/hero3.webp',
+    '/hero4.webp',
+    '/hero5.webp',
 ];
 
 export default function Preloader() {

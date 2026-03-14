@@ -15,7 +15,7 @@ const destinations = [
   {
     title: 'Kandy',
     href: '/tours?destination=Kandy',
-    image: '/kandy.jpg',
+    image: '/kandy.webp',
   },
   {
     title: 'Nuwara Eliya',

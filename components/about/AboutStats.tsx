@@ -8,7 +8,7 @@ export default function AboutStats() {
         <section className="relative py-20 overflow-hidden">
             {/* Background Image/Gradient */}
             <div className="absolute inset-0 bg-[#0b3e63]">
-                <div className="absolute inset-0 bg-[url('/package_images/SL-5D4N-WLD-03.jpg')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
+                <div className="absolute inset-0 bg-[url('/package_images/SL-5D4N-WLD-03.webp')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0b3e63] via-transparent to-[#0b3e63]/80"></div>
             </div>
 

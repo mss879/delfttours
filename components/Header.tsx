@@ -57,7 +57,7 @@ export default function Header() {
           <div className="flex items-center gap-4 lg:gap-6">
             <Link href="/" className="flex items-center">
               <Image
-                src="/delgyortoginallogo.png"
+                src="/delgyortoginallogo.webp"
                 alt="Delft Tours Logo"
                 width={200}
                 height={74}

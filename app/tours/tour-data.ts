@@ -44,9 +44,9 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "3 Day Quick Tour of 2 Cities Glimpse of Lanka the Paradise Isle.png",
+    "mapImage": "3 Day Quick Tour of 2 Cities Glimpse of Lanka the Paradise Isle.webp",
     "images": [
-      "/package_images/SL-3D2N-CTY-01.jpg",
+      "/package_images/SL-3D2N-CTY-01.webp",
     ],
     "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["Cultural Show", "City Tour", "Tea Factory Visit", "Cooking Class"],
@@ -87,9 +87,9 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "Sri Lanka 3 Nights 4 Days essenve of sri lanka.png",
+    "mapImage": "Sri Lanka 3 Nights 4 Days essenve of sri lanka.webp",
     "images": [
-      "/package_images/SL-4D3N-STD-01.jpg",
+      "/package_images/SL-4D3N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride"],
@@ -135,9 +135,9 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "5 day taste of paradise.png",
+    "mapImage": "5 day taste of paradise.webp",
     "images": [
-      "/package_images/SL-5D4N-STD-01.jpg",
+      "/package_images/SL-5D4N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride"],
@@ -184,7 +184,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/package_images/SL-5D4N-STD-02.jpg",
+      "/package_images/SL-5D4N-STD-02.webp",
     ],
     "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
     "activities": ["City Tour", "Tea Factory Visit", "Boat Ride", "Safari"],
@@ -231,7 +231,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/package_images/SL-5D4N-WLD-03.jpg",
+      "/package_images/SL-5D4N-WLD-03.webp",
     ],
     "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
     "activities": ["City Tour", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride"],
@@ -278,7 +278,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/package_images/SL-5D4N-BCH-04.jpg",
+      "/package_images/SL-5D4N-BCH-04.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["Whale Watching", "Snorkeling/Diving", "City Tour"],
@@ -324,7 +324,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/package_images/SL-5D4N-STD-05.jpg",
+      "/package_images/SL-5D4N-STD-05.webp",
     ],
     "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
     "activities": ["City Tour", "Tea Factory Visit", "Boat Ride", "Safari"],
@@ -370,7 +370,7 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "5 day ramantic days in aradise.png",
+    "mapImage": "5 day ramantic days in aradise.webp",
     "images": [
       "/Romantic Days in Paradise (5 days).webp",
     ],
@@ -423,7 +423,7 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "6 day tropical days.png",
+    "mapImage": "6 day tropical days.webp",
     "images": [
       "/Island Charm Express (6 days).webp",
     ],
@@ -477,7 +477,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/package_images/SL-6D5N-STD-02.jpg",
+      "/package_images/SL-6D5N-STD-02.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Whale Watching"],
@@ -529,7 +529,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/package_images/SL-6D5N-STD-01.jpg",
+      "/package_images/SL-6D5N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
     "activities": ["City Tour", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride"],
@@ -585,9 +585,9 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "7 day love and adventure.png",
+    "mapImage": "7 day love and adventure.webp",
     "images": [
-      "/package_images/SL-7D6N-WLD-01.jpg",
+      "/package_images/SL-7D6N-WLD-01.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["Train Ride", "City Tour", "Tea Factory Visit"],
@@ -643,7 +643,7 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "7 day whisper of lanka.png",
+    "mapImage": "7 day whisper of lanka.webp",
     "images": [
       "/Whispers of Lanka (7 days).webp",
     ],
@@ -706,9 +706,9 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "8 days rhythm of ceylon.png",
+    "mapImage": "8 days rhythm of ceylon.webp",
     "images": [
-      "/package_images/SL-7D6N-STD-02.jpg",
+      "/package_images/SL-7D6N-STD-02.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking"],
@@ -775,7 +775,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/package_images/SL-9D8N-STD-01.jpg",
+      "/package_images/SL-9D8N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking"],
@@ -846,9 +846,9 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "10 days sri lanka dream route.png",
+    "mapImage": "10 days sri lanka dream route.webp",
     "images": [
-      "/package_images/SL-10D9N-STD-01.jpg",
+      "/package_images/SL-10D9N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking"],
@@ -919,9 +919,9 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "10 days sri lanka dream route.png",
+    "mapImage": "10 days sri lanka dream route.webp",
     "images": [
-      "/package_images/SL-10D9N-STD-02.jpg",
+      "/package_images/SL-10D9N-STD-02.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking"],
@@ -1079,9 +1079,9 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "12 days ceylon panorama journey.png",
+    "mapImage": "12 days ceylon panorama journey.webp",
     "images": [
-      "/package_images/SL-12D11N-STD-01.jpg",
+      "/package_images/SL-12D11N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking"],
@@ -1162,7 +1162,7 @@ export const tourDetails: TourDetail[] = [
       "Airport Pick-up",
       "Tour Consultant",
     ],
-    "mapImage": "12 days dreamy honeymoon days.png",
+    "mapImage": "12 days dreamy honeymoon days.webp",
     "images": [
       "/dereamyhoneymoon 12 days.webp",
     ],
@@ -1343,7 +1343,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/Sri Lanka Grand Discovery Tour (13 days).jpg",
+      "/Sri Lanka Grand Discovery Tour (13 days).webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking"],
@@ -1440,7 +1440,7 @@ export const tourDetails: TourDetail[] = [
       "Tour Consultant",
     ],
     "images": [
-      "/Romantic Bliss (15 days).jpg",
+      "/Romantic Bliss (15 days).webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
     "activities": ["City Tour", "Train Ride", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking"],

@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { createClient } from '@/lib/supabase/client';
 
 // Webhook URL
 const WEBHOOK_URL = 'https://hook.eu1.make.com/1lqg4s177p18s21yxmyd7kts1h34kby1';
@@ -82,6 +83,50 @@ export default function QuoteForm({ defaultTheme, onSuccess, className }: QuoteF
     const onSubmit = async (data: FormValues) => {
         setIsSubmitting(true);
         try {
+            // Build notes from quote-specific fields
+            const notesParts = [
+                `Country: ${data.country}`,
+                `Travelers: ${data.travelers}`,
+                `Duration: ${data.duration} days`,
+                `Themes: ${data.themes.join(', ')}`,
+                data.mealPlan ? `Meal Plan: ${data.mealPlan}` : '',
+                data.healthRequirements ? `Health Requirements: ${data.healthRequirements}` : '',
+            ].filter(Boolean).join('\n');
+
+            const supabase = createClient();
+
+            // Create lead directly in first pipeline's first stage
+            const { data: pipelines } = await supabase
+                .from('pipelines')
+                .select('id')
+                .order('created_at', { ascending: true })
+                .limit(1);
+
+            if (pipelines && pipelines.length > 0) {
+                const pipelineId = pipelines[0].id;
+                const { data: stages } = await supabase
+                    .from('pipeline_stages')
+                    .select('id')
+                    .eq('pipeline_id', pipelineId)
+                    .order('position', { ascending: true })
+                    .limit(1);
+
+                if (stages && stages.length > 0) {
+                    await supabase.from('leads').insert({
+                        pipeline_id: pipelineId,
+                        stage_id: stages[0].id,
+                        first_name: data.firstName,
+                        last_name: data.lastName,
+                        email: data.email,
+                        phone: data.phone,
+                        notes: notesParts,
+                        source: 'quote',
+                        position: 0,
+                    });
+                }
+            }
+
+            // Also send to webhook
             const response = await fetch(WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
@@ -98,7 +143,6 @@ export default function QuoteForm({ defaultTheme, onSuccess, className }: QuoteF
                 }
             } else {
                 console.error('Failed to submit form', await response.text());
-                // Handle error (could add toast here)
             }
         } catch (error) {
             console.error('Error submitting form:', error);

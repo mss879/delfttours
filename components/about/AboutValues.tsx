@@ -48,7 +48,7 @@ export default function AboutValues() {
 
                         <div className="w-64 h-64 md:w-80 md:h-80 mt-8 mx-auto lg:mx-0 relative rounded-3xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
                             <Image
-                                src="/faq.jpeg"
+                                src="/faq.webp"
                                 alt="Why Choose Us"
                                 fill
                                 className="object-cover"

@@ -135,7 +135,7 @@ export default function Footer() {
               >
                 Designed &amp; Developed by{' '}
                 <span className="inline-block align-middle relative h-10 w-32">
-                  <Image src="/arc-logo.png" alt="ARC AI - Web Design & Digital Solutions" fill className="object-contain" />
+                  <Image src="/arc-logo.webp" alt="ARC AI - Web Design & Digital Solutions" fill className="object-contain" />
                 </span>
               </a>
             </div>

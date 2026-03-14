@@ -19,7 +19,7 @@ export default function AboutStory() {
                     >
                         <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-2xl">
                             <Image
-                                src="/package_images/SL-6D5N-STD-01.jpg"
+                                src="/package_images/SL-6D5N-STD-01.webp"
                                 alt="Sri Lankan Culture"
                                 fill
                                 className="object-cover"
@@ -28,7 +28,7 @@ export default function AboutStory() {
                         </div>
                         <div className="absolute -bottom-10 -right-10 hidden aspect-square w-64 overflow-hidden rounded-full border-8 border-white shadow-xl lg:block">
                             <Image
-                                src="/package_images/SL-5D4N-WLD-03.jpg"
+                                src="/package_images/SL-5D4N-WLD-03.webp"
                                 alt="Happy Travelers"
                                 fill
                                 className="object-cover"

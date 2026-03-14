@@ -113,7 +113,7 @@ export default function StickyBookingCard({
           <div className="relative w-[48px] h-[48px] shrink-0">
             <div className="w-[48px] h-[48px] rounded-full overflow-hidden bg-white border-2 border-slate-100 shadow-md flex items-center justify-center p-1.5">
               <Image
-                src="/delgyortoginallogo.png"
+                src="/delgyortoginallogo.webp"
                 alt="Delft Tours"
                 width={48}
                 height={48}

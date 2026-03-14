@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Loader2, CheckCircle2, CreditCard, Building, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Loader2, CheckCircle2, CreditCard, Building, Link2, ArrowRight, ArrowLeft } from 'lucide-react';
 import {
     Form,
     FormControl,
@@ -18,6 +18,15 @@ import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
+import { createBooking } from '@/app/actions/bookings';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 // Webhook URL (reusing existing one for now, or could be a new one)
 const WEBHOOK_URL = 'https://hook.eu1.make.com/1lqg4s177p18s21yxmyd7kts1h34kby1';
@@ -36,7 +45,7 @@ const checkoutSchema = z.object({
     specialRequests: z.string().optional(),
 
     // Step 2: Payment
-    paymentMethod: z.enum(['bank_transfer'], {
+    paymentMethod: z.enum(['bank_transfer', 'pay_by_link'], {
         required_error: "Please select a payment method",
     }),
 });
@@ -73,7 +82,23 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
     const onSubmit = async (data: CheckoutFormValues) => {
         setIsSubmitting(true);
         try {
-            // Include tour details in the payload
+            // Save booking to Supabase
+            await createBooking({
+                tour_id: tourId,
+                tour_title: tourTitle,
+                tour_price: tourPrice,
+                first_name: data.firstName,
+                last_name: data.lastName,
+                email: data.email,
+                phone: data.phone,
+                country: data.country,
+                travelers: parseInt(data.travelers),
+                travel_date: data.travelDate,
+                special_requests: data.specialRequests,
+                payment_method: data.paymentMethod,
+            });
+
+            // Also send to webhook for email notifications
             const payload = {
                 ...data,
                 tourId,
@@ -82,21 +107,16 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                 submissionDate: new Date().toISOString(),
             };
 
-            const response = await fetch(WEBHOOK_URL, {
+            await fetch(WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(payload),
-            });
+            }).catch(() => {}); // Non-blocking — don't fail if webhook is down
 
-            if (response.ok) {
-                setIsSuccess(true);
-                window.scrollTo(0, 0);
-            } else {
-                console.error('Failed to submit form', await response.text());
-                // Handle error
-            }
+            setIsSuccess(true);
+            window.scrollTo(0, 0);
         } catch (error) {
             console.error('Error submitting form:', error);
         } finally {
@@ -115,6 +135,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
     };
 
     if (isSuccess) {
+        const isPBL = form.getValues('paymentMethod') === 'pay_by_link';
         return (
             <div className="flex flex-col items-center justify-center py-12 space-y-6 bg-white rounded-2xl shadow-sm p-8 border border-slate-100">
                 <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center animate-in zoom-in duration-300">
@@ -123,41 +144,61 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                 <div className="text-center space-y-2">
                     <h2 className="text-2xl font-bold text-[#0b3e63]">Booking Request Received!</h2>
                     <p className="text-slate-600 max-w-md mx-auto">
-                        Thank you for booking <strong>{tourTitle}</strong>. We have sent the bank transfer details to your email address: <strong>{form.getValues('email')}</strong>
+                        Thank you for booking <strong>{tourTitle}</strong>.
+                        {isPBL
+                            ? <> We will send a secure payment link to your email: <strong>{form.getValues('email')}</strong> shortly.</>
+                            : <> We have sent the bank transfer details to your email address: <strong>{form.getValues('email')}</strong></>
+                        }
                     </p>
                 </div>
 
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 w-full max-w-md">
-                    <h3 className="font-semibold text-[#0b3e63] mb-4 flex items-center">
-                        <Building className="w-5 h-5 mr-2" />
-                        Bank Transfer Details
-                    </h3>
-                    <div className="space-y-3 text-sm text-slate-700">
-                        <div className="flex justify-between border-b border-slate-200 pb-2">
-                            <span className="text-slate-500">Bank Name</span>
-                            <span className="font-medium">Bank of Ceylon</span>
-                        </div>
-                        <div className="flex justify-between border-b border-slate-200 pb-2">
-                            <span className="text-slate-500">Account Name</span>
-                            <span className="font-medium">Delft Tours (Pvt) Ltd</span>
-                        </div>
-                        <div className="flex justify-between border-b border-slate-200 pb-2">
-                            <span className="text-slate-500">Account Number</span>
-                            <span className="font-medium">1234 5678 9000</span>
-                        </div>
-                        <div className="flex justify-between border-b border-slate-200 pb-2">
-                            <span className="text-slate-500">Branch</span>
-                            <span className="font-medium">Colombo City</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span className="text-slate-500">Swift Code</span>
-                            <span className="font-medium">BCEYLKLX</span>
+                {isPBL ? (
+                    <div className="bg-blue-50 p-6 rounded-xl border border-blue-200 w-full max-w-md">
+                        <h3 className="font-semibold text-[#0b3e63] mb-3 flex items-center">
+                            <Link2 className="w-5 h-5 mr-2" />
+                            Pay by Link
+                        </h3>
+                        <div className="space-y-2 text-sm text-slate-700">
+                            <p>You will receive a secure payment link via email within a few hours.</p>
+                            <p>Simply click the link to complete your payment securely online.</p>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 w-full max-w-md">
+                        <h3 className="font-semibold text-[#0b3e63] mb-4 flex items-center">
+                            <Building className="w-5 h-5 mr-2" />
+                            Bank Transfer Details
+                        </h3>
+                        <div className="space-y-3 text-sm text-slate-700">
+                            <div className="flex justify-between border-b border-slate-200 pb-2">
+                                <span className="text-slate-500">Bank Name</span>
+                                <span className="font-medium">Bank of Ceylon</span>
+                            </div>
+                            <div className="flex justify-between border-b border-slate-200 pb-2">
+                                <span className="text-slate-500">Account Name</span>
+                                <span className="font-medium">Delft Tours (Pvt) Ltd</span>
+                            </div>
+                            <div className="flex justify-between border-b border-slate-200 pb-2">
+                                <span className="text-slate-500">Account Number</span>
+                                <span className="font-medium">1234 5678 9000</span>
+                            </div>
+                            <div className="flex justify-between border-b border-slate-200 pb-2">
+                                <span className="text-slate-500">Branch</span>
+                                <span className="font-medium">Colombo City</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-slate-500">Swift Code</span>
+                                <span className="font-medium">BCEYLKLX</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <p className="text-xs text-slate-500 text-center max-w-sm">
-                    Please upload your payment proof using the link sent to your email within 24 hours to confirm your booking.
+                    {isPBL
+                        ? 'Check your inbox (and spam folder) for the payment link. Your booking will be confirmed once payment is received.'
+                        : 'Please upload your payment proof using the link sent to your email within 24 hours to confirm your booking.'
+                    }
                 </p>
 
                 <Button onClick={() => window.location.href = '/'} className="bg-[#0b3e63] mt-4">
@@ -372,12 +413,145 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                                         </div>
                                                     </FormControl>
                                                 </FormItem>
+
+                                                <FormItem>
+                                                    <FormControl>
+                                                        <div className="relative">
+                                                            <RadioGroupItem value="pay_by_link" id="pay_by_link" className="peer sr-only" />
+                                                            <label
+                                                                htmlFor="pay_by_link"
+                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-blue-50/30 cursor-pointer transition-all"
+                                                            >
+                                                                <div className="flex items-center space-x-3">
+                                                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0b3e63]">
+                                                                        <Link2 className="w-5 h-5" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <div className="font-semibold text-slate-900">Pay by Link</div>
+                                                                        <div className="text-xs text-slate-500">Receive a secure payment link via email</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="h-5 w-5 rounded-full border border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-[#0b3e63] flex items-center justify-center mt-2.5">
+                                                                    <div className="h-2 w-2 rounded-full bg-white" />
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </FormControl>
+                                                </FormItem>
                                             </RadioGroup>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
+
+                            {/* Terms & Conditions and Refund Policy */}
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-600">
+                                <span>By completing this booking, you agree to our:</span>
+                                <div className="flex items-center gap-3">
+                                    {/* Terms & Conditions Dialog */}
+                                    <Dialog>
+                                        <DialogTrigger asChild>
+                                            <button type="button" className="font-semibold text-[#0b3e63] hover:text-[#0a3554] underline underline-offset-2 transition-colors">
+                                                Terms &amp; Conditions
+                                            </button>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-2xl max-h-[80vh]">
+                                            <DialogHeader>
+                                                <DialogTitle className="text-xl text-[#0b3e63]">Terms &amp; Conditions</DialogTitle>
+                                            </DialogHeader>
+                                            <ScrollArea className="max-h-[60vh] pr-4">
+                                                <div className="space-y-4 text-sm text-slate-700 leading-relaxed">
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">1. Booking Confirmation</h4>
+                                                        <p>A booking is confirmed only upon receipt of payment (bank transfer or via the payment link provided). A booking confirmation email will be sent to the email address provided during checkout.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">2. Pricing &amp; Payment</h4>
+                                                        <p>All prices listed on our website are per person and are subject to change without prior notice until the booking is confirmed. Payments must be made in full before the travel date unless otherwise agreed in writing by Delft Tours.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">3. Travel Documents</h4>
+                                                        <p>It is the responsibility of the traveler to ensure they have a valid passport and any required visas for entry into Sri Lanka. Delft Tours is not liable for any denied entry due to incorrect or expired travel documents.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">4. Itinerary Changes</h4>
+                                                        <p>While Delft Tours endeavors to operate all tours as described, we reserve the right to modify any itinerary due to unforeseen circumstances such as weather conditions, road closures, or government regulations. Any such changes will be communicated promptly.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">5. Liability</h4>
+                                                        <p>Delft Tours acts as an intermediary between travelers and accommodation providers, transport companies, and other service suppliers. We are not liable for any injury, loss, damage, accident, delay, or irregularity that may occur during the tour through the actions or omissions of third-party service providers.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">6. Travel Insurance</h4>
+                                                        <p>We strongly recommend that all travelers purchase comprehensive travel insurance covering trip cancellation, medical expenses, personal belongings, and any other potential losses before departure.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">7. Privacy &amp; Data</h4>
+                                                        <p>Personal information collected during the booking process is used solely for the purpose of arranging your tour and will not be shared with third parties except as necessary for service fulfillment. Your data is stored securely.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">8. Governing Law</h4>
+                                                        <p>These terms and conditions are governed by the laws of Sri Lanka. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Sri Lanka.</p>
+                                                    </section>
+                                                    <p className="text-xs text-slate-400 pt-2 border-t border-slate-100">Last updated: March 2026</p>
+                                                </div>
+                                            </ScrollArea>
+                                        </DialogContent>
+                                    </Dialog>
+
+                                    <span className="text-slate-300">|</span>
+
+                                    {/* Refund Policy Dialog */}
+                                    <Dialog>
+                                        <DialogTrigger asChild>
+                                            <button type="button" className="font-semibold text-[#0b3e63] hover:text-[#0a3554] underline underline-offset-2 transition-colors">
+                                                Refund Policy
+                                            </button>
+                                        </DialogTrigger>
+                                        <DialogContent className="max-w-2xl max-h-[80vh]">
+                                            <DialogHeader>
+                                                <DialogTitle className="text-xl text-[#0b3e63]">Refund Policy</DialogTitle>
+                                            </DialogHeader>
+                                            <ScrollArea className="max-h-[60vh] pr-4">
+                                                <div className="space-y-4 text-sm text-slate-700 leading-relaxed">
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">Cancellation by Traveler</h4>
+                                                        <p>Cancellations must be submitted in writing via email. The following refund schedule applies based on the notice period before the scheduled travel date:</p>
+                                                        <ul className="list-disc pl-5 mt-2 space-y-1">
+                                                            <li><strong>30+ days before travel:</strong> Full refund minus a 5% administrative fee</li>
+                                                            <li><strong>15–29 days before travel:</strong> 50% refund</li>
+                                                            <li><strong>7–14 days before travel:</strong> 25% refund</li>
+                                                            <li><strong>Less than 7 days before travel:</strong> No refund</li>
+                                                        </ul>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">Cancellation by Delft Tours</h4>
+                                                        <p>In the unlikely event that Delft Tours cancels a tour due to force majeure (natural disasters, political unrest, pandemics, etc.) or insufficient bookings, travelers will receive a full refund or the option to reschedule at no extra cost.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">No-Show Policy</h4>
+                                                        <p>If a traveler fails to appear on the scheduled tour date without prior written notice, no refund will be issued.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">Partial Tour Usage</h4>
+                                                        <p>No refund will be provided for any unused portion of a tour, including but not limited to missed accommodations, meals, transport, or activities, unless it is due to a fault by Delft Tours.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">Refund Processing</h4>
+                                                        <p>Approved refunds will be processed within 10–15 business days via the original payment method. Bank transfer fees, if any, will be deducted from the refund amount.</p>
+                                                    </section>
+                                                    <section>
+                                                        <h4 className="font-semibold text-slate-900 mb-1">How to Request a Refund</h4>
+                                                        <p>To request a refund, please email us at <strong>booking@delfttours.com</strong> with your booking reference number and the reason for cancellation.</p>
+                                                    </section>
+                                                    <p className="text-xs text-slate-400 pt-2 border-t border-slate-100">Last updated: March 2026</p>
+                                                </div>
+                                            </ScrollArea>
+                                        </DialogContent>
+                                    </Dialog>
+                                </div>
+                            </div>
 
                             <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-4 text-sm text-yellow-800">
                                 <p>

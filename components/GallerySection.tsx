@@ -4,21 +4,21 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const topImages = [
-  '/assets/external/gallery-top-1.png',
-  '/assets/external/gallery-top-2.png',
-  '/assets/external/gallery-top-3.png',
-  '/assets/external/gallery-top-4.png',
-  '/assets/external/gallery-top-5.png',
-  '/assets/external/gallery-top-6.png',
+  '/assets/external/gallery-top-1.webp',
+  '/assets/external/gallery-top-2.webp',
+  '/assets/external/gallery-top-3.webp',
+  '/assets/external/gallery-top-4.webp',
+  '/assets/external/gallery-top-5.webp',
+  '/assets/external/gallery-top-6.webp',
 ];
 
 const bottomImages = [
-  '/assets/external/gallery-bottom-1.jpg',
-  '/assets/external/gallery-bottom-2.jpg',
-  '/assets/external/gallery-bottom-3.jpg',
-  '/assets/external/gallery-bottom-4.jpg',
-  '/assets/external/gallery-bottom-5.jpg',
-  '/assets/external/gallery-bottom-6.jpg',
+  '/assets/external/gallery-bottom-1.webp',
+  '/assets/external/gallery-bottom-2.webp',
+  '/assets/external/gallery-bottom-3.webp',
+  '/assets/external/gallery-bottom-4.webp',
+  '/assets/external/gallery-bottom-5.webp',
+  '/assets/external/gallery-bottom-6.webp',
 ];
 
 export default function GallerySection() {

@@ -103,7 +103,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
               <div className="p-1">
                 <div className="w-full relative h-[250px] md:h-[450px]">
                   <Image
-                    src="/assets/external/placeholder-tour.png"
+                    src="/assets/external/placeholder-tour.webp"
                     alt="Tour Image"
                     fill
                     className="object-cover w-full h-full rounded-[20px]"
@@ -115,7 +115,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
               <div className="p-1">
                 <div className="w-full relative h-[250px] md:h-[450px]">
                   <Image
-                    src="/assets/external/placeholder-tour.png"
+                    src="/assets/external/placeholder-tour.webp"
                     alt="Tour Image"
                     fill
                     className="object-cover w-full h-full rounded-[20px]"
@@ -127,7 +127,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
               <div className="p-1">
                 <div className="w-full relative h-[250px] md:h-[450px]">
                   <Image
-                    src="/assets/external/placeholder-tour.png"
+                    src="/assets/external/placeholder-tour.webp"
                     alt="Tour Image"
                     fill
                     className="object-cover w-full h-full rounded-[20px]"
