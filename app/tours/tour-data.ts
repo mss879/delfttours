@@ -8,6 +8,7 @@ export type TourDetail = {
   mapImage?: string;
   destination?: string;
   themes?: string[];
+  religions?: string[];
   activities?: string[];
   startingPrice?: string;
 };
@@ -49,7 +50,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-3D2N-CTY-01.webp",
     ],
     "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["Cultural Show", "City Tour", "Tea Factory Visit", "Cooking Class"],
+    "religions": ["Buddhism","Islam"],
+    "activities": ["Cultural Show", "City Tour", "Tea Factory Visit", "Cooking Class", "Heritage"],
   },
 
   {
@@ -92,7 +94,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-4D3N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride"],
+    "religions": ["Buddhism","Hinduism","Islam"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Wild Life Safari", "Heritage"],
   },
 
   {
@@ -140,7 +143,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-5D4N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride"],
+    "religions": ["Buddhism","Hinduism","Islam"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Wild Life Safari", "Heritage"],
   },
 
   {
@@ -187,7 +191,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-5D4N-STD-02.webp",
     ],
     "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
-    "activities": ["City Tour", "Tea Factory Visit", "Boat Ride", "Safari"],
+    "religions": ["Buddhism"],
+    "activities": ["City Tour", "Tea Factory Visit", "Boat Ride", "Safari", "Wild Life Safari", "Heritage"],
   },
 
   {
@@ -234,7 +239,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-5D4N-WLD-03.webp",
     ],
     "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
-    "activities": ["City Tour", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride"],
+    "religions": ["Buddhism","Hinduism"],
+    "activities": ["City Tour", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride", "Wild Life Safari", "Heritage"],
   },
 
   {
@@ -281,7 +287,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-5D4N-BCH-04.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["Whale Watching", "Snorkeling/Diving", "City Tour"],
+    "religions": ["Buddhism","Hinduism","Islam"],
+    "activities": ["Whale Watching", "Snorkeling/Diving", "City Tour", "Heritage"],
   },
 
   {
@@ -327,7 +334,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-5D4N-STD-05.webp",
     ],
     "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
-    "activities": ["City Tour", "Tea Factory Visit", "Boat Ride", "Safari"],
+    "religions": ["Buddhism"],
+    "activities": ["City Tour", "Tea Factory Visit", "Boat Ride", "Safari", "Wild Life Safari", "Heritage"],
   },
 
   {
@@ -375,7 +383,8 @@ export const tourDetails: TourDetail[] = [
       "/Romantic Days in Paradise (5 days).webp",
     ],
     "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["Cultural Show", "City Tour", "Tea Factory Visit"],
+    "religions": ["Buddhism"],
+    "activities": ["Cultural Show", "City Tour", "Tea Factory Visit", "Nature Trails", "Heritage"],
   },
 
   {
@@ -428,7 +437,8 @@ export const tourDetails: TourDetail[] = [
       "/Island Charm Express (6 days).webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking"],
+    "religions": ["Buddhism","Hinduism"],
+    "activities": ["Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
   },
 
   {
@@ -480,7 +490,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-6D5N-STD-02.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Whale Watching"],
+    "religions": ["Buddhism","Hinduism","Islam"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Whale Watching", "Wild Life Safari", "Nature Trails", "Heritage"],
   },
 
   {
@@ -532,7 +543,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-6D5N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
-    "activities": ["City Tour", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride"],
+    "religions": ["Buddhism","Hinduism"],
+    "activities": ["City Tour", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride", "Wild Life Safari", "Heritage"],
   },
 
   {
@@ -590,7 +602,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-7D6N-WLD-01.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["Train Ride", "City Tour", "Tea Factory Visit"],
+    "religions": ["Buddhism","Islam","Christianity"],
+    "activities": ["Train Ride", "City Tour", "Tea Factory Visit", "Heritage"],
   },
 
   {
@@ -648,7 +661,8 @@ export const tourDetails: TourDetail[] = [
       "/Whispers of Lanka (7 days).webp",
     ],
     "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride"],
+    "religions": ["Buddhism","Hinduism","Islam"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Wild Life Safari", "Bird Watching", "Heritage"],
   },
 
   {
@@ -711,7 +725,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-7D6N-STD-02.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking"],
+    "religions": ["Buddhism","Hinduism"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
   },
 
   {
@@ -778,7 +793,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-9D8N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking"],
+    "religions": ["Buddhism","Christianity"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
   },
 
   {
@@ -851,7 +867,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-10D9N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking"],
+    "religions": ["Buddhism","Hinduism","Islam","Christianity"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
   },
 
   {
@@ -924,7 +941,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-10D9N-STD-02.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking"],
+    "religions": ["Buddhism","Hinduism"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
   },
 
   {
@@ -1001,7 +1019,8 @@ export const tourDetails: TourDetail[] = [
       "/full spectrum 11 days.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking"],
+    "religions": ["Buddhism","Hinduism","Islam","Christianity"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
   },
 
   {
@@ -1084,7 +1103,8 @@ export const tourDetails: TourDetail[] = [
       "/package_images/SL-12D11N-STD-01.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking"],
+    "religions": ["Buddhism","Hinduism","Christianity"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
   },
 
   {
@@ -1167,7 +1187,8 @@ export const tourDetails: TourDetail[] = [
       "/dereamyhoneymoon 12 days.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking"],
+    "religions": ["Buddhism","Hinduism","Christianity"],
+    "activities": ["City Tour", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
   },
 
   {
@@ -1259,7 +1280,8 @@ export const tourDetails: TourDetail[] = [
       "/journey nature and culateu 14 days.webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Cooking Class", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking"],
+    "religions": ["Buddhism"],
+    "activities": ["City Tour", "Cooking Class", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
   },
 
   {
@@ -1346,7 +1368,8 @@ export const tourDetails: TourDetail[] = [
       "/Sri Lanka Grand Discovery Tour (13 days).webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking"],
+    "religions": ["Buddhism","Christianity"],
+    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
   },
 
   {
@@ -1443,7 +1466,8 @@ export const tourDetails: TourDetail[] = [
       "/Romantic Bliss (15 days).webp",
     ],
     "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "activities": ["City Tour", "Train Ride", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking"],
+    "religions": ["Buddhism","Hinduism","Christianity"],
+    "activities": ["City Tour", "Train Ride", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
   },
 
 ];

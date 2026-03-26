@@ -30,12 +30,11 @@ const socialLinks = [
 
 const quickLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about-one', label: 'About us' },
-  { href: '/tour-one', label: 'All tours' },
-  { href: '/blog-two', label: 'Tour blogs' },
-  { href: '/destination-two', label: 'Our destination' },
-  { href: '/contact-three', label: 'Contact' },
+  { href: '/tours', label: 'Holidays & Tours' },
+  { href: '/about-us', label: 'About Us' },
+  { href: '/success-stories', label: 'Testimonials' },
   { href: '/faq', label: 'FAQ' },
+  { href: '/contact-us', label: 'Contact Us' },
   { href: '/admin/login', label: 'Admin' },
 ];
 
@@ -45,7 +44,7 @@ function LinkTag({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-white/80 transition-colors duration-200 hover:border-white/30 hover:text-white"
+      className="text-white/70 transition-colors duration-200 hover:text-white hover:underline decoration-white/30 underline-offset-4 text-sm font-medium"
     >
       {label}
     </Link>
@@ -91,7 +90,7 @@ export default function Footer() {
 
             <div className="flex flex-col gap-4 lg:w-[360px]">
               <span className="text-lg font-semibold">Quick links</span>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                 {quickLinks.map((link) => (
                   <LinkTag key={link.href} href={link.href} label={link.label} />
                 ))}
@@ -105,16 +104,19 @@ export default function Footer() {
               <a href="mailto:support@delfttours.com" className="block text-base font-semibold text-white">
                 support@delfttours.com
               </a>
-              <p className="leading-relaxed">
-                No 29/5 Jayasinghe Road, Kirullapone, Colombo 06, Sri Lanka
-              </p>
+              <div className="leading-relaxed pt-2">
+                <p className="font-semibold text-white pb-1">Delft Tours & Travels Pvt Ltd</p>
+                <p>
+                  No 29/5 Jayasinghe Road, Kirullapone, Colombo 06, Sri Lanka
+                </p>
+              </div>
             </div>
           </div>
 
           <div className="mt-16 flex justify-center">
             <span className="relative text-center text-[clamp(2rem,9vw,7.5rem)] font-black uppercase tracking-[0.1em] md:tracking-[0.25em] text-white/90 whitespace-nowrap">
               <span className="relative z-10 bg-gradient-to-b from-white via-white/70 to-white/10 bg-clip-text text-transparent">
-                Delft Tours
+                DT&T
               </span>
               <span className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-black/35 to-black" aria-hidden />
             </span>
@@ -134,7 +136,7 @@ export default function Footer() {
                 className="inline-flex items-center gap-1 transition-colors duration-200 hover:text-white"
               >
                 Designed &amp; Developed by{' '}
-                <span className="inline-block align-middle relative h-10 w-32">
+                <span className="inline-block align-middle relative h-10 w-32 translate-y-0.5 -ml-3">
                   <Image src="/arc-logo.webp" alt="ARC AI - Web Design & Digital Solutions" fill className="object-contain" />
                 </span>
               </a>

@@ -25,7 +25,7 @@ const destinations = [
   {
     title: 'Galle',
     href: '/tours?destination=Galle',
-    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2039&auto=format&fit=crop',
+    image: '/top galle.jpg',
   },
 ];
 

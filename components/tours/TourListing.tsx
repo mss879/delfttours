@@ -44,16 +44,19 @@ function FilterCheckboxRow({
     label,
     checked,
     onCheckedChange,
+    disabled = false,
 }: {
     label: string;
     checked: boolean;
     onCheckedChange: (checked: boolean) => void;
+    disabled?: boolean;
 }) {
     return (
-        <label className="flex cursor-pointer items-center gap-3 text-sm text-slate-600 hover:text-slate-900 transition-colors">
+        <label className={`flex items-center gap-3 text-sm transition-colors ${disabled ? 'cursor-not-allowed opacity-50 text-slate-400' : 'cursor-pointer text-slate-600 hover:text-slate-900'}`}>
             <Checkbox
                 checked={checked}
-                onCheckedChange={(value) => onCheckedChange(value === true)}
+                onCheckedChange={(value) => !disabled && onCheckedChange(value === true)}
+                disabled={disabled}
                 aria-label={label}
                 className="data-[state=checked]:bg-slate-900 data-[state=checked]:border-slate-900"
             />
@@ -98,6 +101,10 @@ export default function TourListing() {
         ],
         []
     );
+    const religions = useMemo(
+        () => ["Buddhism", "Hinduism", "Islam", "Christianity"],
+        []
+    );
     const travellerTypes = useMemo(
         () => ["Family", "Couple", "Solo", "Friends", "Group"],
         []
@@ -115,6 +122,11 @@ export default function TourListing() {
             "Cultural Show",
             "Boat Ride",
             "Cooking Class",
+            "Wild Life Safari",
+            "Nature Trails",
+            "Bird Watching",
+            "Adams Peak",
+            "Heritage",
         ],
         []
     );
@@ -132,6 +144,9 @@ export default function TourListing() {
         Record<string, boolean>
     >({});
     const [selectedActivities, setSelectedActivities] = useState<
+        Record<string, boolean>
+    >({});
+    const [selectedReligions, setSelectedReligions] = useState<
         Record<string, boolean>
     >({});
 
@@ -173,9 +188,21 @@ export default function TourListing() {
                 if (!hasMatch) return false;
             }
 
+            // 5. Religions Filter
+            const activeReligions = Object.entries(selectedReligions)
+                .filter(([_, v]) => v)
+                .map(([k]) => k);
+            if (activeReligions.length > 0) {
+                const tourReligions = tour.religions || [];
+                const hasMatch = activeReligions.some((r) =>
+                    tourReligions.includes(r)
+                );
+                if (!hasMatch) return false;
+            }
+
             return true;
         });
-    }, [days, selectedDestinations, selectedThemes, selectedActivities]);
+    }, [days, selectedDestinations, selectedThemes, selectedActivities, selectedReligions]);
 
     // Derived state for display
     const displayTours = useMemo(
@@ -222,7 +249,7 @@ export default function TourListing() {
                                     </span>
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-80 p-6" align="start">
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-80 p-6" align="start">
                                 <div className="space-y-4">
                                     <h4 className="font-medium leading-none">Trip Duration</h4>
                                     <p className="text-sm text-slate-500">
@@ -271,7 +298,7 @@ export default function TourListing() {
                                     )}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-64 p-4" align="start">
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
                                 <div className="space-y-3">
                                     <h4 className="font-medium">Destinations</h4>
                                     {destinations.map((dest) => (
@@ -279,6 +306,7 @@ export default function TourListing() {
                                             key={dest}
                                             label={dest}
                                             checked={selectedDestinations[dest] === true}
+                                            disabled={dest !== "Sri Lanka"}
                                             onCheckedChange={(c) =>
                                                 setSelectedDestinations((prev) => ({
                                                     ...prev,
@@ -309,7 +337,7 @@ export default function TourListing() {
                                     )}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-64 p-4" align="start">
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
                                 <div className="space-y-3">
                                     <h4 className="font-medium">Travel Theme</h4>
                                     {tourThemes.map((theme) => (
@@ -326,7 +354,42 @@ export default function TourListing() {
                             </PopoverContent>
                         </Popover>
 
-                        {/* 4. ACTIVITIES (NEW) */}
+                        {/* 4. RELIGIONS (NEW) */}
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className={`rounded-full border-slate-300 h-9 ${Object.values(selectedReligions).some(Boolean)
+                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        : "bg-white"
+                                        }`}
+                                >
+                                    Religions
+                                    {Object.values(selectedReligions).some(Boolean) && (
+                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-100 text-[10px] font-bold">
+                                            {Object.values(selectedReligions).filter(Boolean).length}
+                                        </span>
+                                    )}
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
+                                <div className="space-y-3">
+                                    <h4 className="font-medium">Religions</h4>
+                                    {religions.map((rel) => (
+                                        <FilterCheckboxRow
+                                            key={rel}
+                                            label={rel}
+                                            checked={selectedReligions[rel] === true}
+                                            onCheckedChange={(c) =>
+                                                setSelectedReligions((prev) => ({ ...prev, [rel]: c }))
+                                            }
+                                        />
+                                    ))}
+                                </div>
+                            </PopoverContent>
+                        </Popover>
+
+                        {/* 5. ACTIVITIES */}
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
@@ -344,7 +407,7 @@ export default function TourListing() {
                                     )}
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-64 p-4" align="start">
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
                                 <div className="space-y-3">
                                     <h4 className="font-medium">Activities</h4>
                                     {activities.map((act) => (
@@ -361,7 +424,7 @@ export default function TourListing() {
                             </PopoverContent>
                         </Popover>
 
-                        {/* 5. TRIP TYPES */}
+                        {/* 6. TRIP TYPES */}
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
@@ -374,7 +437,7 @@ export default function TourListing() {
                                     Style
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-64 p-4" align="start">
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
                                 <div className="space-y-3">
                                     <h4 className="font-medium">Trip Style</h4>
                                     {tripTypes.map((type) => (
@@ -404,7 +467,7 @@ export default function TourListing() {
                                     Travellers
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="w-64 p-4" align="start">
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
                                 <div className="space-y-3">
                                     <h4 className="font-medium">Who is travelling?</h4>
                                     {travellerTypes.map((type) => (
@@ -437,6 +500,7 @@ export default function TourListing() {
                                     setSelectedActivities({});
                                     setSelectedTripTypes({});
                                     setSelectedTravellerTypes({});
+                                    setSelectedReligions({});
                                 }}
                             >
                                 Clear All

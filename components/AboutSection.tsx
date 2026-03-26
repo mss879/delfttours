@@ -35,8 +35,8 @@ export default function AboutSection() {
         <div className="relative mx-auto w-full max-w-[520px]">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[48px] bg-slate-200">
             <Image
-              src="https://cdn.prod.website-files.com/66b5d6635ee4014275999ec3/66b5df3d62a7ecf802613450_Rectangle%206158.avif"
-              alt="Travelers enjoying a seaside view"
+              src="/assets/about-safari.png"
+              alt="Couple on an authentic Sri Lankan safari in Yala National Park overlooking wild elephants"
               fill
               className="object-cover"
               priority
@@ -57,15 +57,11 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <div className="absolute -bottom-24 left-1/2 hidden h-[240px] w-[240px] -translate-x-1/2 sm:block" aria-hidden="true">
-            <div className="h-full w-full rounded-[44px] border border-white/60" />
-          </div>
-
           <div className="absolute -bottom-16 left-1/2 h-[220px] w-[220px] -translate-x-1/2 sm:-bottom-12 sm:left-auto sm:right-4 sm:translate-x-0">
             <div className="relative h-full w-full rounded-[40px] border-[12px] border-white bg-white shadow-[0_40px_110px_rgba(15,23,42,0.15)]">
               <Image
-                src="https://cdn.prod.website-files.com/66b5d6635ee4014275999ec3/66b5df3ca7f59044d15d7590_Rectangle%206159.avif"
-                alt="Long-tail boat in tropical waters"
+                src="/assets/about-small.png"
+                alt="Iconic Nine Arch Bridge in Ella, Sri Lanka"
                 fill
                 className="rounded-[28px] object-cover"
                 sizes="220px"

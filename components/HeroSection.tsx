@@ -145,7 +145,7 @@ export default function HeroSection() {
                 alt="Logo"
                 width={75}
                 height={32}
-                className="h-5 md:h-8 w-auto object-contain"
+                className="h-5 md:h-8 w-auto object-contain mb-2 md:mb-3"
               />
               <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (
@@ -162,11 +162,11 @@ export default function HeroSection() {
             {/* Review 2 */}
             <div className="flex flex-col items-center gap-1.5 md:gap-3">
               <Image
-                src="/assets/external/review-logo-2.svg"
-                alt="Logo"
-                width={75}
-                height={32}
-                className="h-5 md:h-8 w-auto object-contain"
+                src="/assets/external/review-logo-tripadvisor.svg"
+                alt="TripAdvisor Logo"
+                width={120}
+                height={60}
+                className="h-5 md:h-8 w-auto object-contain scale-[1.6] md:scale-[1.8] mb-2 md:mb-3"
               />
               <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (
@@ -187,7 +187,7 @@ export default function HeroSection() {
                 alt="Logo"
                 width={128}
                 height={32}
-                className="h-5 md:h-8 w-auto object-contain"
+                className="h-5 md:h-8 w-auto object-contain mb-2 md:mb-3"
               />
               <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (

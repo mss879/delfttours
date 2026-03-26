@@ -36,7 +36,7 @@ export default function Header() {
   const navLinks = useMemo(
     () => [
       { href: '/tours', label: 'Holidays & Tours' },
-      { href: '/success-stories', label: 'Success Stories' },
+      { href: '/success-stories', label: 'Testimonials' },
       { href: '/about-us', label: 'About Us' },
       { href: '/faq', label: 'FAQ' },
     ],
