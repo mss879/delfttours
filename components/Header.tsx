@@ -37,6 +37,7 @@ export default function Header() {
     () => [
       { href: '/tours', label: 'Holidays & Tours' },
       { href: '/success-stories', label: 'Testimonials' },
+      { href: '/gallery', label: 'Gallery' },
       { href: '/about-us', label: 'About Us' },
       { href: '/faq', label: 'FAQ' },
     ],

@@ -33,6 +33,7 @@ const quickLinks = [
   { href: '/tours', label: 'Holidays & Tours' },
   { href: '/about-us', label: 'About Us' },
   { href: '/success-stories', label: 'Testimonials' },
+  { href: '/gallery', label: 'Gallery' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact-us', label: 'Contact Us' },
   { href: '/admin/login', label: 'Admin' },

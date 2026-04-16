@@ -26,6 +26,7 @@ export const tourDetails: TourDetail[] = [
         "description": "\u2022 Meet & greet at Bandaranaike International Airport\n\u2022 Scenic drive through lush hill country to Kandy (approx. 3 hrs)\n\u2022 En-route stops at Pinnawala Elephant Orphanage (optional) or local spice gardens\n\u2022 Afternoon city tour of Kandy:\n\u2022 Visit the Temple of the Sacred Tooth Relic (UNESCO)\n\u2022 Walk around Kandy Lake and explore the Bazaar and Gem Museum\n\u2022 Evening: enjoy a Traditional Cultural Dance Show\n\u2022 Overnight in Kandy (Standard \u2013 Senani Hotel 4\u2605 / Deluxe \u2013 Oak Ray Regency 5\u2605)"
       },
 
+
       {
         "title": "Day 2: Kandy \u2192 Colombo \u2013 The Vibrant Coastal Capital",
         "description": "\u2022 Breakfast at hotel and morning visit to Royal Botanical Gardens \u2013 Peradeniya\n\u2022 Stop at Giragama Tea Factory for a tea experience and tasting\n\u2022 Depart for Colombo (approx. 3 hrs)\n\u2022 Afternoon city tour:\n\u2022 Galle Face Green Promenade\n\u2022 Gangaramaya Temple and Viharamahadevi Park\n\u2022 Independence Square, Red Mosque, and Lotus Tower view\n\u2022 Leisure or shopping at Colombo City Centre / One Galle Face Mall\n\u2022 Overnight in Colombo (Standard \u2013 Cinnamon Red 4\u2605 / Deluxe \u2013 Cinnamon Grand 5\u2605)"

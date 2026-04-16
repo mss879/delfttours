@@ -15,12 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 
-import {
-    Dialog,
-    DialogContent,
-    DialogTrigger,
-} from "@/components/ui/dialog";
-import TourDetailContent from "@/components/TourDetailContent";
+import Link from "next/link";
+
 import { useCurrency } from "@/components/CurrencyProvider";
 import FAQSection from "@/components/FAQSection";
 import {
@@ -533,93 +529,84 @@ export default function TourListing() {
                         const fullDetail = tour.detail;
                         if (!fullDetail) return null;
                         return (
-                            <Dialog key={tour.id}>
-                                <DialogTrigger asChild>
-                                    <div className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer border border-slate-100">
-                                        {/* Image Container */}
-                                        <div className="relative aspect-[4/3] overflow-hidden">
-                                            <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
-                                                <Badge className="bg-white/90 text-slate-900 backdrop-blur-md hover:bg-white shadow-sm border-none px-3 py-1 text-xs font-bold uppercase tracking-wider">
-                                                    {tour.tag}
+                            <Link key={tour.id} href={`/tours/${tour.id}`} passHref>
+                                <div className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer border border-slate-100 h-full">
+                                    {/* Image Container */}
+                                    <div className="relative aspect-[4/3] overflow-hidden">
+                                        <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
+                                            <Badge className="bg-white/90 text-slate-900 backdrop-blur-md hover:bg-white shadow-sm border-none px-3 py-1 text-xs font-bold uppercase tracking-wider">
+                                                {tour.tag}
+                                            </Badge>
+                                            {(fullDetail.themes || []).slice(0, 0).map((theme) => (
+                                                <Badge
+                                                    key={theme}
+                                                    variant="secondary"
+                                                    className="bg-indigo-500/90 text-white backdrop-blur-md border-none px-3 py-1 text-xs font-bold uppercase tracking-wider"
+                                                >
+                                                    {theme}
                                                 </Badge>
-                                                {(fullDetail.themes || []).slice(0, 0).map((theme) => (
-                                                    <Badge
-                                                        key={theme}
-                                                        variant="secondary"
-                                                        className="bg-indigo-500/90 text-white backdrop-blur-md border-none px-3 py-1 text-xs font-bold uppercase tracking-wider"
-                                                    >
-                                                        {theme}
-                                                    </Badge>
-                                                ))}
-                                            </div>
-
-                                            {/* Book Now Button (Replaces Wishlist) */}
-                                            <div className="absolute top-4 right-4 z-10">
-                                                <a
-                                                    href={`/tours/${tour.id}/checkout`}
-                                                    onClick={(e) => e.stopPropagation()}
-                                                    className="flex items-center gap-1.5 bg-green-600/90 hover:bg-green-700 text-white backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm transition-all hover:scale-105"
-                                                >
-                                                    <span>Book Now</span>
-                                                </a>
-                                            </div>
-
-                                            {fullDetail.images && fullDetail.images.length > 0 ? (
-                                                <Image
-                                                    src={fullDetail.images[0]}
-                                                    alt={fullDetail.title}
-                                                    fill
-                                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                                    priority={index < 4}
-                                                />
-                                            ) : (
-                                                <div className="h-full w-full bg-slate-200 transition-transform duration-500 group-hover:scale-110" />
-                                            )}
-
-                                            {/* Overlay Gradient */}
-                                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
+                                            ))}
                                         </div>
 
-                                        {/* Content */}
-                                        <div className="flex flex-1 flex-col p-6">
-                                            <div className="mb-4">
-                                                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
-                                                    <MapPin className="h-3.5 w-3.5" />
-                                                    <span>{tour.destination}</span>
-                                                </div>
-                                                <h3 className="line-clamp-2 text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-tight">
-                                                    {tour.title}
-                                                </h3>
-                                            </div>
+                                        {/* Book Now Button (Replaces Wishlist) */}
+                                        <div className="absolute top-4 right-4 z-10">
+                                            <a
+                                                href={`/tours/${tour.id}/checkout`}
+                                                onClick={(e) => e.stopPropagation()}
+                                                className="flex items-center gap-1.5 bg-green-600/90 hover:bg-green-700 text-white backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm transition-all hover:scale-105"
+                                            >
+                                                <span>Book Now</span>
+                                            </a>
+                                        </div>
 
-                                            <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
-                                                <div className="flex flex-col">
-                                                    <span className="text-xs text-slate-500 font-medium uppercase tracking-wide">
-                                                        Starting from
-                                                    </span>
-                                                    <span className="text-sm font-bold text-slate-900">
-                                                        {convertPrice(tour.detail?.startingPrice)}
-                                                    </span>
-                                                </div>
-                                                <Button
-                                                    size="sm"
-                                                    className="rounded-full px-5 bg-slate-900 group-hover:bg-indigo-600 transition-colors"
-                                                >
-                                                    View Details
-                                                </Button>
+                                        {fullDetail.images && fullDetail.images.length > 0 ? (
+                                            <Image
+                                                src={fullDetail.images[0]}
+                                                alt={fullDetail.title}
+                                                fill
+                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                                priority={index < 4}
+                                            />
+                                        ) : (
+                                            <div className="h-full w-full bg-slate-200 transition-transform duration-500 group-hover:scale-110" />
+                                        )}
+
+                                        {/* Overlay Gradient */}
+                                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="flex flex-1 flex-col p-6">
+                                        <div className="mb-4">
+                                            <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
+                                                <MapPin className="h-3.5 w-3.5" />
+                                                <span>{tour.destination}</span>
                                             </div>
+                                            <h3 className="line-clamp-2 text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-tight">
+                                                {tour.title}
+                                            </h3>
+                                        </div>
+
+                                        <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
+                                            <div className="flex flex-col">
+                                                <span className="text-xs text-slate-500 font-medium uppercase tracking-wide">
+                                                    Starting from
+                                                </span>
+                                                <span className="text-sm font-bold text-slate-900">
+                                                    {convertPrice(tour.detail?.startingPrice)}
+                                                </span>
+                                            </div>
+                                            <Button
+                                                size="sm"
+                                                className="rounded-full px-5 bg-slate-900 group-hover:bg-indigo-600 transition-colors"
+                                            >
+                                                View Details
+                                            </Button>
                                         </div>
                                     </div>
-                                </DialogTrigger>
-
-                                {/* WIDENED POPUP */}
-                                <DialogContent className="max-w-6xl w-[95vw] h-[90vh] overflow-y-auto p-0 rounded-3xl border-none">
-                                    <div className="p-6 md:p-10 lg:p-12">
-                                        <TourDetailContent tour={fullDetail} />
-                                    </div>
-                                </DialogContent>
-                            </Dialog>
+                                </div>
+                            </Link>
                         );
                     })}
                 </div>
