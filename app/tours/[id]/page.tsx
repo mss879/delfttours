@@ -265,12 +265,12 @@ export default function TourPage({ params }: { params: { id: string } }) {
           {tour.mapImage && (
             <div className="mt-12 bg-white p-6 md:p-8 rounded-[2rem] border border-slate-200 shadow-sm">
               <h3 className="text-2xl font-bold text-slate-900 mb-6 font-serif">Journey Map</h3>
-              <div className="w-full relative h-[300px] md:h-[500px] rounded-3xl overflow-hidden bg-slate-50">
+              <div className="w-full relative h-[300px] md:h-[500px] rounded-[1.5rem] overflow-hidden bg-[#82D8E8]">
                 <Image
                   src={`/package maps/${tour.mapImage}`}
                   alt={`${tour.title} Map`}
                   fill
-                  className="object-contain p-4"
+                  className="object-contain"
                 />
               </div>
             </div>
