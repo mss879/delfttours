@@ -11,7 +11,7 @@ import AboutCTA from '@/components/about/AboutCTA';
 
 export default function AboutUsPage() {
     return (
-        <div className="font-sans text-slate-900">
+        <div className="min-h-screen glass-gradient font-sans text-slate-900">
             <Header />
             <AboutHero />
             <AboutStory />

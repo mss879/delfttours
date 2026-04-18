@@ -1,42 +1,60 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import Image from "next/image";
+
+const statsData = [
+  {
+    value: '5000+',
+    label: 'Happy Travelers',
+    icon: 'https://cdn.prod.website-files.com/66b5d6635ee4014275999ec3/66b9a6938d8b59f2c7283b36_026-schedule.svg',
+    alt: 'Calendar icon',
+  },
+  {
+    value: '1200+',
+    label: 'Tours Completed',
+    icon: 'https://cdn.prod.website-files.com/66b5d6635ee4014275999ec3/66b9a69363b6e3f97282d820_011-dish.svg',
+    alt: 'Destinations icon',
+  },
+  {
+    value: '50+',
+    label: 'Locations',
+    icon: 'https://cdn.prod.website-files.com/66b5d6635ee4014275999ec3/66b9a6938689b891a24f5e53_018-beach.svg',
+    alt: 'Beach icon',
+  },
+];
 
 export default function AboutStats() {
     return (
-        <section className="relative py-20 overflow-hidden">
-            {/* Background Image/Gradient */}
-            <div className="absolute inset-0 bg-[#0b3e63]">
-                <div className="absolute inset-0 bg-[url('/package_images/SL-5D4N-WLD-03.webp')] bg-cover bg-center opacity-30 mix-blend-overlay"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0b3e63] via-transparent to-[#0b3e63]/80"></div>
-            </div>
+        <section className="w-full bg-[#f8fcfb] py-[120px]">
+            <div className="mx-auto w-full max-w-[1200px] px-6">
+                <div className="flex flex-col items-center text-center gap-12">
+                    <div className="space-y-4 max-w-2xl">
+                        <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
+                            The Impact in Numbers
+                        </h2>
+                        <p className="text-lg text-slate-600">
+                            Quantifying the memories we have shaped across the pearl of the Indian Ocean. Every digit represents an unforgettable story.
+                        </p>
+                    </div>
 
-            <div className="container relative mx-auto px-4 md:px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="mx-auto max-w-5xl rounded-[3rem] border border-white/10 bg-white/5 p-12 shadow-2xl backdrop-blur-md"
-                >
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
-                        {[
-                            { label: "Happy Travelers", value: "5000+" },
-                            { label: "Tours Completed", value: "1200+" },
-                            { label: "Destinations", value: "50+" },
-                        ].map((stat, i) => (
-                            <div key={i} className="pt-8 md:pt-0 first:pt-0 px-4">
-                                <div className="text-5xl md:text-6xl font-bold text-white mb-2 drop-shadow-lg">
-                                    {stat.value}
-                                </div>
-                                <div className="text-indigo-200 text-lg font-medium tracking-wide uppercase">
-                                    {stat.label}
-                                </div>
+                    <div className="flex flex-wrap justify-center gap-12 md:gap-32 w-full mt-4">
+                        {statsData.map((stat, i) => (
+                        <div key={i} className="flex flex-col items-center gap-4">
+                            <Image
+                                src={stat.icon}
+                                alt={stat.alt}
+                                width={64}
+                                height={64}
+                                className="h-16 w-16"
+                            />
+                            <div className="text-center mt-2">
+                                <div className="text-4xl sm:text-5xl font-semibold text-slate-900 mb-2">{stat.value}</div>
+                                <div className="text-sm font-semibold text-slate-500 uppercase tracking-widest">{stat.label}</div>
                             </div>
+                        </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );
