@@ -2,10 +2,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ContactForm from '@/components/contact/ContactForm';
 
-export const metadata = {
-  title: 'Contact Us | Delft Tours',
-  description: 'Get in touch with our team to plan your next adventure in Sri Lanka and beyond.',
-};
+
 
 export default function ContactPage() {
   return (

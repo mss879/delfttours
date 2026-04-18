@@ -2,10 +2,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TourListing from '@/components/tours/TourListing';
 
-export const metadata = {
-  title: 'Tours & Destinations | Delft Tours',
-  description: 'Explore our wide range of tailor-made tours in Sri Lanka. From cultural heritage to wildlife adventures, find your perfect holiday package.',
-};
+
 
 export default function ToursPage() {
   return (

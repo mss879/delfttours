@@ -9,6 +9,9 @@ import { Mail, Phone } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Sri Lanka Tour Gallery | Delft Tours',
   description: 'Explore our stunning collection of Sri Lankan tour memories, breathtaking destinations, and beautiful landscapes. Discover exactly what awaits you on a Delft Tour.',
+  alternates: {
+    canonical: 'https://delfttours.com/gallery',
+  },
   openGraph: {
     title: 'Sri Lanka Tour Gallery | Delft Tours',
     description: 'Explore our stunning collection of Sri Lankan tour memories, breathtaking destinations, and beautiful landscapes.',

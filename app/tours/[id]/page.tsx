@@ -40,6 +40,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   return {
     title: `${tour.title} | Delft Tours`,
     description: tour.description,
+    alternates: {
+      canonical: `https://delfttours.com/tours/${params.id}`,
+    },
     openGraph: {
       title: tour.title,
       description: tour.description,

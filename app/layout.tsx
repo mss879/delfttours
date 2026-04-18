@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Delft Tours', url: 'https://delfttours.com' }],
   creator: 'Delft Tours',
   publisher: 'Delft Tours',
+  generator: 'ARC AI',
   formatDetection: {
     email: false,
     address: false,
@@ -47,10 +48,17 @@ export const metadata: Metadata = {
     creator: '@delfttours', // Assuming handle, can be updated
   },
   icons: {
-    icon: '/delftfavicon.png',
-    shortcut: '/delftfavicon.png',
-    apple: '/delftfavicon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
+  manifest: '/site.webmanifest',
   robots: {
     index: true,
     follow: true,
@@ -83,7 +91,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'TravelAgency',
               name: 'Delft Tours',
-              image: 'https://delfttours.com/delgyortoginallogo.webp',
+              image: 'https://delfttours.com/delftfavicon.png',
               '@id': 'https://delfttours.com',
               url: 'https://delfttours.com',
               telephone: '+94770000000', // Update with actual phone
@@ -110,6 +118,22 @@ export default function RootLayout({
                   closes: '23:59',
                 },
               ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Delft Tours & Travels Pvt Ltd',
+              url: 'https://delfttours.com',
+              creator: {
+                '@type': 'Organization',
+                name: 'ARC AI',
+                url: 'https://www.arcai.agency'
+              }
             }),
           }}
         />

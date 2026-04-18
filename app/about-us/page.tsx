@@ -7,10 +7,7 @@ import AboutValues from '@/components/about/AboutValues';
 import AboutStats from '@/components/about/AboutStats';
 import AboutCTA from '@/components/about/AboutCTA';
 
-export const metadata = {
-    title: 'About Us | Delft Tours',
-    description: 'Learn about Delft Tours, your premier travel partner in Sri Lanka. Discover our story, values, and commitment to authentic travel experiences.',
-};
+
 
 export default function AboutUsPage() {
     return (

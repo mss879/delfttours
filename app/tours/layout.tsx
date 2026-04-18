@@ -4,6 +4,9 @@ export const metadata: Metadata = {
     title: "Tour Packages | Delft Tours",
     description: "Explore our wide range of Sri Lanka tour packages. From wildlife safaris to beach getaways, we have the perfect itinerary for you.",
     keywords: ["Sri Lanka tour packages", "custom tours", "adventure tours", "honeymoon packages", "family holidays"],
+    alternates: {
+        canonical: "https://delfttours.com/tours",
+    },
 };
 
 export default function ToursLayout({

@@ -24,6 +24,7 @@ const navItems = [
   { href: '/admin/dashboard/inquiries', label: 'Inquiries', icon: MessageSquare },
   { href: '/admin/dashboard/bookings', label: 'Bookings', icon: CalendarCheck },
   { href: '/admin/dashboard/crm', label: 'CRM', icon: Kanban },
+  { href: '/admin/dashboard/testimonials', label: 'Testimonials', icon: MessageSquare },
 ];
 
 export default function AdminSidebar({ userEmail }: AdminSidebarProps) {

@@ -13,8 +13,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'flagcdn.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'framerusercontent.com' },
-      { protocol: 'https', hostname: 'placehold.co' },
-      { protocol: 'https', hostname: '**' },
+      { protocol: 'https', hostname: 'cdn.prod.website-files.com' },
     ],
   },
 };
