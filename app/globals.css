@@ -111,8 +111,9 @@
     radial-gradient(at 100% 100%, rgba(255, 126, 95, 0.15) 0px, transparent 50%),
     radial-gradient(at 0% 100%, rgba(254, 180, 123, 0.15) 0px, transparent 50%),
     #fafafa;
-  /* Fallback/Base color */
-  background-attachment: fixed;
+  /* Fallback/Base color.
+     NOTE: `background-attachment: fixed` was removed — it forces a full-page
+     repaint on every scroll frame (major scroll jank, especially on mobile). */
 }
 
 @keyframes pulse-ring {

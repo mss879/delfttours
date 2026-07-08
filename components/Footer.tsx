@@ -180,12 +180,12 @@ export default function Footer() {
                 href="https://www.arcai.agency"
                 target="_blank"
                 rel="noopener"
-                title="ARC AI - Web Design & Digital Solutions"
+                title="ARC AI — AI Automation & Web Design Agency in Sri Lanka"
                 className="inline-flex items-center gap-2 text-xs text-white/40 transition-colors duration-300 hover:text-white"
               >
-                Designed &amp; Developed by
+                <span>AI &amp; Web Design Agency in Sri Lanka by</span>
                 <span className="inline-block relative h-10 w-28 translate-y-0.5 opacity-80 hover:opacity-100 transition-opacity">
-                  <Image src="/arc-logo.webp" alt="ARC AI - Web Design & Digital Solutions" fill className="object-contain object-left" />
+                  <Image src="/arc-logo.webp" alt="ARC AI" fill className="object-contain object-left" />
                 </span>
               </a>
             </div>

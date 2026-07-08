@@ -2,8 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Providers from './providers';
-import { AiChatWidget } from '@/components/ai-chat-widget';
-import { MeetingWidget } from '@/components/MeetingWidget';
+import DeferredWidgets from '@/components/DeferredWidgets';
+import Preloader from '@/components/Preloader';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
@@ -70,8 +70,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  // Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION in your env once you claim the site
+  // in Google Search Console. Left undefined → Next omits the meta tag entirely
+  // (better than shipping an invalid placeholder).
   verification: {
-    google: 'verification_code_here', // Placeholder for actual verification code
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 };
 
@@ -90,17 +93,36 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'TravelAgency',
+              '@id': 'https://delfttours.com/#organization',
               name: 'Delft Tours',
-              image: 'https://delfttours.com/delftfavicon.png',
-              '@id': 'https://delfttours.com',
+              legalName: 'Delft Tours & Travels (Pvt) Ltd',
+              description:
+                'Sri Lanka travel agency offering expert-guided, customizable tour packages and luxury holiday experiences.',
               url: 'https://delfttours.com',
-              telephone: '+94770000000', // Update with actual phone
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://delfttours.com/delgyortoginallogo.webp',
+                width: 200,
+                height: 74,
+              },
+              image: 'https://delfttours.com/hero1.webp',
+              telephone: '+94112852455',
+              email: 'support@delfttours.com',
               address: {
                 '@type': 'PostalAddress',
-                streetAddress: '87 Dutugemunu St',
-                addressLocality: 'Dehiwala-Mount Lavinia',
+                streetAddress: 'No 29/5 Jayasinghe Road, Kirullapone',
+                addressLocality: 'Colombo',
+                addressRegion: 'Western Province',
+                postalCode: '00600',
                 addressCountry: 'LK',
               },
+              areaServed: { '@type': 'Country', name: 'Sri Lanka' },
+              sameAs: [
+                'https://www.facebook.com/profile.php?id=61583635253275',
+                'https://www.instagram.com/delfttours/',
+                'https://www.youtube.com/@DelftToursTravels',
+                'https://www.tiktok.com/@delft_tours',
+              ],
               priceRange: '$$',
               openingHoursSpecification: [
                 {
@@ -127,8 +149,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
-              name: 'Delft Tours & Travels Pvt Ltd',
+              '@id': 'https://delfttours.com/#website',
+              name: 'Delft Tours',
               url: 'https://delfttours.com',
+              publisher: { '@id': 'https://delfttours.com/#organization' },
               creator: {
                 '@type': 'Organization',
                 name: 'ARC AI',
@@ -138,9 +162,9 @@ export default function RootLayout({
           }}
         />
         <Providers>
+          <Preloader />
           {children}
-          <MeetingWidget />
-          <AiChatWidget />
+          <DeferredWidgets />
         </Providers>
       </body>
     </html>

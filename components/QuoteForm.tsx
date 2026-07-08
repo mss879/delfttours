@@ -82,6 +82,7 @@ export default function QuoteForm({ defaultTheme, onSuccess, className }: QuoteF
 
     const onSubmit = async (data: FormValues) => {
         setIsSubmitting(true);
+        let leadSaved = false;
         try {
             // Build notes from quote-specific fields
             const notesParts = [
@@ -112,7 +113,7 @@ export default function QuoteForm({ defaultTheme, onSuccess, className }: QuoteF
                     .limit(1);
 
                 if (stages && stages.length > 0) {
-                    await supabase.from('leads').insert({
+                    const { error: insertError } = await supabase.from('leads').insert({
                         pipeline_id: pipelineId,
                         stage_id: stages[0].id,
                         first_name: data.firstName,
@@ -123,26 +124,38 @@ export default function QuoteForm({ defaultTheme, onSuccess, className }: QuoteF
                         source: 'quote',
                         position: 0,
                     });
+                    leadSaved = !insertError;
                 }
             }
 
-            // Also send to webhook
-            const response = await fetch(WEBHOOK_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
+            // Also send to the notification webhook — best-effort, time-bounded
+            // so a slow/down make.com can't leave the user stuck on a spinner.
+            let webhookOk = false;
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                    signal: AbortSignal.timeout(10000),
+                });
+                webhookOk = response.ok;
+            } catch (webhookErr) {
+                console.error('Quote webhook failed (non-blocking):', webhookErr);
+            }
 
-            if (response.ok) {
+            // Consider it a success if the lead is safely captured OR the
+            // notification was delivered — don't tell a user it failed when
+            // their request was actually saved.
+            if (leadSaved || webhookOk) {
                 setIsSuccess(true);
                 form.reset();
                 if (onSuccess) {
                     onSuccess();
                 }
             } else {
-                console.error('Failed to submit form', await response.text());
+                console.error('Quote submission failed: lead not saved and webhook not delivered');
             }
         } catch (error) {
             console.error('Error submitting form:', error);

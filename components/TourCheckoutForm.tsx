@@ -98,7 +98,14 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                 payment_method: data.paymentMethod,
             });
 
-            // Also send to webhook for email notifications
+            // The booking is now saved in Supabase — show success immediately.
+            setIsSuccess(true);
+            window.scrollTo(0, 0);
+
+            // Email notification is a best-effort side channel. Fire it AFTER
+            // showing success so a slow/down make.com endpoint can never freeze
+            // the confirmation screen (previously this was awaited with no
+            // timeout — the "stuck after booking" symptom).
             const payload = {
                 ...data,
                 tourId,
@@ -106,17 +113,13 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                 tourPrice,
                 submissionDate: new Date().toISOString(),
             };
-
-            await fetch(WEBHOOK_URL, {
+            fetch(WEBHOOK_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(payload),
-            }).catch(() => {}); // Non-blocking — don't fail if webhook is down
-
-            setIsSuccess(true);
-            window.scrollTo(0, 0);
+            }).catch(() => {}); // fire-and-forget
         } catch (error) {
             console.error('Error submitting form:', error);
         } finally {
@@ -543,7 +546,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                                     </section>
                                                     <section>
                                                         <h4 className="font-semibold text-slate-900 mb-1">How to Request a Refund</h4>
-                                                        <p>To request a refund, please email us at <strong>booking@delfttours.com</strong> with your booking reference number and the reason for cancellation.</p>
+                                                        <p>To request a refund, please email us at <strong>support@delfttours.com</strong> with your booking reference number and the reason for cancellation.</p>
                                                     </section>
                                                     <p className="text-xs text-slate-400 pt-2 border-t border-slate-100">Last updated: March 2026</p>
                                                 </div>

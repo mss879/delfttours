@@ -6,6 +6,13 @@ import TourCheckoutForm from '@/components/TourCheckoutForm';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+
+// Thin, per-booking pages — keep them out of the index but let link equity
+// flow back to the indexable /tours/[id] pages.
+export const metadata: Metadata = {
+  robots: { index: false, follow: true },
+};
 
 export function generateStaticParams() {
     return tourDetails.map((tour) => ({
@@ -101,7 +108,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                                     Need help?
                                 </p>
                                 <p>
-                                    Call us 24/7 at <span className="font-bold">+94 77 123 4567</span> or email <span className="font-bold">booking@delfttours.com</span>
+                                    Call us 24/7 at <span className="font-bold">+94 77 123 4567</span> or email <span className="font-bold">support@delfttours.com</span>
                                 </p>
                             </div>
                         </div>

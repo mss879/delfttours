@@ -8,7 +8,7 @@ export default function AboutStory() {
             <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-16 px-4 lg:grid lg:grid-cols-[minmax(0,0.95fr)_1fr] lg:items-center lg:px-6 xl:px-0">
                 {/* Image Section */}
                 <div className="relative mx-auto w-full max-w-[520px] lg:max-w-[600px]">
-                    <div className="relative aspect-video sm:aspect-[4/3] w-full overflow-hidden rounded-[48px] bg-slate-200 shadow-[0_20px_80px_rgba(15,23,42,0.08)]">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[48px] bg-slate-200 shadow-[0_20px_80px_rgba(15,23,42,0.08)]">
                         <Image
                             src="/faq.webp"
                             alt="Sri Lankan Culture"

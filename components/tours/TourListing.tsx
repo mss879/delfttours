@@ -225,7 +225,7 @@ export default function TourListing() {
 
             {/* TOP FILTER BAR - DESKTOP & MOBILE */}
             <div className="sticky top-20 z-40 mt-8 mb-8">
-                <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-lg backdrop-blur-xl transition-all">
+                <div className="rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-lg transition-all">
                     <div className="flex flex-wrap items-center gap-3">
                         <div className="flex items-center gap-2 mr-2 text-sm font-medium text-slate-500">
                             <Filter className="h-4 w-4" />
@@ -529,8 +529,13 @@ export default function TourListing() {
                         const fullDetail = tour.detail;
                         if (!fullDetail) return null;
                         return (
-                            <Link key={tour.id} href={`/tours/${tour.id}`} passHref>
-                                <div className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer border border-slate-100 h-full">
+                            <div key={tour.id} className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer border border-slate-100 h-full">
+                                    {/* Full-card navigation link — stretched, sits under the interactive controls */}
+                                    <Link
+                                        href={`/tours/${tour.id}`}
+                                        aria-label={`View details for ${tour.title}`}
+                                        className="absolute inset-0 z-10"
+                                    />
                                     {/* Image Container */}
                                     <div className="relative aspect-[4/3] overflow-hidden">
                                         <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
@@ -548,15 +553,14 @@ export default function TourListing() {
                                             ))}
                                         </div>
 
-                                        {/* Book Now Button (Replaces Wishlist) */}
-                                        <div className="absolute top-4 right-4 z-10">
-                                            <a
+                                        {/* Book Now Button — layered above the stretched card link */}
+                                        <div className="absolute top-4 right-4 z-20">
+                                            <Link
                                                 href={`/tours/${tour.id}/checkout`}
-                                                onClick={(e) => e.stopPropagation()}
                                                 className="flex items-center gap-1.5 bg-green-600/90 hover:bg-green-700 text-white backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm transition-all hover:scale-105"
                                             >
                                                 <span>Book Now</span>
-                                            </a>
+                                            </Link>
                                         </div>
 
                                         {fullDetail.images && fullDetail.images.length > 0 ? (
@@ -606,7 +610,6 @@ export default function TourListing() {
                                         </div>
                                     </div>
                                 </div>
-                            </Link>
                         );
                     })}
                 </div>

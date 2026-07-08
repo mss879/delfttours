@@ -102,10 +102,11 @@ export default function HeroSection() {
                 src={slide.image}
                 alt={`Hero background featuring ${slide.title}`}
                 fill
-                sizes="(max-width: 768px) 100vw, 100vw"
+                sizes="(max-width: 1440px) 100vw, 1440px"
                 quality={60}
                 className="-z-10 object-cover"
                 priority={index === 0}
+                loading={index === 0 ? 'eager' : 'lazy'}
               />
               <div className="-z-10 absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50" />
               <div className="mx-auto max-w-3xl space-y-4 text-white">

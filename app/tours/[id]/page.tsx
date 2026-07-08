@@ -17,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button';
 import QuoteDialog from '@/components/QuoteDialog';
 import StickyBookingCard from '@/components/StickyBookingCard';
+import MobileTourCta from '@/components/MobileTourCta';
 import { tourDetails } from '../tour-data';
 import { cityHighlights, extractCityFromDayTitle } from '../city-highlights';
 import { Metadata } from 'next';
@@ -48,6 +49,12 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
       description: tour.description,
       images: tour.images && tour.images.length > 0 ? [tour.images[0]] : [],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: tour.title,
+      description: tour.description,
+      images: tour.images && tour.images.length > 0 ? [tour.images[0]] : [],
+    },
   };
 }
 
@@ -68,8 +75,68 @@ export default function TourPage({ params }: { params: { id: string } }) {
     ? tour.images
     : ["/assets/external/placeholder-tour.webp", "/assets/external/placeholder-tour.webp", "/assets/external/placeholder-tour.webp"];
 
+  // --- Structured data (SEO / rich results) ---
+  const tourUrl = `https://delfttours.com/tours/${params.id}`;
+  const priceValue = tour.startingPrice ? tour.startingPrice.replace(/[^0-9.]/g, '') : '';
+  const absImages = (tour.images && tour.images.length > 0 ? tour.images : []).map(
+    (img) => `https://delfttours.com${img}`
+  );
+
+  const tourJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: tour.title,
+    description: tour.description,
+    url: tourUrl,
+    ...(absImages.length ? { image: absImages } : {}),
+    ...(tour.themes && tour.themes.length ? { touristType: tour.themes } : {}),
+    itinerary: {
+      '@type': 'ItemList',
+      numberOfItems: tour.days.length,
+      itemListElement: tour.days.map((day, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: { '@type': 'TouristDestination', name: day.title },
+      })),
+    },
+    provider: {
+      '@type': 'TravelAgency',
+      name: 'Delft Tours',
+      '@id': 'https://delfttours.com/#organization',
+    },
+    ...(priceValue
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: priceValue,
+            priceCurrency: 'USD',
+            availability: 'https://schema.org/InStock',
+            url: tourUrl,
+          },
+        }
+      : {}),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://delfttours.com' },
+      { '@type': 'ListItem', position: 2, name: 'Tours', item: 'https://delfttours.com/tours' },
+      { '@type': 'ListItem', position: 3, name: mainTitle, item: tourUrl },
+    ],
+  };
+
   return (
-    <div className="mx-auto flex max-w-[1440px] px-4 flex-col pb-12">
+    <div className="mx-auto flex max-w-[1440px] px-4 flex-col pb-28 lg:pb-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(tourJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Breadcrumbs */}
       <div className="grid grid-cols-12 mt-6">
         <div className="col-span-12 lg:col-span-8">
@@ -219,7 +286,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
                         </AccordionTrigger>
                         
                         <AccordionContent className="px-6 md:px-8 pb-8 pt-2">
-                          <div className="pl-[72px]">
+                          <div className="pl-0 md:pl-[72px]">
                             <div className="text-slate-600 text-[15px] leading-relaxed whitespace-pre-wrap prose prose-slate max-w-none">
                               {day.description}
                             </div>
@@ -304,6 +371,8 @@ export default function TourPage({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
+
+      <MobileTourCta id={tour.id} startingPrice={tour.startingPrice} />
     </div>
   );
 }

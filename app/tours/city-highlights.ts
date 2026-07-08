@@ -110,7 +110,7 @@ export const cityHighlights: Record<string, CityHighlight[]> = {
     { label: "Udawalawa National Park", image: "/UDAWALAWA/Udawalawa National Park.jpg" },
     { label: "Elephant Transit Home", image: "/UDAWALAWA/Elephant Transit Home.jpg" },
     { label: "Beautiful Sunset", image: "/UDAWALAWA/Beautiful Sunset.jpg" },
-    { label: "Sri Lankan Leopard", image: "/UDAWALAWA/Sri Lankan Leopard.jpg" },
+    { label: "Sri Lankan Elephants", image: "/UDAWALAWA/Sri Lankan Elephants.jpg" },
     { label: "Sloth Bear", image: "/UDAWALAWA/Sloth Bear.jpg" },
     { label: "Peacock Grace", image: "/UDAWALAWA/Peacock Grace.jpg" },
   ],

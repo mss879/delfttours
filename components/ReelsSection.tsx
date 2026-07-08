@@ -54,6 +54,9 @@ export default function ReelsSection() {
   const [currentIndex, setCurrentIndex] = useState(reels.length);
   const [isResetting, setIsResetting] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [inView, setInView] = useState(false);
 
   const extendedReels = [...reels, ...reels, ...reels];
 
@@ -85,6 +88,32 @@ export default function ReelsSection() {
     return () => clearInterval(timer);
   }, [isResetting]);
 
+  // Pause the whole strip when it's off screen, and only ever play the few
+  // videos inside the visible window — not all 21 clones decoding at once.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: '150px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const start = currentIndex - 1;
+    const end = currentIndex + itemsToShow + 1;
+    videoRefs.current.forEach((video, i) => {
+      if (!video) return;
+      if (inView && i >= start && i < end) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, [currentIndex, itemsToShow, inView]);
+
   const nextSlide = () => {
     if (!isResetting) setCurrentIndex((prev) => prev + 1);
   };
@@ -104,7 +133,7 @@ export default function ReelsSection() {
   };
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section ref={sectionRef} className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Travel Stories You Can Feel</h2>
@@ -127,12 +156,13 @@ export default function ReelsSection() {
                 >
                   <div className="aspect-[3/4] relative rounded-2xl overflow-hidden group w-full">
                     <video
+                      ref={(el) => { videoRefs.current[index] = el; }}
                       src={reel.video}
                       poster={reel.poster}
                       loop
                       muted
                       playsInline
-                      autoPlay
+                      preload="none"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80" />

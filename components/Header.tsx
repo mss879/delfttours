@@ -2,9 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Mail, Menu, X, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import {
   DropdownMenu,
@@ -51,7 +50,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-[60] font-sans">
-      <div className="border-b border-white/20 bg-white/70 backdrop-blur-md shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
+      <div className="border-b border-slate-200/60 bg-white/95 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
         <nav
           className="relative mx-auto flex max-w-[1440px] items-center justify-between px-4 py-4 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-6 lg:px-8"
           aria-label="Primary Desktop Navigation"
@@ -200,9 +199,9 @@ export default function Header() {
 
             {/* Contact Info */}
             <div className="mt-5 flex items-center justify-center gap-4 border-t border-white/10 pt-4">
-              <a href="mailto:info@delfttours.com" className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white/80 transition-colors">
+              <a href="mailto:support@delfttours.com" className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white/80 transition-colors">
                 <Mail className="h-3.5 w-3.5" />
-                <span>info@delfttours.com</span>
+                <span>support@delfttours.com</span>
               </a>
             </div>
           </div>

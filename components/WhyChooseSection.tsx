@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 
 const features = [
   {
@@ -31,6 +32,27 @@ const features = [
 ];
 
 export default function WhyChooseSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Only play the (2.2MB) video while it's actually on screen — avoids the
+  // eager download + continuous decode when the section is out of view.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    io.observe(video);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <section className="mx-auto w-full max-w-[1440px] px-6 lg:px-20 py-24">
       <div className="flex flex-col gap-12">
@@ -44,7 +66,7 @@ export default function WhyChooseSection() {
           </div>
 
           <Link
-            href="/contact"
+            href="/contact-us"
             className="inline-flex items-center gap-2 bg-[#001D22] text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity shrink-0"
           >
             <span>Contact Us</span>
@@ -59,12 +81,14 @@ export default function WhyChooseSection() {
         {/* Video Section */}
         <div className="relative w-full max-w-5xl mx-auto aspect-[21/9] rounded-[32px] overflow-hidden">
           <video
+            ref={videoRef}
             src="/assets/external/why-choose-video.mp4"
+            poster="/assets/external/why-choose-poster.jpg"
             className="w-full h-full object-cover"
             loop
             muted
             playsInline
-            autoPlay
+            preload="none"
           />
         </div>
 

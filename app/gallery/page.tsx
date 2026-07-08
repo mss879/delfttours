@@ -75,8 +75,8 @@ export default function GalleryPage() {
               Let our experts craft a personalized itinerary that brings these pictures to life. Start your unforgettable Sri Lankan adventure today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-slate-700 font-medium">
-              <a href="mailto:info@delfttours.com" className="flex items-center gap-2 hover:text-[#0b3e63] transition-colors">
-                <Mail className="h-5 w-5" /> info@delfttours.com
+              <a href="mailto:support@delfttours.com" className="flex items-center gap-2 hover:text-[#0b3e63] transition-colors">
+                <Mail className="h-5 w-5" /> support@delfttours.com
               </a>
               <a href="tel:+94112852455" className="flex items-center gap-2 hover:text-[#0b3e63] transition-colors">
                 <Phone className="h-5 w-5" /> +94 11 285 2455

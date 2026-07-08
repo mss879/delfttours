@@ -23,9 +23,11 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
         {visibleImages.map((src, idx) => (
           <motion.div
             key={src}
-            initial={{ opacity: 0, y: 20 }}
+            /* Don't hold the first row at opacity:0 — that gates the LCP image
+               on hydration. Only below-the-fold tiles get the entrance fade. */
+            initial={idx < 4 ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: (idx % 12) * 0.05 }}
+            transition={{ duration: 0.5, delay: idx < 4 ? 0 : (idx % 12) * 0.05 }}
             className="group relative cursor-pointer overflow-hidden rounded-2xl bg-slate-100 break-inside-avoid shadow-sm"
             onClick={() => setSelectedImage(src)}
           >
@@ -37,8 +39,8 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
                 width={800}
                 height={800}
                 quality={75}
-                priority={idx < 8}
-                loading={idx < 8 ? "eager" : "lazy"}
+                priority={idx === 0}
+                loading={idx < 4 ? "eager" : "lazy"}
                 className="w-full h-auto object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
               />

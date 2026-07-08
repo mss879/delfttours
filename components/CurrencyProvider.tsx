@@ -48,7 +48,7 @@ export function CurrencyProvider({ children }: CurrencyProviderProps) {
     try {
       // Using ipapi.co — free tier, no API key needed, 1000 req/day
       const res = await fetch('https://ipapi.co/json/', {
-        signal: AbortSignal.timeout(3000), // 3s timeout
+        signal: AbortSignal.timeout(2000), // 2s timeout — don't stall prices
       });
       if (!res.ok) throw new Error('Geo API failed');
       const data = await res.json();
@@ -58,8 +58,15 @@ export function CurrencyProvider({ children }: CurrencyProviderProps) {
       setCurrencyState(detected);
       localStorage.setItem('delft-currency', detected);
     } catch {
-      // Fallback to USD on any error
+      // Fallback to USD, and persist it so a rate-limited/slow geo API isn't
+      // re-hit (and re-stalled) on every page load. Visitors can still change
+      // currency via the switcher, which overwrites this value.
       setCurrencyState('USD');
+      try {
+        localStorage.setItem('delft-currency', 'USD');
+      } catch {
+        /* ignore */
+      }
     } finally {
       setIsLoading(false);
     }

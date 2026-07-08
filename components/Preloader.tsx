@@ -1,134 +1,91 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-
-const phrases = [
-    "Packing your bags...",
-    "Checking travel documents...",
-    "Fueling the adventure...",
-    "Waking up the guides...",
-    "Ready for Sri Lanka!",
-];
-
-const imagesToPreload = [
-    '/hero1.webp',
-    '/hero2.webp',
-    '/hero3.webp',
-    '/hero4.webp',
-    '/hero5.webp',
-];
+import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
 
 export default function Preloader() {
-    const [isLoading, setIsLoading] = useState(true);
-    const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-    const [typedText, setTypedText] = useState('');
-    const [isTyping, setIsTyping] = useState(true);
+  const [show, setShow] = useState(true);
+  const [displayedText, setDisplayedText] = useState('');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
+  const cursorRef = useRef<HTMLSpanElement>(null);
 
-    // Preload images
-    useEffect(() => {
-        imagesToPreload.forEach((src) => {
-            const img = new window.Image();
-            img.src = src;
-        });
-    }, []);
+  const fullText = 'Welcome to Delft Tours';
 
-    // Handle loading state
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1500); // Keep preloader for 1.5 seconds for a snappier feel
+  useEffect(() => {
+    // Runs on every page load / refresh — a ~2.5s branded intro: type the
+    // headline, hold, then fade the overlay out.
+    const tl = gsap.timeline({
+      onComplete: () => setShow(false),
+    });
 
-        return () => clearTimeout(timer);
-    }, []);
+    // Tween the character index so the headline "types" in.
+    const textState = { charIndex: 0 };
 
-    // Typing animation logic
-    useEffect(() => {
-        if (!isLoading) return;
+    // Typing tween: 1.5s to type the full string.
+    tl.to(textState, {
+      charIndex: fullText.length,
+      duration: 1.5,
+      ease: 'none',
+      onUpdate: () => {
+        setDisplayedText(fullText.slice(0, Math.floor(textState.charIndex)));
+      },
+    });
 
-        let typingTimeout: NodeJS.Timeout;
-        const currentPhrase = phrases[currentPhraseIndex];
+    // Hold for 0.5s after typing completes.
+    tl.to({}, { duration: 0.5 });
 
-        if (isTyping) {
-            if (typedText.length < currentPhrase.length) {
-                typingTimeout = setTimeout(() => {
-                    setTypedText(currentPhrase.slice(0, typedText.length + 1));
-                }, 50); // Typing speed
-            } else {
-                // Finished typing current phrase
-                typingTimeout = setTimeout(() => {
-                    setIsTyping(false);
-                }, 600); // Wait before clearing
-            }
-        } else {
-            if (typedText.length > 0) {
-                typingTimeout = setTimeout(() => {
-                    setTypedText(typedText.slice(0, -1));
-                }, 30); // Deleting speed
-            } else {
-                // Finished deleting
-                setIsTyping(true);
-                setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
-            }
-        }
+    // Fade the cursor out just before the container exits.
+    tl.to(cursorRef.current, { opacity: 0, duration: 0.2 }, '-=0.2');
 
-        return () => clearTimeout(typingTimeout);
-    }, [typedText, isTyping, currentPhraseIndex, isLoading]);
+    // Fade + scale the overlay out (total ~2.5s).
+    tl.to(containerRef.current, {
+      opacity: 0,
+      scale: 0.95,
+      duration: 0.5,
+      ease: 'power2.inOut',
+    });
 
-    return (
-        <AnimatePresence>
-            {isLoading && (
-                <motion.div
-                    initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: -20, transition: { duration: 0.8, ease: "easeInOut" } }}
-                    className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white"
-                >
-                    {/* Background decoration */}
-                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-100/50 blur-[100px]" />
-                        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-orange-100/50 blur-[100px]" />
-                    </div>
+    // Blinking cursor loop while typing.
+    const cursorBlink = gsap.to(cursorRef.current, {
+      opacity: 0,
+      duration: 0.4,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power1.inOut',
+    });
 
-                    <div className="relative z-10 flex flex-col items-center px-4">
-                        {/* Logo or Icon */}
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1, transition: { duration: 0.5 } }}
-                            className="mb-8 relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24"
-                        >
-                            {/* Pure CSS pulsing indicator instead of image */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-teal-400 rounded-full opacity-30 animate-ping" />
-                            <div className="relative w-12 h-12 bg-gradient-to-tr from-blue-600 to-teal-500 rounded-full shadow-lg" />
-                        </motion.div>
+    return () => {
+      tl.kill();
+      cursorBlink.kill();
+    };
+  }, []);
 
-                        {/* Typing Text */}
-                        <div className="h-8 mb-2">
-                            <motion.p
-                                className="text-xl sm:text-2xl font-semibold text-slate-800 text-center"
-                            >
-                                {typedText}
-                                <span className="animate-pulse text-blue-500">|</span>
-                            </motion.p>
-                        </div>
+  if (!show) return null;
 
-                        {/* Progress/Loading Bar */}
-                        <motion.div
-                            className="mt-8 h-1 w-48 sm:w-64 bg-slate-100 rounded-full overflow-hidden"
-                        >
-                            <motion.div
-                                className="h-full bg-gradient-to-r from-blue-500 via-teal-400 to-blue-500"
-                                initial={{ width: "0%" }}
-                                animate={{ width: "100%" }}
-                                transition={{ duration: 3.2, ease: "easeInOut" }}
-                            />
-                        </motion.div>
+  return (
+    <div
+      ref={containerRef}
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white"
+      style={{ willChange: 'opacity, transform' }}
+    >
+      {/* Subtle modern soft background gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(11,62,99,0.02)_0%,transparent_70%)]" />
 
-                        <p className="mt-4 text-sm text-slate-400 font-medium tracking-wide">
-                            DELFT TOURS
-                        </p>
-                    </div>
-                </motion.div>
-            )}
-        </AnimatePresence>
-    );
+      <div className="relative flex flex-col items-center max-w-md px-6 text-center">
+        {/* Typing Text */}
+        <h1 
+          ref={textRef} 
+          className="text-3xl md:text-4xl font-extrabold text-[#0b3e63] tracking-wide font-sans select-none min-h-[48px] flex items-center"
+        >
+          <span>{displayedText}</span>
+          {/* Pulsing/blinking cursor using GSAP */}
+          <span 
+            ref={cursorRef} 
+            className="inline-block w-[3px] h-[30px] md:h-[36px] bg-[#FFC947] ml-2" 
+          />
+        </h1>
+      </div>
+    </div>
+  );
 }

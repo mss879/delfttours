@@ -16,11 +16,13 @@ export default function ContactPage() {
             <div className="absolute inset-0 z-10 bg-gradient-to-b from-slate-900/90 to-slate-900/60" />
             <video
               src="/contact-hero.mp4"
+              poster="/contact-hero-poster.jpg"
               className="h-full w-full object-cover"
               autoPlay
               loop
               muted
               playsInline
+              preload="none"
             />
           </div>
           <div className="relative z-10 mx-auto max-w-4xl px-4">

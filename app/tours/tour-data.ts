@@ -219,7 +219,7 @@ export const tourDetails: TourDetail[] = [
 
       {
         "title": "Day 4: Udawalawa to Galle - Wildlife and Fort Walk",
-        "description": "\u2022 Jeep safari at Udawalawa National Park\n\u2022 Proceed towards the south coast\n\u2022 Walk inside Galle Fort\n\u2022 Overnight stay on the south coast (Galle area)"
+        "description": "• Jeep safari at Udawalawa National Park to see wild elephants\n• Proceed towards the south coast\n• Walk inside Galle Fort\n• Overnight stay on the south coast (Galle area)"
       },
 
       {
@@ -518,7 +518,7 @@ export const tourDetails: TourDetail[] = [
 
       {
         "title": "Day 4: Udawalawa to South Coast - Safari and Galle Fort",
-        "description": "\u2022 Jeep safari at Udawalawa National Park\n\u2022 Proceed towards the south coast\n\u2022 Walk inside the historic Galle Fort\n\u2022 Overnight stay on the south coast area"
+        "description": "• Jeep safari at Udawalawa National Park to see wild elephants\n• Proceed towards the south coast\n• Walk inside the historic Galle Fort\n• Overnight stay on the south coast area"
       },
 
       {
@@ -905,7 +905,7 @@ export const tourDetails: TourDetail[] = [
 
       {
         "title": "Day 6: Yala or Udawalawe - Waterfall Stops and Safari",
-        "description": "\u2022 Adventure\n\u2022 Stop at Ravana Waterfall near Ella\n\u2022 Visit Buduruwagala ancient rock statues\n\u2022 Enjoy scenic forest views on the way to the national park region\n\u2022 Observe Wallawaya paddy fields and rural landscapes\n\u2022 Go on a jeep safari at Yala or Udawalawe to spot elephants, wildlife, and possible\n\u2022 leopards\n\u2022 Optional experiences\n\u2022 Clay craft center visit to see traditional pottery making"
+        "description": "• Adventure\n• Stop at Ravana Waterfall near Ella\n• Visit Buduruwagala ancient rock statues\n• Enjoy scenic forest views on the way to the national park region\n• Observe Wallawaya paddy fields and rural landscapes\n• Go on a jeep safari at Yala (for leopards) or Udawalawe (for wild elephants)\n• Optional experiences\n• Clay craft center visit to see traditional pottery making"
       },
 
       {
