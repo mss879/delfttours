@@ -17,8 +17,14 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { updateBookingStatus, updatePaymentStatus } from '@/app/actions/bookings';
-import { CalendarCheck, Building, Link2, Search } from 'lucide-react';
+import { CalendarCheck, Building, Link2, Search, Eye } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 interface Booking {
   id: string;
@@ -59,8 +65,18 @@ const paymentStatusColors: Record<string, string> = {
   refunded: 'bg-slate-100 text-slate-800',
 };
 
+function formatDate(value: string | null): string {
+  if (!value) return '—';
+  return new Date(value).toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+}
+
 export default function BookingsClient({ bookings }: BookingsClientProps) {
   const [search, setSearch] = useState('');
+  const [viewing, setViewing] = useState<Booking | null>(null);
 
   const filteredBookings = bookings.filter((b) => {
     const q = search.toLowerCase();
@@ -116,12 +132,13 @@ export default function BookingsClient({ bookings }: BookingsClientProps) {
               <TableHead className="font-semibold">Payment Status</TableHead>
               <TableHead className="font-semibold">Booking Status</TableHead>
               <TableHead className="font-semibold">Submitted</TableHead>
+              <TableHead className="font-semibold text-center">Details</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredBookings.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={9} className="h-24 text-center text-slate-500">
+                <TableCell colSpan={10} className="h-24 text-center text-slate-500">
                   <div className="flex flex-col items-center gap-2">
                     <CalendarCheck className="w-8 h-8 text-slate-300" />
                     <span>{search ? 'No bookings match your search.' : 'No bookings yet.'}</span>
@@ -249,12 +266,119 @@ export default function BookingsClient({ bookings }: BookingsClientProps) {
                       minute: '2-digit',
                     })}
                   </TableCell>
+
+                  {/* View details */}
+                  <TableCell className="text-center">
+                    <button
+                      onClick={() => setViewing(booking)}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-medium text-slate-600 transition-colors hover:border-[#0b3e63] hover:text-[#0b3e63]"
+                      title="View full booking details"
+                    >
+                      <Eye className="h-3.5 w-3.5" /> View
+                    </button>
+                  </TableCell>
                 </TableRow>
               ))
             )}
           </TableBody>
         </Table>
       </div>
+
+      {/* Booking details dialog */}
+      <Dialog open={!!viewing} onOpenChange={(open) => !open && setViewing(null)}>
+        <DialogContent className="sm:max-w-[560px] p-0 overflow-hidden bg-white max-h-[90vh] overflow-y-auto">
+          <DialogHeader className="px-6 py-4 border-b border-slate-100 bg-slate-50 sticky top-0 z-10">
+            <DialogTitle className="flex items-center gap-2 text-lg font-semibold text-slate-800">
+              Booking Details
+              {viewing && (
+                <span className="font-mono text-xs font-normal text-slate-500">{viewing.booking_ref}</span>
+              )}
+            </DialogTitle>
+          </DialogHeader>
+
+          {viewing && (
+            <div className="p-6 space-y-6">
+              {/* Status badges */}
+              <div className="flex flex-wrap gap-2">
+                <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium capitalize ${bookingStatusColors[viewing.booking_status] || 'bg-slate-100 text-slate-700'}`}>
+                  {viewing.booking_status}
+                </span>
+                <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium capitalize ${paymentStatusColors[viewing.payment_status] || 'bg-slate-100 text-slate-700'}`}>
+                  Payment: {viewing.payment_status}
+                </span>
+              </div>
+
+              {/* Tour */}
+              <section>
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Tour</h3>
+                <div className="rounded-lg border border-slate-100 bg-slate-50 p-4">
+                  <p className="font-medium text-slate-900">{viewing.tour_title}</p>
+                  <p className="mt-0.5 text-xs text-slate-500">ID: {viewing.tour_id}</p>
+                  {viewing.tour_price && <p className="mt-1 text-sm font-semibold text-[#0b3e63]">{viewing.tour_price}</p>}
+                </div>
+              </section>
+
+              {/* Customer */}
+              <section>
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Customer</h3>
+                <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                  <div className="col-span-2">
+                    <dt className="text-slate-400 text-xs">Name</dt>
+                    <dd className="text-slate-800 font-medium">{viewing.first_name} {viewing.last_name}</dd>
+                  </div>
+                  <div className="col-span-2">
+                    <dt className="text-slate-400 text-xs">Email</dt>
+                    <dd className="text-slate-800 break-all">
+                      <a href={`mailto:${viewing.email}`} className="hover:text-[#0b3e63] hover:underline">{viewing.email}</a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-slate-400 text-xs">Phone</dt>
+                    <dd className="text-slate-800">
+                      {viewing.phone ? <a href={`tel:${viewing.phone}`} className="hover:text-[#0b3e63] hover:underline">{viewing.phone}</a> : '—'}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-slate-400 text-xs">Country</dt>
+                    <dd className="text-slate-800">{viewing.country || '—'}</dd>
+                  </div>
+                </dl>
+              </section>
+
+              {/* Trip */}
+              <section>
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Trip</h3>
+                <dl className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                  <div>
+                    <dt className="text-slate-400 text-xs">Travel Date</dt>
+                    <dd className="text-slate-800">{formatDate(viewing.travel_date)}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-slate-400 text-xs">Travelers</dt>
+                    <dd className="text-slate-800">{viewing.travelers}</dd>
+                  </div>
+                  <div className="col-span-2">
+                    <dt className="text-slate-400 text-xs">Payment Method</dt>
+                    <dd className="text-slate-800">{viewing.payment_method === 'bank_transfer' ? 'Bank Transfer' : 'Pay by Link'}</dd>
+                  </div>
+                </dl>
+              </section>
+
+              {/* Special requests */}
+              <section>
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Special Requests</h3>
+                <p className="whitespace-pre-wrap rounded-lg border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700">
+                  {viewing.special_requests || 'None provided.'}
+                </p>
+              </section>
+
+              <p className="text-xs text-slate-400">
+                Submitted {new Date(viewing.created_at).toLocaleString('en-GB')}
+              </p>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Summary */}
       {filteredBookings.length > 0 && (

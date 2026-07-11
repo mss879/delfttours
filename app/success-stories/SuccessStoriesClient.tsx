@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
 
@@ -96,15 +97,22 @@ export default function SuccessStoriesClient({ testimonials }: { testimonials: a
                     "{t.content}"
                   </p>
 
-                  <div className="border-t border-slate-100 pt-6 flex items-center justify-between mt-auto">
-                    <div>
-                      <h4 className="font-bold text-slate-900 tracking-tight">{t.author_name}</h4>
-                      {t.author_location && (
-                        <p className="text-sm text-slate-500 mt-1 font-medium">{t.author_location}</p>
+                  <div className="border-t border-slate-100 pt-6 flex items-center justify-between mt-auto gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      {t.image_url && (
+                        <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full ring-2 ring-slate-100">
+                          <Image src={t.image_url} alt={t.author_name} fill className="object-cover" unoptimized />
+                        </div>
                       )}
+                      <div className="min-w-0">
+                        <h4 className="font-bold text-slate-900 tracking-tight truncate">{t.author_name}</h4>
+                        {t.author_location && (
+                          <p className="text-sm text-slate-500 mt-0.5 font-medium truncate">{t.author_location}</p>
+                        )}
+                      </div>
                     </div>
                     {t.tour_type && (
-                      <div className="inline-flex items-center px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-xs font-semibold text-slate-600 transition-colors group-hover:bg-[#0b2a3e] group-hover:text-white group-hover:border-[#0b2a3e]">
+                      <div className="inline-flex shrink-0 items-center px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-xs font-semibold text-slate-600 transition-colors group-hover:bg-[#0b2a3e] group-hover:text-white group-hover:border-[#0b2a3e]">
                         {t.tour_type}
                       </div>
                     )}

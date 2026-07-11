@@ -108,7 +108,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                                     Need help?
                                 </p>
                                 <p>
-                                    Call us 24/7 at <span className="font-bold">+94 77 123 4567</span> or email <span className="font-bold">support@delfttours.com</span>
+                                    Call or WhatsApp us at <span className="font-bold">+94 76 922 0306</span> or email <span className="font-bold">support@delfttours.com</span>
                                 </p>
                             </div>
                         </div>

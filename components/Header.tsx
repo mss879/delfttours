@@ -27,18 +27,34 @@ const currencyOptions: { code: CurrencyCode; flagCode: string }[] = [
   { code: 'BDT', flagCode: 'bd' },
 ];
 
+type NavItem = {
+  label: string;
+  href?: string;
+  children?: { href: string; label: string }[];
+};
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
   const { currency, setCurrency, currencyInfo } = useCurrency();
   const currentFlag = currencyOptions.find(c => c.code === currency)?.flagCode || 'us';
 
-  const navLinks = useMemo(
+  // Ordered by impact: product first, brand story next, then social proof /
+  // inspiration / content / support. Contact Us is rendered separately, always last.
+  const navItems = useMemo<NavItem[]>(
     () => [
       { href: '/tours', label: 'Holidays & Tours' },
-      { href: '/articles', label: 'Articles' },
+      { href: '/about-us', label: 'About Us' },
       { href: '/success-stories', label: 'Testimonials' },
       { href: '/gallery', label: 'Gallery' },
-      { href: '/about-us', label: 'About Us' },
+      {
+        label: 'Resources',
+        children: [
+          { href: '/articles', label: 'Articles' },
+          { href: '/events', label: 'Events' },
+          { href: '/newsroom', label: 'Newsroom' },
+        ],
+      },
       { href: '/faq', label: 'FAQ' },
     ],
     []
@@ -69,19 +85,37 @@ export default function Header() {
             </Link>
           </div>
 
-          <div className="hidden items-center justify-center lg:flex lg:gap-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                className="rounded-full px-4 py-2 text-base font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900"
-                href={link.href}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="hidden items-center justify-center lg:flex lg:gap-0.5 xl:gap-1">
+            {navItems.map((item) =>
+              item.children ? (
+                <DropdownMenu key={item.label}>
+                  <DropdownMenuTrigger className="outline-none">
+                    <span className="flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[15px] font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3 cursor-pointer">
+                      {item.label}
+                      <ChevronDown className="h-3.5 w-3.5 opacity-50" />
+                    </span>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start" className="w-48">
+                    {item.children.map((child) => (
+                      <DropdownMenuItem key={child.href} asChild className="cursor-pointer">
+                        <Link href={child.href}>{child.label}</Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  key={item.href}
+                  className="whitespace-nowrap rounded-full px-2.5 py-2 text-[15px] font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3"
+                  href={item.href!}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
             <Link
               href="/contact-us"
-              className="rounded-full px-4 py-2 text-base font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900"
+              className="whitespace-nowrap rounded-full px-2.5 py-2 text-[15px] font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3"
             >
               Contact Us
             </Link>
@@ -162,22 +196,47 @@ export default function Header() {
           <div className="mx-3 mt-2 rounded-2xl bg-[#0b3e63] p-6 shadow-2xl shadow-black/30">
             {/* Nav Links */}
             <div className="flex flex-col">
-              {navLinks.map((link, index) => (
-                <div key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={closeMenu}
-                    className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
-                  >
-                    {link.label}
-                    <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
-                  </Link>
-                  {index < navLinks.length - 1 && (
-                    <div className="h-px bg-white/10" />
+              {navItems.map((item) => (
+                <div key={item.href || item.label}>
+                  {item.children ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => setResourcesOpen((v) => !v)}
+                        aria-expanded={resourcesOpen}
+                        className="flex w-full items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
+                      >
+                        {item.label}
+                        <ChevronDown className={`h-4 w-4 text-white/40 transition-transform duration-200 ${resourcesOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {resourcesOpen && (
+                        <div className="mb-1 ml-3 flex flex-col border-l border-white/10 pl-3">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={closeMenu}
+                              className="px-2 py-2.5 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-[#FFC947]"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={item.href!}
+                      onClick={closeMenu}
+                      className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
+                    >
+                      {item.label}
+                      <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
+                    </Link>
                   )}
+                  <div className="h-px bg-white/10" />
                 </div>
               ))}
-              <div className="h-px bg-white/10" />
               <Link
                 href="/contact-us"
                 onClick={closeMenu}

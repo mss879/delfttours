@@ -34,6 +34,7 @@ export async function createTestimonial(formData: FormData) {
     tour_type: formData.get('tour_type') as string,
     content: formData.get('content') as string,
     rating: parseInt(formData.get('rating') as string, 10),
+    image_url: (formData.get('image_url') as string) || null,
     is_published: formData.get('is_published') === 'true',
   };
 
@@ -59,6 +60,7 @@ export async function updateTestimonial(id: string, formData: FormData) {
     tour_type: formData.get('tour_type') as string,
     content: formData.get('content') as string,
     rating: parseInt(formData.get('rating') as string, 10),
+    image_url: (formData.get('image_url') as string) || null,
     is_published: formData.get('is_published') === 'true',
     updated_at: new Date().toISOString(),
   };

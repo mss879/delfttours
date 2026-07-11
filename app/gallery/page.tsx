@@ -78,8 +78,8 @@ export default function GalleryPage() {
               <a href="mailto:support@delfttours.com" className="flex items-center gap-2 hover:text-[#0b3e63] transition-colors">
                 <Mail className="h-5 w-5" /> support@delfttours.com
               </a>
-              <a href="tel:+94112852455" className="flex items-center gap-2 hover:text-[#0b3e63] transition-colors">
-                <Phone className="h-5 w-5" /> +94 11 285 2455
+              <a href="tel:+94769220306" className="flex items-center gap-2 hover:text-[#0b3e63] transition-colors">
+                <Phone className="h-5 w-5" /> +94 76 922 0306
               </a>
             </div>
           </div>

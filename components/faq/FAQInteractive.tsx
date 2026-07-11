@@ -99,7 +99,7 @@ const faqCategories = [
             {
                 question: "How can I contact Delft Tours if I have questions?",
                 answer:
-                    "You can contact us 24/7 via phone at +94 11 285 2455 or email us at support@delfttours.com.",
+                    "You can contact us 24/7 via phone or WhatsApp at +94 76 922 0306 or email us at support@delfttours.com.",
             },
         ],
     },
@@ -231,11 +231,11 @@ export default function FAQInteractive() {
                             </Link>
                             <div className="flex items-center gap-6 px-6 py-3 bg-slate-50 rounded-full border border-slate-100">
                                 <a
-                                    href="tel:+94112852455"
+                                    href="tel:+94769220306"
                                     className="flex items-center gap-2 text-slate-600 hover:text-[#0b3e63] transition-colors"
                                 >
                                     <Phone className="w-4 h-4" />
-                                    <span className="font-medium">+94 11 285 2455</span>
+                                    <span className="font-medium">+94 76 922 0306</span>
                                 </a>
                                 <div className="w-px h-4 bg-slate-300"></div>
                                 <a

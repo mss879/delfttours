@@ -8,6 +8,8 @@ import {
   MessageSquare,
   CalendarCheck,
   Kanban,
+  CalendarDays,
+  Newspaper,
   ChevronLeft,
   ChevronRight,
   LogOut,
@@ -25,6 +27,8 @@ const navItems = [
   { href: '/admin/dashboard/bookings', label: 'Bookings', icon: CalendarCheck },
   { href: '/admin/dashboard/crm', label: 'CRM', icon: Kanban },
   { href: '/admin/dashboard/testimonials', label: 'Testimonials', icon: MessageSquare },
+  { href: '/admin/dashboard/events', label: 'Events', icon: CalendarDays },
+  { href: '/admin/dashboard/newsroom', label: 'Newsroom', icon: Newspaper },
 ];
 
 export default function AdminSidebar({ userEmail }: AdminSidebarProps) {

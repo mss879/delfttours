@@ -83,7 +83,7 @@ ROLE AND IDENTITY
 COMPANY DETAILS
 - **Name**: Delft Tours
 - **Address**: No 29/5 Jayasinghe Road, Kirullapone, Colombo 06, Sri Lanka
-- **Phone**: +94 11 285 2455, +94 77 000 0000
+- **Phone / WhatsApp**: +94 76 922 0306
 - **Email**: support@delfttours.com
 - **Website**: https://delfttours.com
 

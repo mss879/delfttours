@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { createTestimonial, updateTestimonial, deleteTestimonial, toggleTestimonialPublished } from '@/app/actions/testimonials';
-import { Edit2, Plus, Star, Trash2, Eye, EyeOff } from 'lucide-react';
+import { Edit2, Plus, Star, Trash2, Eye, EyeOff, User } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -10,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import ImageUpload from './ImageUpload';
 
 export default function TestimonialsClient({ initialTestimonials }: { initialTestimonials: any[] }) {
   const [data, setData] = useState(initialTestimonials);
@@ -23,6 +25,7 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
   const [tourType, setTourType] = useState('');
   const [content, setContent] = useState('');
   const [rating, setRating] = useState('5');
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isPublished, setIsPublished] = useState(true);
 
   const openNew = () => {
@@ -32,6 +35,7 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
     setTourType('');
     setContent('');
     setRating('5');
+    setImageUrl(null);
     setIsPublished(true);
     setIsDialogOpen(true);
   };
@@ -43,6 +47,7 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
     setTourType(item.tour_type || '');
     setContent(item.content || '');
     setRating(String(item.rating || 5));
+    setImageUrl(item.image_url || null);
     setIsPublished(item.is_published);
     setIsDialogOpen(true);
   };
@@ -57,14 +62,22 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
     formData.append('tour_type', tourType);
     formData.append('content', content);
     formData.append('rating', rating);
+    formData.append('image_url', imageUrl || '');
     formData.append('is_published', String(isPublished));
 
     try {
+      const res = editingItem
+        ? await updateTestimonial(editingItem.id, formData)
+        : await createTestimonial(formData);
+
+      if (!res.success) {
+        alert(res.error || 'Action failed');
+        return;
+      }
+
       if (editingItem) {
-        await updateTestimonial(editingItem.id, formData);
-        setData(prev => prev.map(t => t.id === editingItem.id ? { ...t, author_name: authorName, author_location: authorLocation, tour_type: tourType, content, rating: parseInt(rating), is_published: isPublished } : t));
+        setData(prev => prev.map(t => t.id === editingItem.id ? { ...t, author_name: authorName, author_location: authorLocation, tour_type: tourType, content, rating: parseInt(rating), image_url: imageUrl, is_published: isPublished } : t));
       } else {
-        await createTestimonial(formData);
         // Quick visual reload logic trick
         window.location.reload();
       }
@@ -80,7 +93,8 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
   const handleDelete = async (id: string) => {
     if (!confirm('Are you certain you want to delete this testimonial?')) return;
     try {
-      await deleteTestimonial(id);
+      const res = await deleteTestimonial(id);
+      if (!res.success) { alert(res.error || 'Failed to delete'); return; }
       setData(prev => prev.filter(t => t.id !== id));
     } catch(err) {
       alert('Failed to delete');
@@ -90,7 +104,8 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
   const togglePublish = async (id: string, currentState: boolean) => {
     const newState = !currentState;
     try {
-      await toggleTestimonialPublished(id, newState);
+      const res = await toggleTestimonialPublished(id, newState);
+      if (!res.success) { alert(res.error || 'Failed to toggle visibility'); return; }
       setData(prev => prev.map(t => t.id === id ? { ...t, is_published: newState } : t));
     } catch(err) {
       alert('Failed to toggle visibility');
@@ -109,8 +124,8 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
               <Plus className="w-4 h-4" /> Add Testimonial
             </button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden bg-white">
-            <DialogHeader className="px-6 py-4 border-b border-slate-100 bg-slate-50">
+          <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden bg-white max-h-[90vh] overflow-y-auto">
+            <DialogHeader className="px-6 py-4 border-b border-slate-100 bg-slate-50 sticky top-0 z-10">
               <DialogTitle className="text-xl font-semibold text-slate-800">
                 {editingItem ? 'Edit Testimonial' : 'New Testimonial'}
               </DialogTitle>
@@ -150,6 +165,8 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
                 <textarea required value={content} onChange={(e) => setContent(e.target.value)} className="w-full px-3 py-2 border rounded-lg h-32 resize-none focus:ring-2 focus:ring-[#0b3e63]/20 focus:border-[#0b3e63] outline-none" placeholder="Their glowing review..."></textarea>
               </div>
 
+              <ImageUpload value={imageUrl} onChange={setImageUrl} bucket="testimonials" label="Author Photo (Optional)" />
+
               <div className="flex items-center gap-2 pt-2">
                 <input type="checkbox" id="publish" checked={isPublished} onChange={(e) => setIsPublished(e.target.checked)} className="rounded text-[#0b3e63] w-4 h-4 cursor-pointer" />
                 <label htmlFor="publish" className="text-sm text-slate-700 cursor-pointer select-none">Publish immediately to website</label>
@@ -188,8 +205,19 @@ export default function TestimonialsClient({ initialTestimonials }: { initialTes
             ) : data.map((t) => (
               <tr key={t.id} className="hover:bg-slate-50 transition-colors">
                 <td className="px-6 py-4">
-                  <div className="font-medium text-slate-900">{t.author_name}</div>
-                  <div className="text-xs text-slate-500 mt-1">{t.author_location}</div>
+                  <div className="flex items-center gap-3">
+                    <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-slate-100 flex items-center justify-center">
+                      {t.image_url ? (
+                        <Image src={t.image_url} alt={t.author_name} fill className="object-cover" unoptimized />
+                      ) : (
+                        <User className="h-4 w-4 text-slate-300" />
+                      )}
+                    </div>
+                    <div>
+                      <div className="font-medium text-slate-900">{t.author_name}</div>
+                      <div className="text-xs text-slate-500 mt-0.5">{t.author_location}</div>
+                    </div>
+                  </div>
                 </td>
                 <td className="px-6 py-4 max-w-xs">
                   <p className="text-sm text-slate-600 truncate" title={t.content}>{t.content}</p>

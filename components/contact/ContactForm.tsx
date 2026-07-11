@@ -90,10 +90,10 @@ export default function ContactForm() {
                                         Mon-Fri from 8am to 5pm
                                     </p>
                                     <a
-                                        href="tel:+94112852455"
+                                        href="tel:+94769220306"
                                         className="mt-2 block font-medium text-[#179daa] hover:underline"
                                     >
-                                        +94 11 285 2455
+                                        +94 76 922 0306
                                     </a>
                                 </div>
                             </Card>

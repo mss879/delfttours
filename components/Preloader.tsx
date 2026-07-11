@@ -1,9 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 
 export default function Preloader() {
+  const pathname = usePathname();
+  // The branded intro is only for the public site — never run it in the admin.
+  const isAdmin = pathname?.startsWith('/admin') ?? false;
   const [show, setShow] = useState(true);
   const [displayedText, setDisplayedText] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,6 +17,9 @@ export default function Preloader() {
   const fullText = 'Welcome to Delft Tours';
 
   useEffect(() => {
+    // Skip the intro entirely on admin routes.
+    if (isAdmin) return;
+
     // Runs on every page load / refresh — a ~2.5s branded intro: type the
     // headline, hold, then fade the overlay out.
     const tl = gsap.timeline({
@@ -59,9 +66,9 @@ export default function Preloader() {
       tl.kill();
       cursorBlink.kill();
     };
-  }, []);
+  }, [isAdmin]);
 
-  if (!show) return null;
+  if (isAdmin || !show) return null;
 
   return (
     <div

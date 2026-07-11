@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import Providers from './providers';
 import DeferredWidgets from '@/components/DeferredWidgets';
 import Preloader from '@/components/Preloader';
+import MetaPixel from '@/components/MetaPixel';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
@@ -75,6 +77,9 @@ export const metadata: Metadata = {
   // (better than shipping an invalid placeholder).
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: {
+      'facebook-domain-verification': 'wbpryu3cgj1vrw94r0oj',
+    },
   },
 };
 
@@ -87,6 +92,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <MetaPixel />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -106,7 +112,7 @@ export default function RootLayout({
                 height: 74,
               },
               image: 'https://delfttours.com/hero1.webp',
-              telephone: '+94112852455',
+              telephone: '+94769220306',
               email: 'support@delfttours.com',
               address: {
                 '@type': 'PostalAddress',
@@ -165,6 +171,7 @@ export default function RootLayout({
           <Preloader />
           {children}
           <DeferredWidgets />
+          <WhatsAppButton />
         </Providers>
       </body>
     </html>

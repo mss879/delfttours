@@ -21,6 +21,8 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'framerusercontent.com' },
       { protocol: 'https', hostname: 'cdn.prod.website-files.com' },
+      // Supabase Storage (admin-uploaded images: events, newsroom, testimonials)
+      { protocol: 'https', hostname: 'vbipftcmiyizurnqhkzi.supabase.co' },
     ],
   },
 };
