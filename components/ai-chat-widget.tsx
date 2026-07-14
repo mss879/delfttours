@@ -113,15 +113,13 @@ export function AiChatWidget() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const toggleVisibility = () => {
-            if (window.scrollY > 100) {
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        };
+        const toggleVisibility = () => setIsVisible(window.scrollY > 100);
 
-        window.addEventListener("scroll", toggleVisibility);
+        // Checked on mount too: this widget is lazy-mounted, so the page can
+        // already be scrolled past the threshold before any scroll event lands.
+        toggleVisibility();
+
+        window.addEventListener("scroll", toggleVisibility, { passive: true });
         return () => window.removeEventListener("scroll", toggleVisibility);
     }, []);
 

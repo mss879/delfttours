@@ -5,7 +5,6 @@ import Providers from './providers';
 import DeferredWidgets from '@/components/DeferredWidgets';
 import Preloader from '@/components/Preloader';
 import MetaPixel from '@/components/MetaPixel';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
@@ -171,7 +170,6 @@ export default function RootLayout({
           <Preloader />
           {children}
           <DeferredWidgets />
-          <WhatsAppButton />
         </Providers>
       </body>
     </html>

@@ -45,6 +45,7 @@ export default function Header() {
     () => [
       { href: '/tours', label: 'Holidays & Tours' },
       { href: '/about-us', label: 'About Us' },
+      { href: '/b2b-partnerships', label: 'B2B Partnerships' },
       { href: '/success-stories', label: 'Testimonials' },
       { href: '/gallery', label: 'Gallery' },
       {
@@ -68,7 +69,12 @@ export default function Header() {
     <header className="sticky top-0 z-[60] font-sans">
       <div className="border-b border-slate-200/60 bg-white/95 shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
         <nav
-          className="relative mx-auto flex max-w-[1440px] items-center justify-between px-4 py-4 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-6 lg:px-8"
+          // The nav row is whitespace-nowrap, so its min-content width can't shrink —
+          // any horizontal deficit is absorbed by the `auto` logo column instead.
+          // With 8 items + Contact Us the row needs ~861px, which at 1280 starved the
+          // logo to 46px. Gap/padding are therefore stepped up by breakpoint rather
+          // than fixed, and only relax to the roomy values at 2xl where there's slack.
+          className="relative mx-auto flex max-w-[1440px] items-center justify-between px-4 py-4 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-2 lg:px-4 xl:gap-3 xl:px-6 2xl:gap-6 2xl:px-8"
           aria-label="Primary Desktop Navigation"
         >
           <div className="flex items-center gap-4 lg:gap-6">
@@ -85,19 +91,28 @@ export default function Header() {
             </Link>
           </div>
 
-          <div className="hidden items-center justify-center lg:flex lg:gap-0.5 xl:gap-1">
+          <div className="hidden items-center justify-center lg:flex lg:gap-0 2xl:gap-1">
             {navItems.map((item) =>
               item.children ? (
                 <DropdownMenu key={item.label}>
                   <DropdownMenuTrigger className="outline-none">
-                    <span className="flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[15px] font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3 cursor-pointer">
+                    <span className="flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-2 text-[15px] font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3 cursor-pointer">
                       {item.label}
                       <ChevronDown className="h-3.5 w-3.5 opacity-50" />
                     </span>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-48">
+                  {/* font-sans is re-applied here on purpose: the menu portals to
+                      <body>, so it escapes the <header>'s font-sans and would
+                      otherwise inherit Inter from the body and mismatch the nav. */}
+                  <DropdownMenuContent align="start" className="w-48 p-1.5 font-sans">
                     {item.children.map((child) => (
-                      <DropdownMenuItem key={child.href} asChild className="cursor-pointer">
+                      <DropdownMenuItem
+                        key={child.href}
+                        asChild
+                        // Matches the nav link treatment above, so the menu reads as
+                        // part of the navbar rather than a stock shadcn popover.
+                        className="cursor-pointer rounded-lg px-2.5 py-2 text-[15px] font-medium text-slate-600 transition-all duration-200 focus:bg-slate-900/5 focus:text-slate-900"
+                      >
                         <Link href={child.href}>{child.label}</Link>
                       </DropdownMenuItem>
                     ))}
@@ -106,7 +121,7 @@ export default function Header() {
               ) : (
                 <Link
                   key={item.href}
-                  className="whitespace-nowrap rounded-full px-2.5 py-2 text-[15px] font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3"
+                  className="whitespace-nowrap rounded-full px-2 py-2 text-[15px] font-medium text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3"
                   href={item.href!}
                 >
                   {item.label}
@@ -115,7 +130,7 @@ export default function Header() {
             )}
             <Link
               href="/contact-us"
-              className="whitespace-nowrap rounded-full px-2.5 py-2 text-[15px] font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3"
+              className="whitespace-nowrap rounded-full px-2 py-2 text-[15px] font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-900/5 hover:text-slate-900 xl:px-3"
             >
               Contact Us
             </Link>
@@ -143,7 +158,8 @@ export default function Header() {
                   <ChevronDown className="h-3 w-3 opacity-50" />
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              {/* font-sans for the same reason as the Resources menu above. */}
+              <DropdownMenuContent align="end" className="w-56 font-sans">
                 {currencyOptions.map((c) => {
                   const info = CURRENCIES[c.code];
                   return (

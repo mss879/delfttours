@@ -15,6 +15,9 @@ const MeetingWidget = dynamic(
   () => import('@/components/MeetingWidget').then((m) => m.MeetingWidget),
   { ssr: false }
 );
+const WhatsAppButton = dynamic(() => import('@/components/WhatsAppButton'), {
+  ssr: false,
+});
 
 export default function DeferredWidgets() {
   const [ready, setReady] = useState(false);
@@ -55,6 +58,7 @@ export default function DeferredWidgets() {
 
   return (
     <>
+      <WhatsAppButton />
       <MeetingWidget />
       <AiChatWidget />
     </>

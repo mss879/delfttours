@@ -16,7 +16,7 @@ import { Slider } from "@/components/ui/slider";
 import Link from "next/link";
 
 import { useCurrency } from "@/components/CurrencyProvider";
-import FAQSection from "@/components/FAQSection";
+import TourFaqSection from "@/components/tours/TourFaqSection";
 import {
     Popover,
     PopoverContent,
@@ -457,7 +457,7 @@ export default function TourListing() {
                 </div>
             </section>
 
-            <FAQSection />
+            <TourFaqSection />
         </>
     );
 }

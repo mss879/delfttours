@@ -10,6 +10,7 @@ import {
   Kanban,
   CalendarDays,
   Newspaper,
+  FileText,
   ChevronLeft,
   ChevronRight,
   LogOut,
@@ -29,6 +30,7 @@ const navItems = [
   { href: '/admin/dashboard/testimonials', label: 'Testimonials', icon: MessageSquare },
   { href: '/admin/dashboard/events', label: 'Events', icon: CalendarDays },
   { href: '/admin/dashboard/newsroom', label: 'Newsroom', icon: Newspaper },
+  { href: '/admin/dashboard/articles', label: 'Articles', icon: FileText },
 ];
 
 export default function AdminSidebar({ userEmail }: AdminSidebarProps) {
