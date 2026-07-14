@@ -5,8 +5,6 @@ import AboutSection from '@/components/AboutSection';
 import GallerySection from '@/components/GallerySection';
 import HowItWorks from '@/components/HowItWorks';
 import TopDestinations from '@/components/TopDestinations';
-import BlogSection from '@/components/BlogSection';
-import ReelsSection from '@/components/ReelsSection';
 import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 
@@ -27,8 +25,6 @@ export default function Home() {
         <GallerySection />
         <HowItWorks />
         <TopDestinations />
-        <BlogSection />
-        <ReelsSection />
       </main>
       <Footer />
     </div>

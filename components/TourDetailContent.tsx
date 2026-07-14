@@ -35,13 +35,13 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
   const type = "Private Tour";
 
   return (
-    <div className="flex flex-col pb-12 font-sans selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="flex flex-col pb-12 font-sans selection:bg-brand-100 selection:text-brand-900">
 
       {/* 1. HEADER SECTION */}
       <div className="px-1 mb-6">
         <div className="flex flex-wrap items-center gap-3 mb-3">
           {tour.themes?.map(theme => (
-            <Badge key={theme} variant="secondary" className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border-indigo-100">
+            <Badge key={theme} variant="secondary" className="bg-brand-50 text-brand-700 hover:bg-brand-100 border-brand-100">
               {theme}
             </Badge>
           ))}
@@ -50,13 +50,13 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
           {mainTitle} <span className="text-slate-500 font-normal">{subTitle}</span>
         </h1>
         <div className="flex items-center gap-2 mt-3 text-slate-500 font-medium">
-          <MapPin className="w-5 h-5 text-indigo-500" />
+          <MapPin className="w-5 h-5 text-brand-500" />
           <span>{location}</span>
         </div>
       </div>
 
       {/* 2. HERO IMAGE CAROUSEL */}
-      <div className="mb-8 relative rounded-3xl overflow-hidden shadow-2xl shadow-indigo-100">
+      <div className="mb-8 relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-100">
         <Carousel className="w-full">
           <CarouselContent>
             {tour.images && tour.images.length > 0 ? (
@@ -97,7 +97,7 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
           <div className="flex flex-col sm:flex-row items-center justify-evenly gap-8 p-8 bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
 
             <div className="flex flex-col items-center justify-center text-center gap-3 min-w-[120px]">
-              <div className="p-3.5 bg-indigo-50 rounded-2xl text-indigo-600">
+              <div className="p-3.5 bg-brand-50 rounded-2xl text-brand-600">
                 <Clock className="w-6 h-6" />
               </div>
               <div className="flex flex-col">
@@ -109,7 +109,7 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
             <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-slate-200 to-transparent"></div>
 
             <div className="flex flex-col items-center justify-center text-center gap-3 min-w-[120px]">
-              <div className="p-3.5 bg-blue-50 rounded-2xl text-blue-600">
+              <div className="p-3.5 bg-brand-50 rounded-2xl text-brand-600">
                 <Globe2 className="w-6 h-6" />
               </div>
               <div className="flex flex-col">
@@ -121,7 +121,7 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
             <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-slate-200 to-transparent"></div>
 
             <div className="flex flex-col items-center justify-center text-center gap-3 min-w-[120px]">
-              <div className="p-3.5 bg-emerald-50 rounded-2xl text-emerald-600">
+              <div className="p-3.5 bg-brand-50 rounded-2xl text-brand-600">
                 <Briefcase className="w-6 h-6" />
               </div>
               <div className="flex flex-col">
@@ -141,7 +141,7 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
           </div>
 
           {/* Inclusions */}
-          <div className="bg-indigo-50/50 rounded-2xl p-8 border border-indigo-100">
+          <div className="bg-brand-50/50 rounded-2xl p-8 border border-brand-100">
             <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
               <CheckCircle2 className="w-6 h-6 text-green-600" />
               What&apos;s Included
@@ -168,12 +168,12 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
           {/* ITINERARY TIMELINE */}
           <div>
             <h2 className="text-2xl font-bold text-slate-900 mb-8">Daily Itinerary</h2>
-            <div className="pl-4 border-l-2 border-indigo-100 space-y-8 relative">
+            <div className="pl-4 border-l-2 border-brand-100 space-y-8 relative">
               {tour.days.map((day, index) => (
                 <div key={index} className="relative pl-8">
                   {/* Timeline Dot */}
                   <div className="absolute -left-[21px] top-0 flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-indigo-600 border-4 border-white shadow-lg flex items-center justify-center text-white font-bold text-sm z-10">
+                    <div className="w-10 h-10 rounded-full bg-brand-600 border-4 border-white shadow-lg flex items-center justify-center text-white font-bold text-sm z-10">
                       {index + 1}
                     </div>
                   </div>

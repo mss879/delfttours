@@ -158,7 +158,7 @@ export function AiChatWidget() {
                                         </div>
                                         <div>
                                             <h3 className="text-sm font-semibold">Delft Tours Support</h3>
-                                            <p className="text-xs text-blue-100">Usually replies instantly</p>
+                                            <p className="text-xs text-white/70">Usually replies instantly</p>
                                         </div>
                                     </div>
                                     <button
@@ -190,7 +190,7 @@ export function AiChatWidget() {
                                                                     {...props}
                                                                     target="_blank"
                                                                     rel="noopener noreferrer"
-                                                                    className="text-blue-400 underline hover:text-blue-300"
+                                                                    className="text-brand-600 underline hover:text-brand-700"
                                                                 />
                                                             ),
                                                             p: ({ node, ...props }) => <p {...props} className="mb-2 last:mb-0" />,
@@ -262,7 +262,7 @@ export function AiChatWidget() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95, translateY: 2 }}
                             className="relative flex h-14 w-14 items-center justify-center rounded-2xl 
-                            bg-gradient-to-br from-blue-600/90 to-cyan-600/90 backdrop-blur-md
+                            bg-gradient-to-br from-brand-600/90 to-brand-400/90 backdrop-blur-md
                             border border-white/20
                             text-white transition-all 
                             shadow-[0_4px_0_#0c4a6e,0_0_20px_rgba(6,182,212,0.5)] 

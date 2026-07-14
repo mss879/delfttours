@@ -103,7 +103,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                                 </div>
                             </div>
 
-                            <div className="mt-6 bg-blue-50 p-4 rounded-xl border border-blue-100 text-sm text-blue-800">
+                            <div className="mt-6 bg-brand-50 p-4 rounded-xl border border-brand-100 text-sm text-brand-800">
                                 <p className="flex items-center font-semibold mb-1">
                                     Need help?
                                 </p>

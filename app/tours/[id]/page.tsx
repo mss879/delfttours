@@ -160,7 +160,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
             </ol>
           </nav>
           
-          <div className="mt-6 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
+          <div className="mt-6 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-600 mb-2">
             <MapPin className="h-4 w-4" />
             <span>{tour.destination || 'Sri Lanka'}</span>
           </div>
@@ -204,13 +204,13 @@ export default function TourPage({ params }: { params: { id: string } }) {
         <div className="lg:col-span-2 space-y-12">
           
           {/* Tour Summary */}
-          <div className="bg-[#EFF5FF] w-full p-6 md:p-10 rounded-[2rem] shadow-sm">
-            <div className="flex flex-col items-start justify-between md:flex-row md:items-center border-b border-indigo-100/50 pb-6 mb-6">
+          <div className="bg-brand-50 w-full p-6 md:p-10 rounded-[2rem] shadow-sm">
+            <div className="flex flex-col items-start justify-between md:flex-row md:items-center border-b border-brand-100/50 pb-6 mb-6">
               <h2 className="text-2xl font-bold text-slate-900 md:order-first order-last md:mt-0 mt-4 font-serif">
                 Tour Overview
               </h2>
               <div className="flex items-center justify-center bg-white px-4 py-2 rounded-full shadow-sm text-sm border border-slate-100">
-                <p className="text-slate-500">Suitable for: <span className="font-semibold text-indigo-900">Family, Couple & Friends</span></p>
+                <p className="text-slate-500">Suitable for: <span className="font-semibold text-brand-900">Family, Couple & Friends</span></p>
               </div>
             </div>
             <div>
@@ -220,7 +220,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
             </div>
 
             {/* Inclusions Grid */}
-            <div className="mt-8 pt-8 border-t border-indigo-100/50">
+            <div className="mt-8 pt-8 border-t border-brand-100/50">
               <h3 className="text-xl font-bold text-slate-900 mb-6 font-serif">Included in this Tour</h3>
               <div className="grid sm:grid-cols-2 gap-4 text-slate-600">
                 {tour.inclusions && tour.inclusions.length > 0 ? (
@@ -232,7 +232,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
                           <span key={index}>
                             {part}
                             {index < array.length - 1 && (
-                              <span className="text-indigo-600 font-bold">Superior</span>
+                              <span className="text-brand-600 font-bold">Superior</span>
                             )}
                           </span>
                         ))}
@@ -270,10 +270,10 @@ export default function TourPage({ params }: { params: { id: string } }) {
                     const dayHighlight = dayHighlightsMap.get(index);
 
                     return (
-                      <AccordionItem key={index} value={`day-${index}`} className="border border-slate-200 rounded-[2rem] bg-white overflow-hidden shadow-sm data-[state=open]:border-indigo-200 data-[state=open]:shadow-md transition-all">
+                      <AccordionItem key={index} value={`day-${index}`} className="border border-slate-200 rounded-[2rem] bg-white overflow-hidden shadow-sm data-[state=open]:border-brand-200 data-[state=open]:shadow-md transition-all">
                         <AccordionTrigger className="hover:no-underline px-6 md:px-8 py-6 group">
                           <div className="flex items-center text-left w-full">
-                            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex flex-col items-center justify-center mr-6 group-data-[state=open]:bg-indigo-600 group-data-[state=open]:text-white transition-colors">
+                            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex flex-col items-center justify-center mr-6 group-data-[state=open]:bg-brand-600 group-data-[state=open]:text-white transition-colors">
                               <span className="text-[10px] font-bold uppercase tracking-wider">Day</span>
                               <span className="text-lg font-bold leading-none">{index + 1}</span>
                             </div>
@@ -295,7 +295,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
                             {dayHighlight && (
                               <div className="mt-10 border-t border-slate-100 pt-8">
                                 <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                  <MapPin className="text-indigo-600 h-5 w-5" />
+                                  <MapPin className="text-brand-600 h-5 w-5" />
                                   Highlights in {dayHighlight.cityName}
                                 </h4>
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -359,7 +359,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
             
             {/* Additional info cards can go here in the sidebar */}
             <div className="mt-6 bg-slate-900 rounded-[2rem] p-8 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-500 rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
               <h4 className="text-xl font-bold mb-3 relative z-10">Need a Custom Tour?</h4>
               <p className="text-slate-300 text-sm mb-6 relative z-10">
                 Our local travel experts can customize this itinerary to perfectly match your interests and schedule.

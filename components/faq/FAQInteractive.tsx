@@ -24,9 +24,9 @@ const faqCategories = [
             },
             {
                 question:
-                    "What are the countries to which I can Fly with Delft Tours?",
+                    "What destinations does Delft Tours cover?",
                 answer:
-                    "We offer trips across multiple destinations including Sri Lanka, Maldives, Vietnam, Indonesia, Dubai, Cambodia, Singapore, and Malaysia.",
+                    "We specialise in inbound tours across Sri Lanka — including the Cultural Triangle, hill country, wildlife national parks, and the southern coast. Every itinerary is designed and operated by our local team on the ground.",
             },
             {
                 question:
@@ -73,7 +73,7 @@ const faqCategories = [
             {
                 question: "What type of clothes should I pack?",
                 answer:
-                    "This depends on your destination and the time of year. For tropical destinations like Sri Lanka and Maldives, light cotton clothing is recommended.",
+                    "Sri Lanka is tropical year-round, so light cotton clothing is recommended. Pack a light layer for the cooler hill country, and modest attire (covered shoulders and knees) for visits to temples and other religious sites.",
             },
             {
                 question:
@@ -89,7 +89,7 @@ const faqCategories = [
             {
                 question: "What services can I book with Delft Tours?",
                 answer:
-                    "We offer a wide range of services including tailor-made tours, group packages, hotel bookings, transport arrangements, and specialized getaway holidays.",
+                    "We offer a full range of Sri Lanka inbound services, including tailor-made tours, group packages, hotel bookings, private transport with a chauffeur-guide, airport transfers, and specialised getaway holidays.",
             },
             {
                 question: "Can I make a complaint if something goes wrong?",
@@ -127,7 +127,7 @@ export default function FAQInteractive() {
                 <section className="relative bg-[#0b3e63] py-24 text-center overflow-hidden">
                     {/* Background decorative elements */}
                     <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/5 blur-3xl"></div>
-                    <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl"></div>
+                    <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 h-96 w-96 rounded-full bg-brand-500/20 blur-3xl"></div>
 
                     <div className="relative z-10 mx-auto max-w-4xl px-4">
                         <motion.div
@@ -138,9 +138,9 @@ export default function FAQInteractive() {
                             <h1 className="mb-6 text-4xl font-bold text-white md:text-6xl tracking-tight">
                                 How can we help?
                             </h1>
-                            <p className="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                            <p className="text-lg text-brand-100 mb-8 max-w-2xl mx-auto leading-relaxed">
                                 Find answers to common questions about planning your dream
-                                vacation with Delft Tours.
+                                Sri Lanka holiday with Delft Tours.
                             </p>
 
                             {/* Search Bar */}
@@ -149,7 +149,7 @@ export default function FAQInteractive() {
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     placeholder="Search for answers..."
-                                    className="h-14 pl-12 rounded-full border-0 bg-white/90 backdrop-blur-sm shadow-xl text-lg placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-indigo-300 transition-all"
+                                    className="h-14 pl-12 rounded-full border-0 bg-white/90 backdrop-blur-sm shadow-xl text-lg placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-brand-300 transition-all"
                                 />
                                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                             </div>
@@ -170,7 +170,7 @@ export default function FAQInteractive() {
                                     transition={{ delay: catIndex * 0.1 }}
                                 >
                                     <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-                                        <span className="w-8 h-1 bg-indigo-500 rounded-full"></span>
+                                        <span className="w-8 h-1 bg-brand-500 rounded-full"></span>
                                         {category.title}
                                     </h2>
                                     <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
@@ -213,7 +213,7 @@ export default function FAQInteractive() {
                 {/* Still Have Questions CTA */}
                 <section className="bg-white py-20 border-t border-slate-100">
                     <div className="mx-auto max-w-4xl px-4 text-center">
-                        <div className="inline-flex items-center justify-center p-3 bg-indigo-50 rounded-2xl mb-6 text-[#0b3e63]">
+                        <div className="inline-flex items-center justify-center p-3 bg-brand-50 rounded-2xl mb-6 text-[#0b3e63]">
                             <MessageCircle className="w-8 h-8" />
                         </div>
                         <h2 className="text-3xl font-bold text-slate-900 mb-4">

@@ -156,7 +156,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                 </div>
 
                 {isPBL ? (
-                    <div className="bg-blue-50 p-6 rounded-xl border border-blue-200 w-full max-w-md">
+                    <div className="bg-brand-50 p-6 rounded-xl border border-brand-200 w-full max-w-md">
                         <h3 className="font-semibold text-[#0b3e63] mb-3 flex items-center">
                             <Link2 className="w-5 h-5 mr-2" />
                             Pay by Link
@@ -398,7 +398,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                                             <RadioGroupItem value="bank_transfer" id="bank_transfer" className="peer sr-only" />
                                                             <label
                                                                 htmlFor="bank_transfer"
-                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-blue-50/30 cursor-pointer transition-all"
+                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-brand-50/30 cursor-pointer transition-all"
                                                             >
                                                                 <div className="flex items-center space-x-3">
                                                                     <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0b3e63]">
@@ -423,7 +423,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                                             <RadioGroupItem value="pay_by_link" id="pay_by_link" className="peer sr-only" />
                                                             <label
                                                                 htmlFor="pay_by_link"
-                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-blue-50/30 cursor-pointer transition-all"
+                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-brand-50/30 cursor-pointer transition-all"
                                                             >
                                                                 <div className="flex items-center space-x-3">
                                                                     <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0b3e63]">

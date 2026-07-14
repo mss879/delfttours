@@ -9,25 +9,25 @@ const features = [
     icon: '/assets/external/feature-icon-1.svg',
     title: 'Expert Travel Guides',
     description: 'Hey, you’ve gotta check out these awesome tips and local hacks for a trip you won’t forget!',
-    bg: 'bg-[#E8EEFF]/60',
+    bg: 'bg-brand-50',
   },
   {
     icon: '/assets/external/feature-icon-2.svg',
     title: 'Customizable Itineraries',
     description: 'Turn your trip into your own adventure – switch things up however you feel like!',
-    bg: 'bg-[#F6EFFF]/60',
+    bg: 'bg-brand-50',
   },
   {
     icon: '/assets/external/feature-icon-3.svg',
     title: 'Handpicked Destinations',
     description: 'Hey, you gotta see some of the wildest and most unique spots on the planet!',
-    bg: 'bg-[#FFEFEF]/60',
+    bg: 'bg-brand-50',
   },
   {
     icon: '/assets/external/feature-icon-4.svg',
     title: '24/7 Customer Support',
     description: 'You can totally rely on our awesome team to help you out whenever you need!',
-    bg: 'bg-[#FFF1D8]/60',
+    bg: 'bg-brand-50',
   },
 ];
 
@@ -61,13 +61,13 @@ export default function WhyChooseSection() {
           <div className="max-w-xl space-y-4">
             <h2 className="text-4xl font-bold text-slate-900">Why Choose Delft Tours?</h2>
             <p className="text-lg text-slate-600">
-              At Delft Tours, we’re proud to partner with some of the most innovative and trusted companies in the world.
+              From ancient citadels to golden beaches, we craft unforgettable journeys across Sri Lanka — with local experts by your side every step of the way.
             </p>
           </div>
 
           <Link
             href="/contact-us"
-            className="inline-flex items-center gap-2 bg-[#001D22] text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity shrink-0"
+            className="inline-flex items-center gap-2 bg-brand-900 text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity shrink-0"
           >
             <span>Contact Us</span>
             <div className="w-6 h-6 bg-white/10 rounded-full flex items-center justify-center">

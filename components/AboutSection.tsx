@@ -10,13 +10,13 @@ const bulletPoints = [
 const stats = [
   {
     value: '1000+',
-    lines: ['Happy', 'Customer'],
+    lines: ['Happy', 'Customers'],
     icon: 'https://cdn.prod.website-files.com/66b5d6635ee4014275999ec3/66b9a6938d8b59f2c7283b36_026-schedule.svg',
     alt: 'Calendar icon',
   },
   {
     value: '300+',
-    lines: ['Destinations', 'Collaboration'],
+    lines: ['Curated', 'Experiences'],
     icon: 'https://cdn.prod.website-files.com/66b5d6635ee4014275999ec3/66b9a69363b6e3f97282d820_011-dish.svg',
     alt: 'Dish icon',
   },
@@ -77,7 +77,7 @@ export default function AboutSection() {
             Your Gateway To Amazing Experiences
           </h2>
           <p className="max-w-xl text-base text-slate-600 sm:text-lg">
-            We have been operating for over a decade, providing top-notch services to our clients and building a strong track record.
+            We have been operating for over three decades, providing top-notch services to our clients and building a strong track record.
           </p>
 
           <ul className="mt-2 flex flex-col gap-4">
@@ -120,7 +120,7 @@ export default function AboutSection() {
           </div>
 
           <Link
-            href="/tour"
+            href="/tours"
             className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-green-600 px-8 py-3 text-base font-semibold text-white shadow-[0_20px_50px_rgba(23,157,170,0.35)] transition hover:bg-green-700"
           >
             <span>Find Tours</span>

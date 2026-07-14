@@ -73,6 +73,21 @@ const config: Config = {
           800: '#115e59',
           900: '#134e4a',
         },
+        // Delft Tours primary brand navy, anchored on #0b3e63 at step 600.
+        // Provides a full tint/shade scale so accents stay on-brand sitewide.
+        brand: {
+          DEFAULT: '#0b3e63',
+          50: '#f0f6fb',
+          100: '#d9e9f3',
+          200: '#b3d1e6',
+          300: '#7fb0d1',
+          400: '#3d82ad',
+          500: '#1f6291',
+          600: '#0b3e63',
+          700: '#0a3556',
+          800: '#082c46',
+          900: '#061f31',
+        },
       },
       keyframes: {
         'accordion-down': {

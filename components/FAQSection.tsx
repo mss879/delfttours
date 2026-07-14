@@ -24,22 +24,22 @@ const faqData: FAQItem[] = [
   {
     id: 'f1',
     question: 'Where is Delft Tours located?',
-    answer: 'Delft Tours is located in Sri Lanka, at No 29/5 Jayasinghe Road, Kirullapone, Colombo 06.',
+    answer: 'Delft Tours is a Sri Lanka–based inbound tour operator, headquartered at No 29/5 Jayasinghe Road, Kirullapone, Colombo 06.',
   },
   {
     id: 'f2',
-    question: 'What are the countries to which I can Fly with Delft Tours?',
-    answer: 'We offer trips across multiple destinations including Sri Lanka, Maldives, Vietnam, Indonesia, Dubai, Cambodia, Singapore, and Malaysia.',
+    question: 'What destinations does Delft Tours cover?',
+    answer: 'We specialise in inbound tours across Sri Lanka — from the Cultural Triangle and hill country to wildlife safaris and southern beaches. Every itinerary is designed and operated by our local team on the ground.',
   },
   {
     id: 'f3',
     question: 'How do I book a tour with Delft Tours?',
-    answer: 'You can request a quote through our website, call us directly, or send an email. Our team will contact you to confirm dates, itinerary, and payment details.',
+    answer: 'You can request a quote through our website, call us directly, or send us an email. Our team will then contact you to confirm your dates, itinerary, and payment details.',
   },
   {
     id: 'f4',
-    question: 'What are the general timings look like, when I book with Delft Tours?',
-    answer: 'Our tours are fully customizable. Typical itineraries range from 5 days to 2 weeks, depending on your preferences and the destination. We work with you to plan the perfect timeline.',
+    question: 'How long do your Sri Lanka tours usually last?',
+    answer: 'Our tours are fully customisable. Itineraries typically range from 5 days to 2 weeks, depending on your interests and how much of Sri Lanka you would like to explore. We work with you to plan the perfect timeline.',
   },
 ];
 
@@ -113,7 +113,7 @@ export default function FAQSection() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Ask a question"
-                  className="h-12 w-full rounded-full border-slate-200 bg-white pl-12 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-indigo-500"
+                  className="h-12 w-full rounded-full border-slate-200 bg-white pl-12 text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:ring-brand-500"
                 />
               </div>
             </div>
@@ -137,8 +137,8 @@ export default function FAQSection() {
         <Accordion type="single" collapsible className="w-full">
           {filteredItems.map((item) => (
             <AccordionItem key={item.id} value={item.id} className="border-b border-slate-100 last:border-0 py-2">
-              <AccordionTrigger className="text-left py-4 hover:no-underline hover:text-indigo-600">
-                <span className="text-base font-semibold text-slate-900 transition-colors group-hover:text-indigo-600">
+              <AccordionTrigger className="text-left py-4 hover:no-underline hover:text-brand-600">
+                <span className="text-base font-semibold text-slate-900 transition-colors group-hover:text-brand-600">
                   {item.question}
                 </span>
               </AccordionTrigger>

@@ -27,7 +27,7 @@ export default function AboutHero() {
                         className="text-4xl font-extrabold leading-[1.15] text-slate-900 sm:text-5xl lg:text-5xl xl:text-6xl"
                     >
                         Journeys that <br className="hidden lg:block"/> 
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-400">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400">
                             transform
                         </span> you.
                     </motion.h1>

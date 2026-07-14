@@ -9,22 +9,22 @@ import { cn } from "@/lib/utils";
 const destinations = [
   {
     title: 'Sigiriya',
-    href: '/tours?destination=Sigiriya',
+    href: '/tours',
     image: '/sigiriya.webp',
   },
   {
     title: 'Kandy',
-    href: '/tours?destination=Kandy',
+    href: '/tours',
     image: '/kandy.webp',
   },
   {
     title: 'Nuwara Eliya',
-    href: '/tours?destination=Nuwara%20Eliya',
+    href: '/tours',
     image: '/nuwaraeliya.webp',
   },
   {
     title: 'Galle',
-    href: '/tours?destination=Galle',
+    href: '/tours',
     image: '/top galle.jpg',
   },
 ];
@@ -70,7 +70,6 @@ export default function TopDestinations() {
                   <motion.span
                     className={cn(
                       "text-[20px] font-semibold text-white whitespace-nowrap",
-                      destination.title === 'USA' ? 'uppercase tracking-[0.18em]' : '',
                       "md:[writing-mode:horizontal-tb] [writing-mode:vertical-rl] rotate-180 md:rotate-0"
                     )}
                     style={{ textShadow: '0 8px 24px rgba(0,0,0,0.5)' }}

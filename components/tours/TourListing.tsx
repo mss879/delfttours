@@ -5,9 +5,7 @@ import { useMemo, useState } from "react";
 import {
     Filter,
     MapPin,
-    Heart,
 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 
 import { tourDetails, TourDetail } from "@/app/tours/tour-data";
 import { Badge } from "@/components/ui/badge";
@@ -25,15 +23,6 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import SuccessModal from "@/components/SuccessModal";
-
-// Types
-type Tour = {
-    id: string;
-    destination: string;
-    title: string;
-    priceLabel: string;
-    tag: string;
-};
 
 // Filter Option Helper Component
 function FilterCheckboxRow({
@@ -66,23 +55,6 @@ export default function TourListing() {
     const { convertPrice } = useCurrency();
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    const destinations = useMemo(
-        () => [
-            "Sri Lanka",
-            "Maldives",
-            "Vietnam",
-            "Indonesia",
-            "Dubai",
-            "Cambodia",
-            "Singapore",
-            "Malaysia",
-        ],
-        []
-    );
-    const tripTypes = useMemo(
-        () => ["Tailor Made Tours", "Fixed Departures", "Getaway"],
-        []
-    );
     const tourThemes = useMemo(
         () => [
             "Culture & Heritage",
@@ -101,11 +73,6 @@ export default function TourListing() {
         () => ["Buddhism", "Hinduism", "Islam", "Christianity"],
         []
     );
-    const travellerTypes = useMemo(
-        () => ["Family", "Couple", "Solo", "Friends", "Group"],
-        []
-    );
-
     const activities = useMemo(
         () => [
             "Safari",
@@ -127,18 +94,9 @@ export default function TourListing() {
         []
     );
 
-    const [selectedDestinations, setSelectedDestinations] = useState<
-        Record<string, boolean>
-    >({});
-    const [selectedTripTypes, setSelectedTripTypes] = useState<
-        Record<string, boolean>
-    >({});
     const [selectedThemes, setSelectedThemes] = useState<Record<string, boolean>>(
         {}
     );
-    const [selectedTravellerTypes, setSelectedTravellerTypes] = useState<
-        Record<string, boolean>
-    >({});
     const [selectedActivities, setSelectedActivities] = useState<
         Record<string, boolean>
     >({});
@@ -152,15 +110,7 @@ export default function TourListing() {
             // 1. Duration Filter (Slider)
             if (tour.days.length > days[0]) return false;
 
-            // 2. Destination Filter
-            const activeDestinations = Object.entries(selectedDestinations)
-                .filter(([_, v]) => v)
-                .map(([k]) => k);
-            if (activeDestinations.length > 0) {
-                if (!activeDestinations.some((d) => d === "Sri Lanka")) return false;
-            }
-
-            // 3. Theme Filter
+            // 2. Theme Filter
             const activeThemes = Object.entries(selectedThemes)
                 .filter(([_, v]) => v)
                 .map(([k]) => k);
@@ -172,7 +122,7 @@ export default function TourListing() {
                 if (!hasMatch) return false;
             }
 
-            // 4. Activity Filter
+            // 3. Activity Filter
             const activeActivities = Object.entries(selectedActivities)
                 .filter(([_, v]) => v)
                 .map(([k]) => k);
@@ -184,7 +134,7 @@ export default function TourListing() {
                 if (!hasMatch) return false;
             }
 
-            // 5. Religions Filter
+            // 4. Religions Filter
             const activeReligions = Object.entries(selectedReligions)
                 .filter(([_, v]) => v)
                 .map(([k]) => k);
@@ -198,7 +148,7 @@ export default function TourListing() {
 
             return true;
         });
-    }, [days, selectedDestinations, selectedThemes, selectedActivities, selectedReligions]);
+    }, [days, selectedThemes, selectedActivities, selectedReligions]);
 
     // Derived state for display
     const displayTours = useMemo(
@@ -263,7 +213,7 @@ export default function TourListing() {
                                         />
                                         <div className="mt-4 flex items-center justify-between text-sm">
                                             <span className="text-slate-500">Min: 3</span>
-                                            <span className="font-bold text-indigo-600">
+                                            <span className="font-bold text-brand-600">
                                                 {days[0]} Days
                                             </span>
                                             <span className="text-slate-500">Max: 21</span>
@@ -273,61 +223,19 @@ export default function TourListing() {
                             </PopoverContent>
                         </Popover>
 
-                        {/* 2. DESTINATIONS */}
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    className={`rounded-full border-slate-300 h-9 ${Object.values(selectedDestinations).some(Boolean)
-                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
-                                        : "bg-white"
-                                        }`}
-                                >
-                                    Destinations
-                                    {Object.values(selectedDestinations).some(Boolean) && (
-                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-100 text-[10px] font-bold">
-                                            {
-                                                Object.values(selectedDestinations).filter(Boolean)
-                                                    .length
-                                            }
-                                        </span>
-                                    )}
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
-                                <div className="space-y-3">
-                                    <h4 className="font-medium">Destinations</h4>
-                                    {destinations.map((dest) => (
-                                        <FilterCheckboxRow
-                                            key={dest}
-                                            label={dest}
-                                            checked={selectedDestinations[dest] === true}
-                                            disabled={dest !== "Sri Lanka"}
-                                            onCheckedChange={(c) =>
-                                                setSelectedDestinations((prev) => ({
-                                                    ...prev,
-                                                    [dest]: c,
-                                                }))
-                                            }
-                                        />
-                                    ))}
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-
-                        {/* 3. THEMES */}
+                        {/* 2. THEMES */}
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
                                     variant="outline"
                                     className={`rounded-full border-slate-300 h-9 ${Object.values(selectedThemes).some(Boolean)
-                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        ? "bg-brand-50 border-brand-200 text-brand-700"
                                         : "bg-white"
                                         }`}
                                 >
                                     Themes
                                     {Object.values(selectedThemes).some(Boolean) && (
-                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-100 text-[10px] font-bold">
+                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold">
                                             {Object.values(selectedThemes).filter(Boolean).length}
                                         </span>
                                     )}
@@ -356,13 +264,13 @@ export default function TourListing() {
                                 <Button
                                     variant="outline"
                                     className={`rounded-full border-slate-300 h-9 ${Object.values(selectedReligions).some(Boolean)
-                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        ? "bg-brand-50 border-brand-200 text-brand-700"
                                         : "bg-white"
                                         }`}
                                 >
                                     Religions
                                     {Object.values(selectedReligions).some(Boolean) && (
-                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-100 text-[10px] font-bold">
+                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold">
                                             {Object.values(selectedReligions).filter(Boolean).length}
                                         </span>
                                     )}
@@ -391,13 +299,13 @@ export default function TourListing() {
                                 <Button
                                     variant="outline"
                                     className={`rounded-full border-slate-300 h-9 ${Object.values(selectedActivities).some(Boolean)
-                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
+                                        ? "bg-brand-50 border-brand-200 text-brand-700"
                                         : "bg-white"
                                         }`}
                                 >
                                     Activities
                                     {Object.values(selectedActivities).some(Boolean) && (
-                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-100 text-[10px] font-bold">
+                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold">
                                             {Object.values(selectedActivities).filter(Boolean).length}
                                         </span>
                                     )}
@@ -420,69 +328,6 @@ export default function TourListing() {
                             </PopoverContent>
                         </Popover>
 
-                        {/* 6. TRIP TYPES */}
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    className={`rounded-full border-slate-300 h-9 ${Object.values(selectedTripTypes).some(Boolean)
-                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
-                                        : "bg-white"
-                                        }`}
-                                >
-                                    Style
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
-                                <div className="space-y-3">
-                                    <h4 className="font-medium">Trip Style</h4>
-                                    {tripTypes.map((type) => (
-                                        <FilterCheckboxRow
-                                            key={type}
-                                            label={type}
-                                            checked={selectedTripTypes[type] === true}
-                                            onCheckedChange={(c) =>
-                                                setSelectedTripTypes((prev) => ({ ...prev, [type]: c }))
-                                            }
-                                        />
-                                    ))}
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-
-                        {/* 6. TRAVELLERS */}
-                        <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                    variant="outline"
-                                    className={`rounded-full border-slate-300 h-9 ${Object.values(selectedTravellerTypes).some(Boolean)
-                                        ? "bg-indigo-50 border-indigo-200 text-indigo-700"
-                                        : "bg-white"
-                                        }`}
-                                >
-                                    Travellers
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
-                                <div className="space-y-3">
-                                    <h4 className="font-medium">Who is travelling?</h4>
-                                    {travellerTypes.map((type) => (
-                                        <FilterCheckboxRow
-                                            key={type}
-                                            label={type}
-                                            checked={selectedTravellerTypes[type] === true}
-                                            onCheckedChange={(c) =>
-                                                setSelectedTravellerTypes((prev) => ({
-                                                    ...prev,
-                                                    [type]: c,
-                                                }))
-                                            }
-                                        />
-                                    ))}
-                                </div>
-                            </PopoverContent>
-                        </Popover>
-
                         <div className="ml-auto">
                             <Button
                                 variant="ghost"
@@ -491,11 +336,8 @@ export default function TourListing() {
                                 aria-label="Clear all applied filters"
                                 onClick={() => {
                                     setDays([21]);
-                                    setSelectedDestinations({});
                                     setSelectedThemes({});
                                     setSelectedActivities({});
-                                    setSelectedTripTypes({});
-                                    setSelectedTravellerTypes({});
                                     setSelectedReligions({});
                                 }}
                             >
@@ -546,7 +388,7 @@ export default function TourListing() {
                                                 <Badge
                                                     key={theme}
                                                     variant="secondary"
-                                                    className="bg-indigo-500/90 text-white backdrop-blur-md border-none px-3 py-1 text-xs font-bold uppercase tracking-wider"
+                                                    className="bg-brand-500/90 text-white backdrop-blur-md border-none px-3 py-1 text-xs font-bold uppercase tracking-wider"
                                                 >
                                                     {theme}
                                                 </Badge>
@@ -583,11 +425,11 @@ export default function TourListing() {
                                     {/* Content */}
                                     <div className="flex flex-1 flex-col p-6">
                                         <div className="mb-4">
-                                            <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">
+                                            <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-600 mb-2">
                                                 <MapPin className="h-3.5 w-3.5" />
                                                 <span>{tour.destination}</span>
                                             </div>
-                                            <h3 className="line-clamp-2 text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors leading-tight">
+                                            <h3 className="line-clamp-2 text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors leading-tight">
                                                 {tour.title}
                                             </h3>
                                         </div>
@@ -603,7 +445,7 @@ export default function TourListing() {
                                             </div>
                                             <Button
                                                 size="sm"
-                                                className="rounded-full px-5 bg-slate-900 group-hover:bg-indigo-600 transition-colors"
+                                                className="rounded-full px-5 bg-slate-900 group-hover:bg-brand-600 transition-colors"
                                             >
                                                 View Details
                                             </Button>

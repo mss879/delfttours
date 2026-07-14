@@ -35,7 +35,7 @@ export default function SuccessStoriesClient({ testimonials }: { testimonials: a
         {/* Abstract Background patterns */}
         <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.4) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute top-20 -left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none" />
+        <div className="absolute top-20 -left-20 w-72 h-72 bg-brand-500/10 rounded-full blur-[80px] pointer-events-none" />
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div 

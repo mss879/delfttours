@@ -51,7 +51,7 @@ export default function StickyBookingCard({
           </div>
           <div>
             <p className="mb-2 text-sm font-light text-slate-500">Type of tour</p>
-            <span className="inline-block bg-emerald-50 text-emerald-700 font-medium text-sm px-3 py-1.5 rounded-md truncate max-w-full">
+            <span className="inline-block bg-brand-50 text-brand-700 font-medium text-sm px-3 py-1.5 rounded-md truncate max-w-full">
               {tourType}
             </span>
           </div>
@@ -67,7 +67,7 @@ export default function StickyBookingCard({
             {inclusions.length > 0 && (
               <button
                 onClick={() => setShowInclusions(!showInclusions)}
-                className="text-sm font-medium text-indigo-600 hover:text-indigo-800 underline underline-offset-2 flex items-center gap-1 transition-colors"
+                className="text-sm font-medium text-brand-600 hover:text-brand-800 underline underline-offset-2 flex items-center gap-1 transition-colors"
               >
                 {showInclusions ? 'Hide' : 'Show'} Inclusions
                 {showInclusions ? (

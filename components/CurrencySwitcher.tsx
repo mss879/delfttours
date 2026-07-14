@@ -16,7 +16,7 @@ export default function CurrencySwitcher({ className = '' }: { className?: strin
     <select
       value={currency}
       onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
-      className={`text-xs font-medium bg-slate-100 border border-slate-200 rounded-md px-2 py-1 text-slate-600 cursor-pointer hover:bg-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-300 ${className}`}
+      className={`text-xs font-medium bg-slate-100 border border-slate-200 rounded-md px-2 py-1 text-slate-600 cursor-pointer hover:bg-slate-200 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-300 ${className}`}
       aria-label="Select currency"
     >
       {options.map((code) => (
