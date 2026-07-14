@@ -148,8 +148,8 @@ export default function B2BPartnershipsPage() {
         {/* Hero Section */}
         <section className="relative w-full h-[60vh] min-h-[460px] flex items-center justify-center bg-brand-900 border-b border-white/5">
           <Image
-            src="/hero2.webp"
-            alt="Sri Lanka landscape — Delft Tours inbound destination management"
+            src="/b2b-hero.png"
+            alt="B2B travel consultation meeting in Colombo, Sri Lanka"
             fill
             className="object-cover opacity-45"
             priority
@@ -180,8 +180,8 @@ export default function B2BPartnershipsPage() {
           <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[32px] bg-slate-200 shadow-[0_20px_80px_rgba(11,62,99,0.12)] lg:rounded-[48px]">
               <Image
-                src="/sigiriya.webp"
-                alt="Sigiriya Rock Fortress, a cornerstone of Sri Lanka itineraries"
+                src="/b2b-overview-v2.png"
+                alt="Premium ground handling transport service in Sri Lanka"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 600px"
@@ -355,8 +355,8 @@ export default function B2BPartnershipsPage() {
             <div className="grid grid-cols-2 gap-4 sm:gap-5">
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[24px] bg-brand-700 shadow-2xl sm:rounded-[32px]">
                 <Image
-                  src="/kandy.webp"
-                  alt="Kandy, cultural capital of Sri Lanka"
+                  src="/b2b-mice.png"
+                  alt="MICE and corporate group event in Sri Lanka"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 50vw, 280px"
@@ -364,8 +364,8 @@ export default function B2BPartnershipsPage() {
               </div>
               <div className="relative mt-8 aspect-[3/4] w-full overflow-hidden rounded-[24px] bg-brand-700 shadow-2xl sm:rounded-[32px]">
                 <Image
-                  src="/nuwaraeliya.webp"
-                  alt="Nuwara Eliya tea country in Sri Lanka's hill country"
+                  src="/b2b-local-expert.png"
+                  alt="Professional Sri Lankan travel guide showing tea estate to tourists"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 50vw, 280px"
@@ -379,7 +379,7 @@ export default function B2BPartnershipsPage() {
         <section className="mx-auto w-full max-w-[1440px] content-center px-4 py-20 sm:px-6 lg:py-[120px]">
           <div className="relative w-full overflow-hidden rounded-[32px] bg-brand-900 px-6 py-16 text-center md:rounded-[48px] md:px-16 md:py-24">
             <Image
-              src="/hero4.webp"
+              src="/b2b-cta.png"
               alt=""
               fill
               aria-hidden="true"
