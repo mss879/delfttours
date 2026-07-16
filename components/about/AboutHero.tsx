@@ -14,9 +14,9 @@ export default function AboutHero() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="text-sm font-bold uppercase tracking-[0.2em] text-green-600 flex items-center gap-3"
+                        className="text-sm font-bold uppercase tracking-[0.2em] text-green-700 flex items-center gap-3"
                     >
-                        <span className="w-8 h-0.5 bg-green-600 block rounded-full"></span>
+                        <span className="w-8 h-0.5 bg-green-700 block rounded-full"></span>
                         Our Story
                     </motion.div>
                     
@@ -27,7 +27,7 @@ export default function AboutHero() {
                         className="text-4xl font-extrabold leading-[1.15] text-slate-900 sm:text-5xl lg:text-5xl xl:text-6xl"
                     >
                         Journeys that <br className="hidden lg:block"/> 
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-400">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-700 to-green-500">
                             transform
                         </span> you.
                     </motion.h1>

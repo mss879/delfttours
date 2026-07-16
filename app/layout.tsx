@@ -1,12 +1,21 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Lora } from 'next/font/google';
 import Providers from './providers';
 import DeferredWidgets from '@/components/DeferredWidgets';
 import Preloader from '@/components/Preloader';
 import MetaPixel from '@/components/MetaPixel';
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' });
+// Exposed as CSS variables so tailwind.config can map font-sans/font-serif onto
+// them. Without that mapping `font-sans` resolves to Tailwind's stock system
+// stack (which does NOT contain Inter) and silently overrides the body font —
+// that is why the header and six pages used to render in system-ui.
+const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
+
+// The site marks ~26 headings `font-serif`, which previously fell back to
+// whatever serif the OS shipped (Georgia on macOS, Times New Roman on Windows).
+// Lora is the closest well-made match to that Georgia rendering.
+const lora = Lora({ subsets: ['latin'], display: 'swap', variable: '--font-lora' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://delfttours.com'),
@@ -89,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${lora.variable}`}>
       <body className={inter.className}>
         <MetaPixel />
         <script

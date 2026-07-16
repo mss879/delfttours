@@ -61,7 +61,7 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
           <button 
             type="button"
             onClick={() => setVisibleCount(prev => prev + 12)}
-            className="rounded-full bg-[#0b3e63] text-white px-8 py-3.5 font-semibold transition-all hover:bg-[#0a2e4a] hover:scale-105 shadow-md active:scale-95"
+            className="rounded-full bg-brand-600 text-white px-8 py-3.5 font-semibold transition-all hover:bg-brand-800 hover:scale-105 shadow-md active:scale-95"
           >
             Load More Images
           </button>

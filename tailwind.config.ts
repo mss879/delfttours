@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 const config: Config = {
   darkMode: ['class'],
@@ -9,6 +10,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Map Tailwind's font utilities onto the fonts layout.tsx actually loads.
+      // Without this, `font-sans` resolves to the stock system stack — which has
+      // no Inter in it — and OVERRIDES the Inter set on <body>, and `font-serif`
+      // falls back to whatever serif the visitor's OS happens to have.
+      // The stock stacks are kept as fallbacks for the swap window.
+      fontFamily: {
+        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        serif: ['var(--font-lora)', ...defaultTheme.fontFamily.serif],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -72,6 +82,14 @@ const config: Config = {
           700: '#0f766e',
           800: '#115e59',
           900: '#134e4a',
+        },
+        // Delft Tours CTA gold. Previously had no token at all, which is why
+        // #FFC947 was hand-typed ~27 times and near-misses crept in. Only the
+        // two shades the brand actually uses are defined — base and hover.
+        gold: {
+          DEFAULT: '#FFC947',
+          500: '#FFC947',
+          600: '#ffbf29',
         },
         // Delft Tours primary brand navy, anchored on #0b3e63 at step 600.
         // Provides a full tint/shade scale so accents stay on-brand sitewide.

@@ -31,7 +31,7 @@ export default function SuccessStoriesClient({ testimonials }: { testimonials: a
   return (
     <main className="min-h-screen bg-[#fafaf9] pb-24">
       {/* Premium Dark Hero Section */}
-      <section className="relative pt-40 pb-32 px-4 bg-[#0b2a3e] overflow-hidden">
+      <section className="relative pt-40 pb-32 px-4 bg-brand-800 overflow-hidden">
         {/* Abstract Background patterns */}
         <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.4) 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-cyan-500/20 rounded-full blur-[100px] pointer-events-none" />
@@ -87,7 +87,7 @@ export default function SuccessStoriesClient({ testimonials }: { testimonials: a
                 <Quote className="absolute top-8 right-8 w-12 h-12 text-slate-100/80 rotate-180 transition-all duration-500 group-hover:scale-110 group-hover:text-cyan-50" />
                 
                 <div className="relative z-10 flex flex-col flex-1">
-                  <div className="flex gap-1.5 text-[#FFC947] mb-6">
+                  <div className="flex gap-1.5 text-gold mb-6">
                     {[...Array(t.rating || 5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 fill-current drop-shadow-sm" />
                     ))}
@@ -112,7 +112,7 @@ export default function SuccessStoriesClient({ testimonials }: { testimonials: a
                       </div>
                     </div>
                     {t.tour_type && (
-                      <div className="inline-flex shrink-0 items-center px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-xs font-semibold text-slate-600 transition-colors group-hover:bg-[#0b2a3e] group-hover:text-white group-hover:border-[#0b2a3e]">
+                      <div className="inline-flex shrink-0 items-center px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-full text-xs font-semibold text-slate-600 transition-colors group-hover:bg-brand-800 group-hover:text-white group-hover:border-brand-800">
                         {t.tour_type}
                       </div>
                     )}

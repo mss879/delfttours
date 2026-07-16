@@ -162,7 +162,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
           
           <div className="mt-6 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand-600 mb-2">
             <MapPin className="h-4 w-4" />
-            <span>{tour.destination || 'Sri Lanka'}</span>
+            <span>{tour.countries?.join(' · ') || 'Sri Lanka'}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-normal leading-tight text-slate-900">
@@ -348,7 +348,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
         <div className="lg:block">
           <div className="sticky top-28">
             <StickyBookingCard
-              destination={tour.destination || 'Sri Lanka'}
+              destination={tour.countries?.join(' · ') || 'Sri Lanka'}
               duration={`${tour.days.length} Days ${tour.days.length - 1} Nights`}
               tourType="Tailor Made"
               startingPrice={tour.startingPrice}

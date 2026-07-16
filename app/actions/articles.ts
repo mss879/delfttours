@@ -1,7 +1,39 @@
 'use server';
 
 import { createClient } from '@/lib/supabase/server';
+import { createPublicClient } from '@/lib/supabase/public';
 import { revalidatePath } from 'next/cache';
+import type { Article } from '@/components/ArticleCard';
+
+/**
+ * Published articles for public listings (homepage preview, articles index).
+ *
+ * Uses the cookie-free client so callers stay statically renderable, and selects
+ * only the card columns — getArticles() does select('*'), which pulls every
+ * article's full HTML `content` body just to render a headline and excerpt.
+ */
+export async function getPublishedArticles(limit?: number): Promise<Article[]> {
+  const supabase = createPublicClient();
+  if (!supabase) return [];
+
+  let query = supabase
+    .from('articles')
+    .select('id, slug, title, excerpt, image_url, author, published_date')
+    .eq('is_published', true)
+    .order('published_date', { ascending: false, nullsFirst: false })
+    .order('created_at', { ascending: false });
+
+  if (limit) query = query.limit(limit);
+
+  const { data, error } = await query;
+
+  if (error) {
+    console.error('Error fetching published articles:', error);
+    return [];
+  }
+
+  return (data as Article[]) ?? [];
+}
 
 export async function getArticles(publishedOnly = false) {
   const supabase = await createClient();
@@ -70,6 +102,8 @@ function friendlyError(error: { code?: string; message: string }) {
 function revalidateArticles() {
   revalidatePath('/admin/dashboard/articles');
   revalidatePath('/articles');
+  // The homepage carries an ArticlesPreview of the 3 latest published articles.
+  revalidatePath('/');
   revalidatePath('/articles/[slug]', 'page');
   revalidatePath('/sitemap.xml');
 }

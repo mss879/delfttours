@@ -31,7 +31,7 @@ export default function MobileTourCta({
         </div>
         <Link
           href={`/tours/${id}/checkout`}
-          className="max-w-[220px] flex-1 rounded-full bg-[#0b3e63] px-6 py-3 text-center text-sm font-bold text-white shadow-md transition-transform active:scale-[0.98]"
+          className="max-w-[220px] flex-1 rounded-full bg-brand-600 px-6 py-3 text-center text-sm font-bold text-white shadow-md transition-transform active:scale-[0.98]"
         >
           Book Now
         </Link>

@@ -83,13 +83,13 @@ export default function Preloader() {
         {/* Typing Text */}
         <h1 
           ref={textRef} 
-          className="text-3xl md:text-4xl font-extrabold text-[#0b3e63] tracking-wide font-sans select-none min-h-[48px] flex items-center"
+          className="text-3xl md:text-4xl font-extrabold text-brand-600 tracking-wide font-sans select-none min-h-[48px] flex items-center"
         >
           <span>{displayedText}</span>
           {/* Pulsing/blinking cursor using GSAP */}
           <span 
             ref={cursorRef} 
-            className="inline-block w-[3px] h-[30px] md:h-[36px] bg-[#FFC947] ml-2" 
+            className="inline-block w-[3px] h-[30px] md:h-[36px] bg-gold ml-2" 
           />
         </h1>
       </div>

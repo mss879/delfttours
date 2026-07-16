@@ -138,7 +138,7 @@ export default function Header() {
 
           <div className="hidden items-center gap-4 lg:flex lg:justify-end">
             <QuoteDialog>
-              <button type="button" className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-6 py-2.5 rounded-full font-bold hover:bg-[#ffbf29] transition-all transform hover:scale-105 shadow-md btn-pulse">
+              <button type="button" className="cursor-pointer bg-gold text-brand-600 px-6 py-2.5 rounded-full font-bold hover:bg-gold-600 transition-all transform hover:scale-105 shadow-md btn-pulse">
                 Get a Quote
               </button>
             </QuoteDialog>
@@ -151,6 +151,7 @@ export default function Header() {
                       alt={currency}
                       width={24}
                       height={16}
+                      loading="eager"
                       className="h-4 w-6 object-cover rounded-sm"
                     />
                   </span>
@@ -188,7 +189,7 @@ export default function Header() {
 
           <div className="flex items-center gap-3 lg:hidden">
             <QuoteDialog>
-              <button type="button" className="cursor-pointer bg-[#FFC947] text-[#0b3e63] px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide shadow-md btn-pulse transition-all hover:bg-[#ffbf29] hover:scale-105">
+              <button type="button" className="cursor-pointer bg-gold text-brand-600 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide shadow-md btn-pulse transition-all hover:bg-gold-600 hover:scale-105">
                 Get a Quote
               </button>
             </QuoteDialog>
@@ -209,7 +210,7 @@ export default function Header() {
           id="primary-mobile-menu"
           className={`lg:hidden absolute left-0 right-0 top-full z-50 transition-all duration-300 ease-out ${isMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
         >
-          <div className="mx-3 mt-2 rounded-2xl bg-[#0b3e63] p-6 shadow-2xl shadow-black/30">
+          <div className="mx-3 mt-2 rounded-2xl bg-brand-600 p-6 shadow-2xl shadow-black/30">
             {/* Nav Links */}
             <div className="flex flex-col">
               {navItems.map((item) => (
@@ -220,7 +221,7 @@ export default function Header() {
                         type="button"
                         onClick={() => setResourcesOpen((v) => !v)}
                         aria-expanded={resourcesOpen}
-                        className="flex w-full items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
+                        className="flex w-full items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-gold"
                       >
                         {item.label}
                         <ChevronDown className={`h-4 w-4 text-white/40 transition-transform duration-200 ${resourcesOpen ? 'rotate-180' : ''}`} />
@@ -232,7 +233,7 @@ export default function Header() {
                               key={child.href}
                               href={child.href}
                               onClick={closeMenu}
-                              className="px-2 py-2.5 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-[#FFC947]"
+                              className="px-2 py-2.5 text-sm font-medium text-white/70 transition-colors duration-200 hover:text-gold"
                             >
                               {child.label}
                             </Link>
@@ -244,7 +245,7 @@ export default function Header() {
                     <Link
                       href={item.href!}
                       onClick={closeMenu}
-                      className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
+                      className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-gold"
                     >
                       {item.label}
                       <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
@@ -256,7 +257,7 @@ export default function Header() {
               <Link
                 href="/contact-us"
                 onClick={closeMenu}
-                className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-[#FFC947]"
+                className="flex items-center justify-between px-2 py-3.5 text-[15px] font-semibold text-white/90 transition-colors duration-200 hover:text-gold"
               >
                 Contact Us
                 <ChevronDown className="h-4 w-4 -rotate-90 text-white/30" />
@@ -266,7 +267,7 @@ export default function Header() {
             {/* CTA Button */}
             <div className="mt-5">
               <QuoteDialog>
-                <button className="w-full rounded-xl bg-[#FFC947] text-[#0b3e63] px-5 py-3.5 text-base font-bold shadow-lg shadow-[#FFC947]/20 btn-pulse active:scale-[0.97] transition-all duration-200 hover:bg-[#ffbf29]">
+                <button className="w-full rounded-xl bg-gold text-brand-600 px-5 py-3.5 text-base font-bold shadow-lg shadow-gold/20 btn-pulse active:scale-[0.97] transition-all duration-200 hover:bg-gold-600">
                   Get a Quote
                 </button>
               </QuoteDialog>

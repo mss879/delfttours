@@ -11,7 +11,7 @@ export default function GetQuotePage() {
             <main className="py-24">
                 <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-10">
-                        <h1 className="text-4xl font-bold text-[#0b3e63] mb-4">Plan Your Dream Trip</h1>
+                        <h1 className="text-4xl font-bold text-brand-600 mb-4">Plan Your Dream Trip</h1>
                         <p className="text-lg text-slate-600">
                             Tell us about your perfect holiday, and we will craft a custom itinerary just for you.
                         </p>

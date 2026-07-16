@@ -34,8 +34,9 @@ const features = [
 export default function WhyChooseSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Only play the (2.2MB) video while it's actually on screen — avoids the
-  // eager download + continuous decode when the section is out of view.
+  // The video preloads eagerly (owner's call: homepage media must not lazy-load),
+  // so this observer no longer gates the download — it only pauses playback while
+  // the section is off screen, to avoid burning CPU decoding frames nobody sees.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -88,7 +89,7 @@ export default function WhyChooseSection() {
             loop
             muted
             playsInline
-            preload="none"
+            preload="auto"
           />
         </div>
 
@@ -97,7 +98,7 @@ export default function WhyChooseSection() {
           {features.map((feature, index) => (
             <div key={index} className="flex gap-6 items-start">
               <div className={`w-16 h-16 rounded-2xl ${feature.bg} backdrop-blur-sm flex items-center justify-center shrink-0`}>
-                <Image src={feature.icon} alt="" width={32} height={32} className="w-8 h-8" />
+                <Image src={feature.icon} alt="" width={32} height={32} loading="eager" className="w-8 h-8" />
               </div>
               <div className="space-y-2">
                 <h3 className="text-xl font-bold text-slate-900">{feature.title}</h3>

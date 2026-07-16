@@ -146,16 +146,16 @@ export default async function ArticlePage({ params }: Props) {
         <div
           className="
             w-full
-            [&_h2]:text-3xl md:[&_h2]:text-4xl [&_h2]:font-serif [&_h2]:text-[#0b3e63] [&_h2]:mt-16 [&_h2]:mb-6 [&_h2]:font-bold [&_h2]:leading-snug
-            [&_h3]:text-2xl [&_h3]:font-serif [&_h3]:text-[#0b3e63]/90 [&_h3]:mt-10 [&_h3]:mb-4 [&_h3]:font-semibold
+            [&_h2]:text-3xl md:[&_h2]:text-4xl [&_h2]:font-serif [&_h2]:text-brand-600 [&_h2]:mt-16 [&_h2]:mb-6 [&_h2]:font-bold [&_h2]:leading-snug
+            [&_h3]:text-2xl [&_h3]:font-serif [&_h3]:text-brand-600/90 [&_h3]:mt-10 [&_h3]:mb-4 [&_h3]:font-semibold
             [&_p]:text-[1.125rem] [&_p]:text-gray-700 [&_p]:leading-[1.8] [&_p]:mb-8
-            [&_a]:text-[#0b3e63] [&_a]:underline [&_a]:font-semibold hover:[&_a]:text-[#ffbf29] [&_a]:transition-colors
+            [&_a]:text-brand-600 [&_a]:underline [&_a]:font-semibold hover:[&_a]:text-brand-500 [&_a]:transition-colors
             [&_ul]:list-none [&_ul]:pl-0 [&_ul]:mb-8 [&_ul]:space-y-4
             [&_li]:relative [&_li]:pl-6 [&_li]:text-[1.125rem] [&_li]:text-gray-700 [&_li]:leading-relaxed
-            [&_li::before]:content-[''] [&_li::before]:absolute [&_li::before]:left-0 [&_li::before]:top-3 [&_li::before]:w-2 [&_li::before]:h-2 [&_li::before]:bg-[#FFC947] [&_li::before]:rounded-full
+            [&_li::before]:content-[''] [&_li::before]:absolute [&_li::before]:left-0 [&_li::before]:top-3 [&_li::before]:w-2 [&_li::before]:h-2 [&_li::before]:bg-gold [&_li::before]:rounded-full
             [&_strong]:font-bold [&_strong]:text-gray-900
             [&_hr]:my-16 [&_hr]:border-gray-200 [&_hr]:border-t-2
-            [&_blockquote]:border-l-4 [&_blockquote]:border-[#FFC947] [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-gray-600 [&_blockquote]:text-xl [&_blockquote]:my-8 [&_blockquote]:bg-gray-50 [&_blockquote]:py-4 [&_blockquote]:rounded-r-lg
+            [&_blockquote]:border-l-4 [&_blockquote]:border-gold [&_blockquote]:pl-6 [&_blockquote]:italic [&_blockquote]:text-gray-600 [&_blockquote]:text-xl [&_blockquote]:my-8 [&_blockquote]:bg-gray-50 [&_blockquote]:py-4 [&_blockquote]:rounded-r-lg
           "
           dangerouslySetInnerHTML={{ __html: article.content }}
         />

@@ -64,7 +64,7 @@ export default function NewsroomListing({ news }: { news: NewsItem[] }) {
                   unoptimized
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0b2a3e] to-[#179daa]">
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-800 to-green-500">
                   <Newspaper className="h-12 w-12 text-white/40" />
                 </div>
               )}
@@ -72,17 +72,17 @@ export default function NewsroomListing({ news }: { news: NewsItem[] }) {
 
             <div className="flex flex-grow flex-col p-7">
               {item.published_date && (
-                <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#179daa]">
+                <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-green-500">
                   {formatDate(item.published_date)}
                 </div>
               )}
-              <h2 className="mb-3 line-clamp-2 font-serif text-2xl text-gray-900 transition-colors group-hover:text-[#0b3e63]">
+              <h2 className="mb-3 line-clamp-2 font-serif text-2xl text-gray-900 transition-colors group-hover:text-brand-600">
                 {item.title}
               </h2>
               <p className="mb-5 line-clamp-3 flex-grow leading-relaxed text-gray-600">
                 {item.excerpt || item.content}
               </p>
-              <span className="mt-auto inline-flex items-center font-medium text-[#0b3e63] transition-transform duration-300 group-hover:translate-x-1">
+              <span className="mt-auto inline-flex items-center font-medium text-brand-600 transition-transform duration-300 group-hover:translate-x-1">
                 Read more →
               </span>
             </div>
@@ -102,7 +102,7 @@ export default function NewsroomListing({ news }: { news: NewsItem[] }) {
               )}
               <div className="p-6 sm:p-8">
                 {active.published_date && (
-                  <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-[#179daa]">
+                  <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-green-500">
                     {formatDate(active.published_date)}
                   </div>
                 )}

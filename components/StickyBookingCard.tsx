@@ -150,7 +150,7 @@ export default function StickyBookingCard({
 
           <div className="text-center">
             <QuoteDialog defaultTheme={defaultTheme}>
-              <button className="text-xs text-slate-400 hover:text-[#0b3e63] underline">
+              <button className="text-xs text-slate-400 hover:text-brand-600 underline">
                 Or stick to requesting a custom quote
               </button>
             </QuoteDialog>

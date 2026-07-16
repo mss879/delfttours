@@ -31,7 +31,7 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
 
   // Calculate stats
   const duration = `${tour.days.length} Days / ${tour.days.length - 1} Nights`;
-  const location = tour.destination || 'Sri Lanka';
+  const location = tour.countries?.join(' · ') || 'Sri Lanka';
   const type = "Private Tour";
 
   return (
@@ -155,7 +155,7 @@ export default function TourDetailContent({ tour }: TourDetailContentProps) {
                       <span key={index}>
                         {part}
                         {index < array.length - 1 && (
-                          <span className="text-[#0b3e63] font-bold">Superior</span>
+                          <span className="text-brand-600 font-bold">Superior</span>
                         )}
                       </span>
                     ))}

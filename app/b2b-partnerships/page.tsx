@@ -17,6 +17,8 @@ import {
   Clock,
   Handshake,
   Layers,
+  Award,
+  Network,
   MoveRight,
 } from "lucide-react";
 
@@ -68,13 +70,13 @@ const services = [
     icon: Landmark,
     title: "Excursions & Experiences",
     description:
-      "Sigiriya, the Temple of the Tooth, Yala and Udawalawe safaris, Madu River cruises, tea-factory visits and Galle Fort walks — permits and guiding handled.",
+      "Curated cultural, wildlife, heritage, nature and leisure experiences across Sri Lanka, carefully tailored to your clients' interests and travel style.",
   },
   {
     icon: Plane,
-    title: "Regional Multi-Country Add-Ons",
+    title: "Multi-Destination Programmes",
     description:
-      "Extend Sri Lanka programmes into the Maldives, Dubai, Singapore, Malaysia, Vietnam, Indonesia and Cambodia under a single point of contact.",
+      "Extend Sri Lanka itineraries with carefully coordinated regional programmes through a single point of contact across selected destinations.",
   },
 ];
 
@@ -114,6 +116,18 @@ const strengths = [
     title: "One Accountable Contact",
     description:
       "A single Colombo-based coordinator owns your file end to end, from first quote to post-tour feedback.",
+  },
+  {
+    icon: Award,
+    title: "10+ Years of Experience",
+    description:
+      "Over a decade of delivering dependable destination management services across Sri Lanka.",
+  },
+  {
+    icon: Network,
+    title: "Trusted Local Network",
+    description:
+      "Long-standing partnerships with carefully selected hotels, transport providers, guides and experience partners across Sri Lanka.",
   },
 ];
 
@@ -158,25 +172,41 @@ export default function B2BPartnershipsPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/70 to-brand-900/30" />
 
           <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
-            <div className="inline-flex items-center gap-3 mb-6 text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-[#FFC947]">
-              <span className="w-8 h-0.5 bg-[#FFC947] block rounded-full" />
+            <div className="inline-flex items-center gap-3 mb-6 text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-gold">
+              <span className="w-8 h-0.5 bg-gold block rounded-full" />
               B2B Partnerships
-              <span className="w-8 h-0.5 bg-[#FFC947] block rounded-full" />
+              <span className="w-8 h-0.5 bg-gold block rounded-full" />
             </div>
-            <h1 className="text-4xl md:text-6xl font-serif text-white mb-6 leading-tight">
-              Your Inbound DMC in Sri Lanka
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6 leading-tight">
+              Professional Destination Management for Sri Lanka
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
-              Delft Tours is a Colombo-based destination management company
-              handling the ground for overseas tour operators, travel agencies,
-              OTAs, MICE organisers and wholesalers. You sell the destination —
-              we run it.
+            <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed">
+              Helping international tour operators expand their Sri Lanka
+              portfolio through dependable ground operations, commercial
+              flexibility, and over 10 years of destination expertise.
+            </p>
+          </div>
+        </section>
+
+        {/* Positioning Statement */}
+        <section className="w-full bg-white pt-20 pb-16 lg:pt-28 lg:pb-20">
+          <div className="mx-auto w-full max-w-[900px] px-4 text-center sm:px-6">
+            <p className="text-2xl font-light leading-tight text-slate-500 sm:text-3xl">
+              You sell the destination.
+            </p>
+            <p className="mt-3 font-serif text-5xl font-semibold leading-none text-brand-600 sm:text-6xl md:text-7xl">
+              We run it.
+            </p>
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              From planning and contracting to operations and guest support,
+              Delft Tours becomes your trusted partner on the ground in Sri
+              Lanka.
             </p>
           </div>
         </section>
 
         {/* Overview */}
-        <section className="w-full bg-white py-20 lg:py-28">
+        <section className="w-full bg-white pb-20 lg:pb-28">
           <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[32px] bg-slate-200 shadow-[0_20px_80px_rgba(11,62,99,0.12)] lg:rounded-[48px]">
               <Image
@@ -189,7 +219,7 @@ export default function B2BPartnershipsPage() {
             </div>
 
             <div className="flex flex-col gap-6">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-600">
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-700">
                 Partnership Overview
               </span>
               <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
@@ -236,7 +266,7 @@ export default function B2BPartnershipsPage() {
         <section className="w-full bg-neutral-50 py-20 lg:py-28">
           <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
             <div className="max-w-2xl">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-600">
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-700">
                 Key Services
               </span>
               <h2 className="mt-5 text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
@@ -277,7 +307,7 @@ export default function B2BPartnershipsPage() {
           <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
             <div className="flex flex-col gap-12 lg:flex-row lg:gap-20">
               <div className="w-full space-y-6 lg:w-1/3">
-                <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-600">
+                <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-700">
                   Our Strengths
                 </span>
                 <h2 className="text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">
@@ -322,11 +352,11 @@ export default function B2BPartnershipsPage() {
         <section className="w-full bg-brand-600 py-20 lg:py-28">
           <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
             <div className="flex flex-col gap-6">
-              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#FFC947]">
+              <span className="text-sm font-semibold uppercase tracking-[0.2em] text-green-400">
                 Why Delft Tours
               </span>
               <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-                Why operators partner with us
+                Why Leading Operators Work With Us
               </h2>
               <p className="text-lg leading-relaxed text-white/70">
                 You are not short of options for a Sri Lanka DMC. Here is what
@@ -336,7 +366,7 @@ export default function B2BPartnershipsPage() {
               <div className="mt-4 space-y-8">
                 {reasons.map((reason, index) => (
                   <div key={reason.title} className="flex gap-5">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#FFC947]/40 bg-[#FFC947]/10 text-sm font-black text-[#FFC947]">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-green-400/40 bg-green-400/10 text-sm font-black text-green-400">
                       {String(index + 1).padStart(2, "0")}
                     </div>
                     <div className="space-y-2">
@@ -387,7 +417,7 @@ export default function B2BPartnershipsPage() {
               sizes="(max-width: 1440px) 100vw, 1440px"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-brand-900 via-brand-900/85 to-brand-900/60" />
-            <div className="pointer-events-none absolute -right-20 -top-20 h-[26rem] w-[26rem] rounded-full bg-[#FFC947]/10 blur-[100px]" />
+            <div className="pointer-events-none absolute -right-20 -top-20 h-[26rem] w-[26rem] rounded-full bg-gold/10 blur-[100px]" />
             <div className="pointer-events-none absolute -bottom-24 -left-16 h-[22rem] w-[22rem] rounded-full bg-green-600/15 blur-[100px]" />
 
             <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center space-y-8">
@@ -395,15 +425,15 @@ export default function B2BPartnershipsPage() {
                 Partner With Us
               </h2>
               <p className="max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-                Send us a brief, a sample itinerary or a live enquiry and we will
-                come back with a costed proposal on net rates. We are happy to
-                start with a single file — most of our trade relationships did.
+                Whether you&apos;re looking for a long-term destination partner
+                or preparing your first Sri Lanka programme, we&apos;d be pleased
+                to discuss how Delft Tours can support your business.
               </p>
 
               <div className="flex w-full flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-6">
                 <Link
                   href="/contact-us"
-                  className="btn-pulse inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#FFC947] px-8 py-4 text-base font-bold text-[#0b3e63] shadow-md transition-all duration-300 hover:scale-105 hover:bg-[#ffbf29] sm:w-auto"
+                  className="btn-pulse inline-flex w-full items-center justify-center gap-3 rounded-full bg-gold px-8 py-4 text-base font-bold text-brand-600 shadow-md transition-all duration-300 hover:scale-105 hover:bg-gold-600 sm:w-auto"
                 >
                   <span>Become a Partner</span>
                   <MoveRight className="h-5 w-5" />

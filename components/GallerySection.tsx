@@ -31,14 +31,14 @@ export default function GallerySection() {
     <section className="relative py-16 overflow-hidden bg-slate-50 font-sans border-t border-slate-100">
       {/* Abstract Background Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 -left-1/4 h-[400px] w-[400px] rounded-full bg-[#0b3e63]/5 blur-[100px]" />
-        <div className="absolute bottom-0 -right-1/4 h-[400px] w-[400px] rounded-full bg-[#FFC947]/10 blur-[100px]" />
+        <div className="absolute top-0 -left-1/4 h-[400px] w-[400px] rounded-full bg-brand-600/5 blur-[100px]" />
+        <div className="absolute bottom-0 -right-1/4 h-[400px] w-[400px] rounded-full bg-gold/10 blur-[100px]" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 mb-10">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="mb-3 text-3xl font-light tracking-tight text-slate-900 md:text-4xl">
-            Discover the <span className="font-semibold text-[#0b3e63]">Moments</span>
+            Discover the <span className="font-semibold text-brand-600">Moments</span>
           </h2>
           <p className="mx-auto max-w-xl text-base font-light text-slate-500">
             A visual exploration of the incredible experiences waiting for you in Sri Lanka.
@@ -75,7 +75,7 @@ export default function GallerySection() {
                   quality={65}
                   className="object-cover transition-transform duration-700 ease-in-out hover:scale-110"
                   sizes="(max-width: 768px) 240px, 280px"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
             ))}
@@ -107,7 +107,7 @@ export default function GallerySection() {
                   quality={65}
                   className="object-cover transition-transform duration-700 ease-in-out hover:scale-110"
                   sizes="(max-width: 768px) 240px, 280px"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
             ))}

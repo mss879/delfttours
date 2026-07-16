@@ -31,7 +31,7 @@ export default function QuoteDialog({ children, open, onOpenChange, defaultTheme
             {children && <DialogTrigger asChild>{children}</DialogTrigger>}
             <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto sm:max-h-[85vh]">
                 <DialogHeader>
-                    <DialogTitle className="text-2xl font-bold text-[#0b3e63]">
+                    <DialogTitle className="text-2xl font-bold text-brand-600">
                         Plan Your Dream Trip
                     </DialogTitle>
                     <DialogDescription>

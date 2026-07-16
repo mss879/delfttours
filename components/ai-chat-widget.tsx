@@ -143,7 +143,7 @@ export function AiChatWidget() {
                                 className="flex h-[450px] w-[320px] flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl sm:w-[360px]"
                             >
                                 {/* Header */}
-                                <div className="flex items-center justify-between bg-[#0b3e63] px-4 py-3 text-white">
+                                <div className="flex items-center justify-between bg-brand-600 px-4 py-3 text-white">
                                     <div className="flex items-center gap-2">
                                         <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white overflow-hidden border border-gray-200">
                                             <Image
@@ -177,7 +177,7 @@ export function AiChatWidget() {
                                                     "flex w-max max-w-[85%] flex-col gap-1 rounded-2xl px-4 py-3 text-sm shadow-sm",
                                                     msg.role === "assistant"
                                                         ? "self-start rounded-tl-none bg-white text-gray-800"
-                                                        : "self-end rounded-tr-none bg-[#0b3e63] text-white"
+                                                        : "self-end rounded-tr-none bg-brand-600 text-white"
                                                 )}
                                             >
                                                 <div className="leading-relaxed text-sm">
@@ -227,12 +227,12 @@ export function AiChatWidget() {
                                             value={inputValue}
                                             onChange={(e) => setInputValue(e.target.value)}
                                             placeholder="Ask about tours, bookings..."
-                                            className="w-full rounded-full border border-gray-200 bg-gray-50 py-3 pl-4 pr-12 text-sm text-gray-800 placeholder:text-gray-400 focus:border-[#0b3e63] focus:bg-white focus:outline-none focus:ring-1 focus:ring-[#0b3e63]"
+                                            className="w-full rounded-full border border-gray-200 bg-gray-50 py-3 pl-4 pr-12 text-sm text-gray-800 placeholder:text-gray-400 focus:border-brand-600 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-600"
                                         />
                                         <button
                                             type="submit"
                                             disabled={!inputValue.trim() || isLoading}
-                                            className="absolute right-2 rounded-full bg-[#0b3e63] p-2 text-white transition-colors hover:bg-[#093554] disabled:cursor-not-allowed disabled:bg-gray-300"
+                                            className="absolute right-2 rounded-full bg-brand-600 p-2 text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:bg-gray-300"
                                         >
                                             <Send className="h-4 w-4" />
                                         </button>

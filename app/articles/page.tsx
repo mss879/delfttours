@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { getArticles } from "@/app/actions/articles";
+import { getPublishedArticles } from "@/app/actions/articles";
 import { Metadata } from "next";
-import { MoveRight, BookOpen } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ArticleCard from "@/components/ArticleCard";
 
 export const dynamic = "force-dynamic";
 
@@ -17,35 +17,8 @@ export const metadata: Metadata = {
   },
 };
 
-interface ArticleRow {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string | null;
-  image_url: string | null;
-  author: string;
-  published_date: string | null;
-}
-
-// Fallback for admin-created rows that have no image yet.
-const FALLBACK_IMAGE = "/hero2.webp";
-
-// Fixed timezone (Sri Lanka) so the rendered string is deterministic and does
-// not shift with the server's locale/TZ. Mirrors components/newsroom/NewsroomListing.tsx.
-function formatDate(value: string | null): string {
-  if (!value) return "";
-  const d = new Date(value);
-  if (isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "Asia/Colombo",
-  });
-}
-
 export default async function ArticlesPage() {
-  const articles: ArticleRow[] = await getArticles(true); // published only
+  const articles = await getPublishedArticles();
 
   return (
     <>
@@ -85,47 +58,9 @@ export default async function ArticlesPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => {
-              // Real bullet separator. Filtering first keeps a stray leading
-              // bullet off rows that have no publish date.
-              const meta = [formatDate(article.published_date), article.author]
-                .filter(Boolean)
-                .join(" • ");
-
-              return (
-                <Link
-                  href={`/articles/${article.slug}`}
-                  key={article.id}
-                  className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-neutral-100 flex flex-col h-full"
-                >
-                  <div className="relative h-64 w-full overflow-hidden">
-                    <Image
-                      src={article.image_url || FALLBACK_IMAGE}
-                      alt={article.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-
-                  <div className="p-8 flex flex-col flex-grow">
-                    <div className="text-xs font-semibold text-primary/80 uppercase tracking-wider mb-3">
-                      {meta}
-                    </div>
-                    <h2 className="text-2xl font-serif text-gray-900 mb-4 group-hover:text-primary transition-colors line-clamp-2">
-                      {article.title}
-                    </h2>
-                    <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed flex-grow">
-                      {article.excerpt}
-                    </p>
-                    <div className="flex items-center text-primary font-medium group-hover:translate-x-2 transition-transform duration-300">
-                      Read Article <MoveRight className="ml-2 w-4 h-4" />
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+            {articles.map((article) => (
+              <ArticleCard key={article.id} article={article} titleAs="h2" />
+            ))}
           </div>
         )}
       </section>

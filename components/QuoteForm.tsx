@@ -173,7 +173,7 @@ export default function QuoteForm({ defaultTheme, onSuccess, className }: QuoteF
                 <p className="text-center text-slate-600 max-w-sm">
                     We have received your details. Check your email for a confirmation shortly!
                 </p>
-                <Button onClick={() => setIsSuccess(false)} className="bg-[#0b3e63]">
+                <Button onClick={() => setIsSuccess(false)} className="bg-brand-600">
                     Submit Another Request
                 </Button>
             </div>
@@ -376,7 +376,7 @@ export default function QuoteForm({ defaultTheme, onSuccess, className }: QuoteF
                 />
 
                 <div className="flex justify-end pt-4">
-                    <Button type="submit" className="w-full md:w-auto bg-[#0b3e63] hover:bg-[#0a3554]" disabled={isSubmitting}>
+                    <Button type="submit" className="w-full md:w-auto bg-brand-600 hover:bg-brand-700" disabled={isSubmitting}>
                         {isSubmitting ? (
                             <>
                                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

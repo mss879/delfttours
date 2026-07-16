@@ -29,71 +29,165 @@ function FilterCheckboxRow({
     label,
     checked,
     onCheckedChange,
-    disabled = false,
+    count,
 }: {
     label: string;
     checked: boolean;
     onCheckedChange: (checked: boolean) => void;
-    disabled?: boolean;
+    /** Tours this option would yield given the other active filters. */
+    count: number;
 }) {
+    // A zero-result option stays visible (so the facet list doesn't jump around
+    // as you tick boxes) but is greyed out and unclickable — picking it could
+    // only ever empty the grid.
+    const disabled = count === 0 && !checked;
+
     return (
-        <label className={`flex items-center gap-3 text-sm transition-colors ${disabled ? 'cursor-not-allowed opacity-50 text-slate-400' : 'cursor-pointer text-slate-600 hover:text-slate-900'}`}>
-            <Checkbox
-                checked={checked}
-                onCheckedChange={(value) => !disabled && onCheckedChange(value === true)}
-                disabled={disabled}
-                aria-label={label}
-                className="data-[state=checked]:bg-slate-900 data-[state=checked]:border-slate-900"
-            />
-            <span>{label}</span>
+        <label className={`flex items-center justify-between gap-3 text-sm transition-colors ${disabled ? 'cursor-not-allowed opacity-40 text-slate-400' : 'cursor-pointer text-slate-600 hover:text-slate-900'}`}>
+            <span className="flex items-center gap-3">
+                <Checkbox
+                    checked={checked}
+                    onCheckedChange={(value) => !disabled && onCheckedChange(value === true)}
+                    disabled={disabled}
+                    aria-label={label}
+                    className="data-[state=checked]:bg-slate-900 data-[state=checked]:border-slate-900"
+                />
+                <span>{label}</span>
+            </span>
+            <span className="tabular-nums text-xs text-slate-500">{count}</span>
         </label>
     );
 }
 
+type FacetKey = "countries" | "destinations" | "themes" | "religions" | "activities";
+
+// Preferred display order. Anything present in the data but not listed here still
+// gets shown (appended, alphabetical) — the data is the source of truth, this only
+// controls ordering.
+const FACET_ORDER: Record<FacetKey, string[]> = {
+    // The regional add-on countries Delft Tours sells alongside Sri Lanka. Every
+    // packaged tour today is Sri Lanka only, so the rest sit at 0 — see ALWAYS_SHOW.
+    countries: [
+        "Sri Lanka",
+        "Maldives",
+        "Vietnam",
+        "Indonesia",
+        "Dubai",
+        "Cambodia",
+        "Singapore",
+        "Malaysia",
+    ],
+    // Roughly west coast -> cultural triangle -> hill country -> south -> east.
+    destinations: [
+        "Colombo",
+        "Negombo",
+        "Pinnawala",
+        "Sigiriya",
+        "Dambulla",
+        "Habarana",
+        "Minneriya",
+        "Polonnaruwa",
+        "Anuradhapura",
+        "Wilpattu",
+        "Kandy",
+        "Nuwara Eliya",
+        "Ella",
+        "Haputale",
+        "Horton Plains",
+        "Yala",
+        "Udawalawe",
+        "Kalutara",
+        "Bentota",
+        "Hikkaduwa",
+        "Galle",
+        "Weligama",
+        "Mirissa",
+        "Tangalle",
+        "Hambantota",
+        "Trincomalee",
+    ],
+    themes: [
+        "Culture & Heritage",
+        "Wildlife & Nature",
+        "Beach & Relax",
+        "Hill Country",
+        "Honeymoon",
+        "Adventure",
+    ],
+    religions: ["Buddhism", "Hinduism", "Islam", "Christianity"],
+    activities: [
+        "Safari",
+        "Whale Watching",
+        "Tea Factory Visit",
+        "Train Ride",
+        "City Tour",
+        "Hiking/Trekking",
+        "Snorkeling/Diving",
+        "Cultural Show",
+        "Boat Ride",
+        "Nature Trails",
+        "Bird Watching",
+        "Cooking Class",
+        "Adams Peak",
+        "Heritage",
+    ],
+};
+
+// Facets whose full option list is shown even where no tour matches. Country is
+// the deliberate exception to the derive-from-data rule below: Delft Tours sells
+// these regional add-ons, so they stay visible (greyed out at 0 by
+// FilterCheckboxRow) as a signal of the offering rather than vanishing.
+const ALWAYS_SHOW: FacetKey[] = ["countries"];
+
+// Every other facet's options are derived from the tour data rather than
+// hardcoded, so the UI can never again advertise a facet no tour carries (the old
+// list offered Golf, Cycling, Photography and "Adams Peak" — each matched 0 tours
+// and silently blanked the grid).
+function buildOptions(key: FacetKey): string[] {
+    if (ALWAYS_SHOW.includes(key)) return FACET_ORDER[key];
+    const present = new Set<string>();
+    tourDetails.forEach((tour) => (tour[key] || []).forEach((v) => present.add(v)));
+    const ordered = FACET_ORDER[key].filter((o) => present.has(o));
+    const extras = Array.from(present)
+        .filter((p) => !FACET_ORDER[key].includes(p))
+        .sort();
+    return [...ordered, ...extras];
+}
+
+const selectedList = (sel: Record<string, boolean>) =>
+    Object.entries(sel)
+        .filter(([, v]) => v)
+        .map(([k]) => k);
+
 export default function TourListing() {
-    const [days, setDays] = useState<number[]>([21]);
     const { convertPrice } = useCurrency();
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    const tourThemes = useMemo(
-        () => [
-            "Culture & Heritage",
-            "Wildlife & Nature",
-            "Beach & Relax",
-            "Hill Country",
-            "Honeymoon",
-            "Golf",
-            "Cycling",
-            "Adventure",
-            "Photography",
-        ],
+    // Longest tour actually in the catalogue. The slider used to run to a
+    // hardcoded 21 while the longest tour is 15 days, leaving six dead notches.
+    const maxDays = useMemo(
+        () => tourDetails.reduce((m, t) => Math.max(m, t.days.length), 0),
         []
     );
-    const religions = useMemo(
-        () => ["Buddhism", "Hinduism", "Islam", "Christianity"],
-        []
-    );
-    const activities = useMemo(
-        () => [
-            "Safari",
-            "Whale Watching",
-            "Tea Factory Visit",
-            "Train Ride",
-            "City Tour",
-            "Hiking/Trekking",
-            "Snorkeling/Diving",
-            "Cultural Show",
-            "Boat Ride",
-            "Cooking Class",
-            "Wild Life Safari",
-            "Nature Trails",
-            "Bird Watching",
-            "Adams Peak",
-            "Heritage",
-        ],
+    const minDays = useMemo(
+        () => tourDetails.reduce((m, t) => Math.min(m, t.days.length), Infinity),
         []
     );
 
+    const [days, setDays] = useState<number[]>([maxDays]);
+
+    const countries = useMemo(() => buildOptions("countries"), []);
+    const destinations = useMemo(() => buildOptions("destinations"), []);
+    const tourThemes = useMemo(() => buildOptions("themes"), []);
+    const religions = useMemo(() => buildOptions("religions"), []);
+    const activities = useMemo(() => buildOptions("activities"), []);
+
+    const [selectedCountries, setSelectedCountries] = useState<
+        Record<string, boolean>
+    >({});
+    const [selectedDestinations, setSelectedDestinations] = useState<
+        Record<string, boolean>
+    >({});
     const [selectedThemes, setSelectedThemes] = useState<Record<string, boolean>>(
         {}
     );
@@ -104,51 +198,88 @@ export default function TourListing() {
         Record<string, boolean>
     >({});
 
-    // Filter Logic
-    const filteredTours = useMemo(() => {
-        return tourDetails.filter((tour) => {
-            // 1. Duration Filter (Slider)
-            if (tour.days.length > days[0]) return false;
+    const activeCountries = useMemo(
+        () => selectedList(selectedCountries),
+        [selectedCountries]
+    );
+    const activeDestinations = useMemo(
+        () => selectedList(selectedDestinations),
+        [selectedDestinations]
+    );
+    const activeThemes = useMemo(() => selectedList(selectedThemes), [selectedThemes]);
+    const activeReligions = useMemo(
+        () => selectedList(selectedReligions),
+        [selectedReligions]
+    );
+    const activeActivities = useMemo(
+        () => selectedList(selectedActivities),
+        [selectedActivities]
+    );
 
-            // 2. Theme Filter
-            const activeThemes = Object.entries(selectedThemes)
-                .filter(([_, v]) => v)
-                .map(([k]) => k);
-            if (activeThemes.length > 0) {
-                const tourThemes = tour.themes || [];
-                const hasMatch = activeThemes.some((theme) =>
-                    tourThemes.includes(theme)
+    // One predicate, reused for both the result set and the per-option counts.
+    // `skip` omits a facet so that facet's own counts stay stable while you tick
+    // boxes inside it (standard faceted-search behaviour).
+    const matches = useMemo(
+        () =>
+            (tour: TourDetail, skip?: FacetKey) => {
+                if (tour.days.length > days[0]) return false;
+
+                const check = (key: FacetKey, active: string[]) => {
+                    if (skip === key || active.length === 0) return true;
+                    const values = tour[key] || [];
+                    return active.some((v) => values.includes(v));
+                };
+
+                return (
+                    check("countries", activeCountries) &&
+                    check("destinations", activeDestinations) &&
+                    check("themes", activeThemes) &&
+                    check("religions", activeReligions) &&
+                    check("activities", activeActivities)
                 );
-                if (!hasMatch) return false;
-            }
+            },
+        [
+            days,
+            activeCountries,
+            activeDestinations,
+            activeThemes,
+            activeReligions,
+            activeActivities,
+        ]
+    );
 
-            // 3. Activity Filter
-            const activeActivities = Object.entries(selectedActivities)
-                .filter(([_, v]) => v)
-                .map(([k]) => k);
-            if (activeActivities.length > 0) {
-                const tourActivities = tour.activities || [];
-                const hasMatch = activeActivities.some((a) =>
-                    tourActivities.includes(a)
-                );
-                if (!hasMatch) return false;
-            }
+    const filteredTours = useMemo(
+        () => tourDetails.filter((tour) => matches(tour)),
+        [matches]
+    );
 
-            // 4. Religions Filter
-            const activeReligions = Object.entries(selectedReligions)
-                .filter(([_, v]) => v)
-                .map(([k]) => k);
-            if (activeReligions.length > 0) {
-                const tourReligions = tour.religions || [];
-                const hasMatch = activeReligions.some((r) =>
-                    tourReligions.includes(r)
-                );
-                if (!hasMatch) return false;
-            }
+    // How many tours you'd get by ticking this option, given the other filters.
+    // Surfacing this (and disabling the zeroes) is what stops a click from
+    // silently emptying the page.
+    const facetCount = useMemo(
+        () => (key: FacetKey, option: string) =>
+            tourDetails.filter(
+                (tour) => matches(tour, key) && (tour[key] || []).includes(option)
+            ).length,
+        [matches]
+    );
 
-            return true;
-        });
-    }, [days, selectedThemes, selectedActivities, selectedReligions]);
+    const hasActiveFilters =
+        activeCountries.length > 0 ||
+        activeDestinations.length > 0 ||
+        activeThemes.length > 0 ||
+        activeReligions.length > 0 ||
+        activeActivities.length > 0 ||
+        days[0] < maxDays;
+
+    const clearAll = () => {
+        setDays([maxDays]);
+        setSelectedCountries({});
+        setSelectedDestinations({});
+        setSelectedThemes({});
+        setSelectedActivities({});
+        setSelectedReligions({});
+    };
 
     // Derived state for display
     const displayTours = useMemo(
@@ -157,7 +288,6 @@ export default function TourListing() {
                 id: tour.id,
                 destination: "Sri Lanka",
                 title: tour.title,
-                priceLabel: tour.startingPrice || "Contact Us",
                 tag: tour.days.length + " Days",
                 detail: tour,
             })),
@@ -191,7 +321,7 @@ export default function TourListing() {
                                 >
                                     Duration
                                     <span className="ml-2 rounded-full bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-800">
-                                        {days[0] < 21 ? `< ${days[0]}` : "Any"}
+                                        {days[0] < maxDays ? `≤ ${days[0]}` : "Any"}
                                     </span>
                                 </Button>
                             </PopoverTrigger>
@@ -205,25 +335,101 @@ export default function TourListing() {
                                         <Slider
                                             value={days}
                                             onValueChange={setDays}
-                                            min={3}
-                                            max={21}
+                                            min={minDays}
+                                            max={maxDays}
                                             step={1}
                                             className="cursor-pointer"
                                             aria-label="Trip Duration Days Slider"
                                         />
                                         <div className="mt-4 flex items-center justify-between text-sm">
-                                            <span className="text-slate-500">Min: 3</span>
+                                            <span className="text-slate-500">Min: {minDays}</span>
                                             <span className="font-bold text-brand-600">
-                                                {days[0]} Days
+                                                Up to {days[0]} Days
                                             </span>
-                                            <span className="text-slate-500">Max: 21</span>
+                                            <span className="text-slate-500">Max: {maxDays}</span>
                                         </div>
                                     </div>
                                 </div>
                             </PopoverContent>
                         </Popover>
 
-                        {/* 2. THEMES */}
+                        {/* 2. COUNTRY */}
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className={`rounded-full border-slate-300 h-9 ${Object.values(selectedCountries).some(Boolean)
+                                        ? "bg-brand-50 border-brand-200 text-brand-700"
+                                        : "bg-white"
+                                        }`}
+                                >
+                                    Country
+                                    {Object.values(selectedCountries).some(Boolean) && (
+                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold">
+                                            {Object.values(selectedCountries).filter(Boolean).length}
+                                        </span>
+                                    )}
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
+                                <div className="space-y-3">
+                                    <h4 className="font-medium">Country</h4>
+                                    {countries.map((c) => (
+                                        <FilterCheckboxRow
+                                            key={c}
+                                            label={c}
+                                            count={facetCount("countries", c)}
+                                            checked={selectedCountries[c] === true}
+                                            onCheckedChange={(v) =>
+                                                setSelectedCountries((prev) => ({ ...prev, [c]: v }))
+                                            }
+                                        />
+                                    ))}
+                                    <p className="pt-1 text-xs leading-relaxed text-slate-400">
+                                        Regional add-ons are arranged on request — ask us for a
+                                        multi-destination itinerary.
+                                    </p>
+                                </div>
+                            </PopoverContent>
+                        </Popover>
+
+                        {/* 3. DESTINATIONS */}
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className={`rounded-full border-slate-300 h-9 ${Object.values(selectedDestinations).some(Boolean)
+                                        ? "bg-brand-50 border-brand-200 text-brand-700"
+                                        : "bg-white"
+                                        }`}
+                                >
+                                    Destinations
+                                    {Object.values(selectedDestinations).some(Boolean) && (
+                                        <span className="ml-2 flex h-5 w-5 items-center justify-center rounded-full bg-brand-100 text-[10px] font-bold">
+                                            {Object.values(selectedDestinations).filter(Boolean).length}
+                                        </span>
+                                    )}
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
+                                <div className="max-h-[19rem] space-y-3 overflow-y-auto">
+                                    <h4 className="font-medium">Destinations</h4>
+                                    {destinations.map((d) => (
+                                        <FilterCheckboxRow
+                                            key={d}
+                                            label={d}
+                                            count={facetCount("destinations", d)}
+                                            checked={selectedDestinations[d] === true}
+                                            onCheckedChange={(v) =>
+                                                setSelectedDestinations((prev) => ({ ...prev, [d]: v }))
+                                            }
+                                        />
+                                    ))}
+                                </div>
+                            </PopoverContent>
+                        </Popover>
+
+                        {/* 4. THEMES */}
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
@@ -248,6 +454,7 @@ export default function TourListing() {
                                         <FilterCheckboxRow
                                             key={theme}
                                             label={theme}
+                                            count={facetCount("themes", theme)}
                                             checked={selectedThemes[theme] === true}
                                             onCheckedChange={(c) =>
                                                 setSelectedThemes((prev) => ({ ...prev, [theme]: c }))
@@ -258,7 +465,7 @@ export default function TourListing() {
                             </PopoverContent>
                         </Popover>
 
-                        {/* 4. RELIGIONS (NEW) */}
+                        {/* 5. RELIGIONS */}
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
@@ -283,6 +490,7 @@ export default function TourListing() {
                                         <FilterCheckboxRow
                                             key={rel}
                                             label={rel}
+                                            count={facetCount("religions", rel)}
                                             checked={selectedReligions[rel] === true}
                                             onCheckedChange={(c) =>
                                                 setSelectedReligions((prev) => ({ ...prev, [rel]: c }))
@@ -293,7 +501,7 @@ export default function TourListing() {
                             </PopoverContent>
                         </Popover>
 
-                        {/* 5. ACTIVITIES */}
+                        {/* 6. ACTIVITIES */}
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
@@ -312,12 +520,13 @@ export default function TourListing() {
                                 </Button>
                             </PopoverTrigger>
                             <PopoverContent side="bottom" avoidCollisions={false} className="w-64 p-4" align="start">
-                                <div className="space-y-3">
+                                <div className="max-h-[19rem] space-y-3 overflow-y-auto">
                                     <h4 className="font-medium">Activities</h4>
                                     {activities.map((act) => (
                                         <FilterCheckboxRow
                                             key={act}
                                             label={act}
+                                            count={facetCount("activities", act)}
                                             checked={selectedActivities[act] === true}
                                             onCheckedChange={(c) =>
                                                 setSelectedActivities((prev) => ({ ...prev, [act]: c }))
@@ -332,14 +541,10 @@ export default function TourListing() {
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                className="text-slate-500 hover:text-red-600"
+                                className="text-slate-500 hover:text-red-600 disabled:opacity-40"
                                 aria-label="Clear all applied filters"
-                                onClick={() => {
-                                    setDays([21]);
-                                    setSelectedThemes({});
-                                    setSelectedActivities({});
-                                    setSelectedReligions({});
-                                }}
+                                disabled={!hasActiveFilters}
+                                onClick={clearAll}
                             >
                                 Clear All
                             </Button>
@@ -361,11 +566,37 @@ export default function TourListing() {
                             <span className="font-normal text-slate-500">Made Tours</span>
                         </h2>
                         <p className="mt-2 text-slate-600">
-                            {filteredTours.length} Experiences Found
+                            {filteredTours.length}{" "}
+                            {filteredTours.length === 1 ? "Experience" : "Experiences"} Found
                         </p>
                     </div>
                 </div>
 
+                {displayTours.length === 0 ? (
+                    // Without this the grid just rendered nothing below the filter bar,
+                    // which reads as a broken page rather than "no matches".
+                    <div className="mt-8 rounded-[2rem] border border-slate-100 bg-white p-16 text-center shadow-sm">
+                        <MapPin className="mx-auto mb-6 h-12 w-12 text-slate-200" />
+                        <h3 className="mb-3 text-xl font-bold text-slate-900">
+                            No tours match these filters
+                        </h3>
+                        <p className="mx-auto mb-8 max-w-md text-slate-600">
+                            Try removing a filter or widening the trip duration — or tell us
+                            what you have in mind and we&apos;ll build it for you.
+                        </p>
+                        <div className="flex flex-wrap items-center justify-center gap-3">
+                            <Button onClick={clearAll} className="rounded-full">
+                                Clear all filters
+                            </Button>
+                            <Link
+                                href="/contact-us"
+                                className="inline-flex items-center rounded-full border border-slate-300 px-5 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50"
+                            >
+                                Request a custom tour
+                            </Link>
+                        </div>
+                    </div>
+                ) : (
                 <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {displayTours.map((tour, index) => {
                         const fullDetail = tour.detail;
@@ -455,6 +686,7 @@ export default function TourListing() {
                         );
                     })}
                 </div>
+                )}
             </section>
 
             <TourFaqSection />

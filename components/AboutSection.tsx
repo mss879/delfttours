@@ -65,6 +65,7 @@ export default function AboutSection() {
                 fill
                 className="rounded-[28px] object-cover"
                 sizes="220px"
+                loading="eager"
               />
             </div>
           </div>
@@ -88,6 +89,7 @@ export default function AboutSection() {
                   alt="Checkmark"
                   width={24}
                   height={24}
+                  loading="eager"
                   className="mt-1 h-5 w-5 flex-shrink-0"
                 />
                 <span>{item}</span>
@@ -103,6 +105,7 @@ export default function AboutSection() {
                   alt={stat.alt}
                   width={48}
                   height={48}
+                  loading="eager"
                   className="h-12 w-12"
                 />
                 <div>

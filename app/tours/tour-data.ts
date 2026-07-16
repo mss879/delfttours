@@ -6,7 +6,13 @@ export type TourDetail = {
   days: { title: string; description: string }[];
   inclusions: string[];
   mapImage?: string;
-  destination?: string;
+  /** Countries the tour covers. Every current package is Sri Lanka only; the
+   *  filter also offers the regional add-on countries Delft Tours sells, which
+   *  sit at zero until multi-country packages are listed. */
+  countries?: string[];
+  /** Sri Lankan places the itinerary actually visits, derived from the day-by-day
+   *  text. Replaces a dead `destination?: string` that no tour ever set. */
+  destinations?: string[];
   themes?: string[];
   religions?: string[];
   activities?: string[];
@@ -50,9 +56,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-3D2N-CTY-01.webp",
     ],
-    "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Islam"],
-    "activities": ["Cultural Show", "City Tour", "Tea Factory Visit", "Cooking Class", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Pinnawala", "Kandy"],
+    "themes": ["Culture & Heritage"],
+    "religions": ["Buddhism", "Islam"],
+    "activities": ["City Tour", "Cultural Show", "Tea Factory Visit", "Heritage"],
   },
 
   {
@@ -94,9 +102,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-4D3N-STD-01.webp",
     ],
-    "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Islam"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Wild Life Safari", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Pinnawala", "Kandy", "Nuwara Eliya", "Bentota"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Islam"],
+    "activities": ["City Tour", "Heritage", "Train Ride", "Cultural Show", "Boat Ride", "Snorkeling/Diving", "Tea Factory Visit"],
   },
 
   {
@@ -143,9 +153,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-5D4N-STD-01.webp",
     ],
-    "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Islam"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Wild Life Safari", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Pinnawala", "Kandy", "Nuwara Eliya", "Bentota"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Islam"],
+    "activities": ["City Tour", "Heritage", "Boat Ride", "Train Ride", "Cultural Show", "Tea Factory Visit", "Snorkeling/Diving", "Nature Trails"],
   },
 
   {
@@ -191,9 +203,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-5D4N-STD-02.webp",
     ],
-    "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Sigiriya", "Dambulla", "Minneriya", "Kandy", "Bentota"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Adventure"],
     "religions": ["Buddhism"],
-    "activities": ["City Tour", "Tea Factory Visit", "Boat Ride", "Safari", "Wild Life Safari", "Heritage"],
+    "activities": ["Safari", "Tea Factory Visit", "City Tour", "Boat Ride", "Heritage"],
   },
 
   {
@@ -239,9 +253,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-5D4N-WLD-03.webp",
     ],
-    "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
-    "religions": ["Buddhism","Hinduism"],
-    "activities": ["City Tour", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride", "Wild Life Safari", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Kandy", "Nuwara Eliya", "Ella", "Udawalawe", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country"],
+    "religions": ["Buddhism", "Hinduism"],
+    "activities": ["Safari", "Tea Factory Visit", "City Tour", "Boat Ride", "Heritage"],
   },
 
   {
@@ -287,9 +303,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-5D4N-BCH-04.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Islam"],
-    "activities": ["Whale Watching", "Snorkeling/Diving", "City Tour", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Pinnawala", "Sigiriya", "Dambulla", "Kandy", "Trincomalee"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Islam"],
+    "activities": ["Whale Watching", "Snorkeling/Diving", "City Tour", "Heritage", "Hiking/Trekking"],
   },
 
   {
@@ -334,9 +352,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-5D4N-STD-05.webp",
     ],
-    "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Sigiriya", "Dambulla", "Minneriya", "Kandy", "Kalutara", "Bentota"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax"],
     "religions": ["Buddhism"],
-    "activities": ["City Tour", "Tea Factory Visit", "Boat Ride", "Safari", "Wild Life Safari", "Heritage"],
+    "activities": ["Heritage", "Safari", "City Tour", "Tea Factory Visit", "Boat Ride"],
   },
 
   {
@@ -383,9 +403,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/Romantic Days in Paradise (5 days).webp",
     ],
-    "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Kandy", "Bentota", "Galle"],
+    "themes": ["Honeymoon", "Culture & Heritage", "Beach & Relax"],
     "religions": ["Buddhism"],
-    "activities": ["Cultural Show", "City Tour", "Tea Factory Visit", "Nature Trails", "Heritage"],
+    "activities": ["City Tour", "Heritage", "Tea Factory Visit", "Boat Ride", "Nature Trails", "Cultural Show"],
   },
 
   {
@@ -437,9 +459,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/Island Charm Express (6 days).webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism"],
-    "activities": ["Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Pinnawala", "Sigiriya", "Minneriya", "Kandy", "Nuwara Eliya", "Ella", "Yala", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism"],
+    "activities": ["Safari", "Hiking/Trekking", "Cultural Show", "Boat Ride", "Heritage"],
   },
 
   {
@@ -490,9 +514,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-6D5N-STD-02.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Islam"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Whale Watching", "Wild Life Safari", "Nature Trails", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Sigiriya", "Minneriya", "Kandy", "Nuwara Eliya", "Trincomalee"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Islam"],
+    "activities": ["Safari", "Whale Watching", "Train Ride", "City Tour", "Snorkeling/Diving", "Cultural Show", "Boat Ride", "Nature Trails", "Heritage"],
   },
 
   {
@@ -543,9 +569,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-6D5N-STD-01.webp",
     ],
-    "themes": ["Beach & Relax", "Culture & Heritage", "Hill Country", "Wildlife & Nature"],
-    "religions": ["Buddhism","Hinduism"],
-    "activities": ["City Tour", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride", "Wild Life Safari", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Kandy", "Nuwara Eliya", "Ella", "Udawalawe", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Hill Country", "Beach & Relax"],
+    "religions": ["Buddhism", "Hinduism"],
+    "activities": ["City Tour", "Heritage", "Safari", "Tea Factory Visit", "Boat Ride"],
   },
 
   {
@@ -602,9 +630,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-7D6N-WLD-01.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Islam","Christianity"],
-    "activities": ["Train Ride", "City Tour", "Tea Factory Visit", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Kandy", "Nuwara Eliya", "Galle"],
+    "themes": ["Honeymoon", "Hill Country", "Culture & Heritage", "Beach & Relax"],
+    "religions": ["Buddhism", "Christianity", "Islam"],
+    "activities": ["Tea Factory Visit", "Train Ride", "City Tour", "Heritage"],
   },
 
   {
@@ -661,9 +691,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/Whispers of Lanka (7 days).webp",
     ],
-    "themes": ["Beach & Relax", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Islam"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Wild Life Safari", "Bird Watching", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Negombo", "Sigiriya", "Dambulla", "Minneriya", "Polonnaruwa", "Kandy", "Nuwara Eliya", "Bentota"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Honeymoon", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Islam"],
+    "activities": ["Safari", "City Tour", "Heritage", "Boat Ride", "Train Ride", "Cultural Show", "Snorkeling/Diving", "Nature Trails"],
   },
 
   {
@@ -725,9 +757,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-7D6N-STD-02.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Pinnawala", "Sigiriya", "Dambulla", "Minneriya", "Kandy", "Nuwara Eliya", "Ella", "Yala", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism"],
+    "activities": ["Safari", "Heritage", "City Tour", "Train Ride", "Boat Ride", "Hiking/Trekking", "Cultural Show", "Snorkeling/Diving"],
   },
 
   {
@@ -793,9 +827,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-9D8N-STD-01.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Christianity"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Negombo", "Pinnawala", "Sigiriya", "Dambulla", "Minneriya", "Kandy", "Ella", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Christianity"],
+    "activities": ["Safari", "Train Ride", "City Tour", "Hiking/Trekking", "Snorkeling/Diving", "Cultural Show", "Boat Ride", "Heritage"],
   },
 
   {
@@ -867,9 +903,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-10D9N-STD-01.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Islam","Christianity"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Negombo", "Sigiriya", "Dambulla", "Minneriya", "Anuradhapura", "Wilpattu", "Kandy", "Nuwara Eliya", "Ella", "Yala", "Kalutara", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Islam", "Christianity"],
+    "activities": ["Safari", "City Tour", "Hiking/Trekking", "Boat Ride", "Heritage", "Cultural Show", "Snorkeling/Diving"],
   },
 
   {
@@ -941,9 +979,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-10D9N-STD-02.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Pinnawala", "Sigiriya", "Dambulla", "Habarana", "Minneriya", "Polonnaruwa", "Anuradhapura", "Kandy", "Nuwara Eliya", "Ella", "Haputale", "Yala", "Udawalawe", "Hikkaduwa", "Galle", "Weligama", "Mirissa"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism"],
+    "activities": ["Safari", "Whale Watching", "Tea Factory Visit", "Train Ride", "City Tour", "Hiking/Trekking", "Snorkeling/Diving", "Cultural Show", "Boat Ride", "Heritage"],
   },
 
   {
@@ -1019,9 +1059,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/full spectrum 11 days.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Islam","Christianity"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Negombo", "Pinnawala", "Sigiriya", "Dambulla", "Minneriya", "Polonnaruwa", "Kandy", "Nuwara Eliya", "Ella", "Horton Plains", "Yala", "Kalutara", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Islam", "Christianity"],
+    "activities": ["Safari", "Tea Factory Visit", "Train Ride", "City Tour", "Hiking/Trekking", "Snorkeling/Diving", "Cultural Show", "Boat Ride", "Heritage"],
   },
 
   {
@@ -1103,9 +1145,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/package_images/SL-12D11N-STD-01.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Christianity"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Negombo", "Sigiriya", "Dambulla", "Minneriya", "Polonnaruwa", "Anuradhapura", "Wilpattu", "Kandy", "Nuwara Eliya", "Ella", "Yala", "Kalutara", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Christianity"],
+    "activities": ["Safari", "Train Ride", "City Tour", "Hiking/Trekking", "Snorkeling/Diving", "Cultural Show", "Boat Ride", "Heritage"],
   },
 
   {
@@ -1187,9 +1231,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/dereamyhoneymoon 12 days.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Christianity"],
-    "activities": ["City Tour", "Train Ride", "Cultural Show", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Negombo", "Sigiriya", "Dambulla", "Minneriya", "Polonnaruwa", "Kandy", "Nuwara Eliya", "Ella", "Yala", "Galle", "Mirissa"],
+    "themes": ["Honeymoon", "Culture & Heritage", "Hill Country", "Wildlife & Nature", "Beach & Relax", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Christianity"],
+    "activities": ["Heritage", "Safari", "Train Ride", "City Tour", "Hiking/Trekking", "Boat Ride"],
   },
 
   {
@@ -1280,9 +1326,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/journey nature and culateu 14 days.webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Negombo", "Sigiriya", "Dambulla", "Minneriya", "Polonnaruwa", "Anuradhapura", "Kandy", "Nuwara Eliya", "Ella", "Horton Plains", "Yala", "Bentota", "Galle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
     "religions": ["Buddhism"],
-    "activities": ["City Tour", "Cooking Class", "Train Ride", "Cultural Show", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Heritage"],
+    "activities": ["Safari", "Tea Factory Visit", "Train Ride", "City Tour", "Hiking/Trekking", "Cultural Show", "Boat Ride", "Cooking Class", "Nature Trails", "Heritage"],
   },
 
   {
@@ -1368,9 +1416,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/Sri Lanka Grand Discovery Tour (13 days).webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Christianity"],
-    "activities": ["City Tour", "Snorkeling/Diving", "Train Ride", "Tea Factory Visit", "Safari", "Boat Ride", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Colombo", "Negombo", "Sigiriya", "Dambulla", "Minneriya", "Polonnaruwa", "Anuradhapura", "Wilpattu", "Kandy", "Ella", "Yala", "Udawalawe", "Kalutara", "Bentota", "Galle", "Hambantota"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Adventure"],
+    "religions": ["Buddhism", "Christianity"],
+    "activities": ["Safari", "Train Ride", "City Tour", "Hiking/Trekking", "Snorkeling/Diving", "Boat Ride", "Nature Trails", "Heritage"],
   },
 
   {
@@ -1466,9 +1516,11 @@ export const tourDetails: TourDetail[] = [
     "images": [
       "/Romantic Bliss (15 days).webp",
     ],
-    "themes": ["Beach & Relax", "Adventure", "Wildlife & Nature", "Honeymoon", "Culture & Heritage", "Hill Country"],
-    "religions": ["Buddhism","Hinduism","Christianity"],
-    "activities": ["City Tour", "Train Ride", "Safari", "Boat Ride", "Whale Watching", "Hiking/Trekking", "Wild Life Safari", "Nature Trails", "Bird Watching", "Heritage"],
+    "countries": ["Sri Lanka"],
+    "destinations": ["Negombo", "Sigiriya", "Dambulla", "Minneriya", "Kandy", "Ella", "Yala", "Galle", "Mirissa", "Tangalle"],
+    "themes": ["Culture & Heritage", "Wildlife & Nature", "Beach & Relax", "Hill Country", "Honeymoon", "Adventure"],
+    "religions": ["Buddhism", "Hinduism", "Christianity"],
+    "activities": ["Safari", "Tea Factory Visit", "Train Ride", "City Tour", "Hiking/Trekking", "Boat Ride", "Nature Trails", "Bird Watching", "Heritage"],
   },
 
 ];

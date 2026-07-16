@@ -62,6 +62,7 @@ export default function TopDestinations() {
                   alt={destination.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 280px"
+                  loading="eager"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.18)_60%,rgba(0,0,0,0.48)_100%)] pointer-events-none" />

@@ -124,7 +124,7 @@ export default function FAQInteractive() {
         <>
             <main>
                 {/* Hero Section */}
-                <section className="relative bg-[#0b3e63] py-24 text-center overflow-hidden">
+                <section className="relative bg-brand-600 py-24 text-center overflow-hidden">
                     {/* Background decorative elements */}
                     <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white/5 blur-3xl"></div>
                     <div className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 h-96 w-96 rounded-full bg-brand-500/20 blur-3xl"></div>
@@ -181,7 +181,7 @@ export default function FAQInteractive() {
                                                     value={`item-${catIndex}-${index}`}
                                                     className="border-b border-slate-100 last:border-none px-6"
                                                 >
-                                                    <AccordionTrigger className="py-6 text-left text-base font-semibold text-slate-800 hover:text-[#0b3e63] hover:no-underline lg:text-lg transition-colors">
+                                                    <AccordionTrigger className="py-6 text-left text-base font-semibold text-slate-800 hover:text-brand-600 hover:no-underline lg:text-lg transition-colors">
                                                         {faq.question}
                                                     </AccordionTrigger>
                                                     <AccordionContent className="pb-6 text-base text-slate-600 leading-relaxed max-w-3xl">
@@ -201,7 +201,7 @@ export default function FAQInteractive() {
                                 <Button
                                     variant="link"
                                     onClick={() => setSearchQuery("")}
-                                    className="mt-2 text-[#0b3e63]"
+                                    className="mt-2 text-brand-600"
                                 >
                                     Clear search
                                 </Button>
@@ -213,7 +213,7 @@ export default function FAQInteractive() {
                 {/* Still Have Questions CTA */}
                 <section className="bg-white py-20 border-t border-slate-100">
                     <div className="mx-auto max-w-4xl px-4 text-center">
-                        <div className="inline-flex items-center justify-center p-3 bg-brand-50 rounded-2xl mb-6 text-[#0b3e63]">
+                        <div className="inline-flex items-center justify-center p-3 bg-brand-50 rounded-2xl mb-6 text-brand-600">
                             <MessageCircle className="w-8 h-8" />
                         </div>
                         <h2 className="text-3xl font-bold text-slate-900 mb-4">
@@ -225,14 +225,14 @@ export default function FAQInteractive() {
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link href="/contact-us">
-                                <Button className="h-12 px-8 rounded-full bg-[#0b3e63] hover:bg-[#082f4b] text-white text-base font-semibold shadow-lg hover:shadow-xl transition-all">
+                                <Button className="h-12 px-8 rounded-full bg-brand-600 hover:bg-brand-800 text-white text-base font-semibold shadow-lg hover:shadow-xl transition-all">
                                     Contact Support
                                 </Button>
                             </Link>
                             <div className="flex items-center gap-6 px-6 py-3 bg-slate-50 rounded-full border border-slate-100">
                                 <a
                                     href="tel:+94769220306"
-                                    className="flex items-center gap-2 text-slate-600 hover:text-[#0b3e63] transition-colors"
+                                    className="flex items-center gap-2 text-slate-600 hover:text-brand-600 transition-colors"
                                 >
                                     <Phone className="w-4 h-4" />
                                     <span className="font-medium">+94 76 922 0306</span>
@@ -240,7 +240,7 @@ export default function FAQInteractive() {
                                 <div className="w-px h-4 bg-slate-300"></div>
                                 <a
                                     href="mailto:support@delfttours.com"
-                                    className="flex items-center gap-2 text-slate-600 hover:text-[#0b3e63] transition-colors"
+                                    className="flex items-center gap-2 text-slate-600 hover:text-brand-600 transition-colors"
                                 >
                                     <Mail className="w-4 h-4" />
                                     <span className="font-medium">Email Us</span>

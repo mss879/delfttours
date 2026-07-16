@@ -80,19 +80,19 @@ export default function EventsListing({ events }: { events: EventItem[] }) {
                   unoptimized
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#0b2a3e] to-[#179daa]">
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-800 to-green-500">
                   <CalendarDays className="h-12 w-12 text-white/40" />
                 </div>
               )}
               {ev.event_date && (
-                <div className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-[#0b3e63] shadow-sm backdrop-blur-sm">
+                <div className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-brand-600 shadow-sm backdrop-blur-sm">
                   {formatShortDate(ev.event_date)}
                 </div>
               )}
             </div>
 
             <div className="flex flex-grow flex-col p-7">
-              <h2 className="mb-3 line-clamp-2 font-serif text-2xl text-gray-900 transition-colors group-hover:text-[#0b3e63]">
+              <h2 className="mb-3 line-clamp-2 font-serif text-2xl text-gray-900 transition-colors group-hover:text-brand-600">
                 {ev.title}
               </h2>
               {ev.location && (
@@ -101,7 +101,7 @@ export default function EventsListing({ events }: { events: EventItem[] }) {
                 </div>
               )}
               <p className="mb-5 line-clamp-3 flex-grow leading-relaxed text-gray-600">{ev.description}</p>
-              <span className="mt-auto inline-flex items-center font-medium text-[#0b3e63] transition-transform duration-300 group-hover:translate-x-1">
+              <span className="mt-auto inline-flex items-center font-medium text-brand-600 transition-transform duration-300 group-hover:translate-x-1">
                 View details →
               </span>
             </div>
@@ -128,12 +128,12 @@ export default function EventsListing({ events }: { events: EventItem[] }) {
                 <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-slate-500">
                   {active.event_date && (
                     <span className="inline-flex items-center gap-1.5">
-                      <Calendar className="h-4 w-4 text-[#179daa]" /> {formatDate(active.event_date)}
+                      <Calendar className="h-4 w-4 text-green-500" /> {formatDate(active.event_date)}
                     </span>
                   )}
                   {active.location && (
                     <span className="inline-flex items-center gap-1.5">
-                      <MapPin className="h-4 w-4 text-[#179daa]" /> {active.location}
+                      <MapPin className="h-4 w-4 text-green-500" /> {active.location}
                     </span>
                   )}
                 </div>

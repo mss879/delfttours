@@ -81,7 +81,7 @@ export default function ContactForm() {
 
                         <div className="space-y-6">
                             <Card className="flex items-start gap-4 border-slate-200 bg-slate-50 p-6 shadow-sm">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#179daa] text-white">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-500 text-white">
                                     <Phone className="h-6 w-6" />
                                 </div>
                                 <div>
@@ -91,7 +91,7 @@ export default function ContactForm() {
                                     </p>
                                     <a
                                         href="tel:+94769220306"
-                                        className="mt-2 block font-medium text-[#179daa] hover:underline"
+                                        className="mt-2 block font-medium text-green-500 hover:underline"
                                     >
                                         +94 76 922 0306
                                     </a>
@@ -99,7 +99,7 @@ export default function ContactForm() {
                             </Card>
 
                             <Card className="flex items-start gap-4 border-slate-200 bg-slate-50 p-6 shadow-sm">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#179daa] text-white">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-500 text-white">
                                     <Mail className="h-6 w-6" />
                                 </div>
                                 <div>
@@ -109,7 +109,7 @@ export default function ContactForm() {
                                     </p>
                                     <a
                                         href="mailto:support@delfttours.com"
-                                        className="mt-2 block font-medium text-[#179daa] hover:underline"
+                                        className="mt-2 block font-medium text-green-500 hover:underline"
                                     >
                                         support@delfttours.com
                                     </a>
@@ -117,7 +117,7 @@ export default function ContactForm() {
                             </Card>
 
                             <Card className="flex items-start gap-4 border-slate-200 bg-slate-50 p-6 shadow-sm">
-                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#179daa] text-white">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-500 text-white">
                                     <MapPin className="h-6 w-6" />
                                 </div>
                                 <div>
@@ -143,7 +143,7 @@ export default function ContactForm() {
                                             href="https://www.instagram.com/delfttours/"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-[#179daa] hover:text-[#0f766e] transition-colors"
+                                            className="text-green-500 hover:text-green-700 transition-colors"
                                             aria-label="Visit our Instagram page"
                                         >
                                             <Instagram className="h-6 w-6" />
@@ -152,7 +152,7 @@ export default function ContactForm() {
                                             href="https://www.facebook.com/profile.php?id=61583635253275"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-[#179daa] hover:text-[#0f766e] transition-colors"
+                                            className="text-green-500 hover:text-green-700 transition-colors"
                                             aria-label="Visit our Facebook page"
                                         >
                                             <Facebook className="h-6 w-6" />
@@ -161,7 +161,7 @@ export default function ContactForm() {
                                             href="https://www.tiktok.com/@delft_tours"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-[#179daa] hover:text-[#0f766e] transition-colors"
+                                            className="text-green-500 hover:text-green-700 transition-colors"
                                             aria-label="Visit our TikTok page"
                                         >
                                             <svg
@@ -178,7 +178,7 @@ export default function ContactForm() {
                                             href="https://www.youtube.com/@DelftToursTravels"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-[#179daa] hover:text-[#0f766e] transition-colors"
+                                            className="text-green-500 hover:text-green-700 transition-colors"
                                             aria-label="Visit our YouTube channel"
                                         >
                                             <Youtube className="h-6 w-6" />
@@ -250,7 +250,7 @@ export default function ContactForm() {
 
                             <Button
                                 type="submit"
-                                className="w-full bg-[#179daa] text-lg font-semibold hover:bg-[#0f766e]"
+                                className="w-full bg-green-500 text-lg font-semibold hover:bg-green-700"
                                 size="lg"
                                 disabled={isSubmitting}
                             >

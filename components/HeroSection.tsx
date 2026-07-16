@@ -106,7 +106,7 @@ export default function HeroSection() {
                 quality={60}
                 className="-z-10 object-cover"
                 priority={index === 0}
-                loading={index === 0 ? 'eager' : 'lazy'}
+                loading="eager"
               />
               <div className="-z-10 absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50" />
               <div className="mx-auto max-w-3xl space-y-4 text-white">
@@ -146,11 +146,12 @@ export default function HeroSection() {
                 alt="Logo"
                 width={75}
                 height={32}
+                loading="eager"
                 className="h-5 md:h-8 w-auto object-contain mb-2 md:mb-3"
               />
               <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-[#FFC947] text-[#FFC947]" />
+                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-gold text-gold" />
                 ))}
               </div>
               <p className="text-[10px] md:text-sm font-medium text-slate-900">
@@ -167,11 +168,12 @@ export default function HeroSection() {
                 alt="TripAdvisor Logo"
                 width={120}
                 height={60}
+                loading="eager"
                 className="h-5 md:h-8 w-auto object-contain scale-[1.6] md:scale-[1.8] mb-2 md:mb-3"
               />
               <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-[#FFC947] text-[#FFC947]" />
+                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-gold text-gold" />
                 ))}
               </div>
               <p className="text-[10px] md:text-sm font-medium text-slate-900">
@@ -188,11 +190,12 @@ export default function HeroSection() {
                 alt="Logo"
                 width={128}
                 height={32}
+                loading="eager"
                 className="h-5 md:h-8 w-auto object-contain mb-2 md:mb-3"
               />
               <div className="flex gap-0.5 md:gap-1">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-[#FFC947] text-[#FFC947]" />
+                  <Star key={i} className="w-3 h-3 md:w-5 md:h-5 fill-gold text-gold" />
                 ))}
               </div>
               <p className="text-[10px] md:text-sm font-medium text-slate-900">

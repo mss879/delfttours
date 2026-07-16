@@ -41,11 +41,11 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                     <div className="mb-8">
                         <Link
                             href={`/tours/${tour.id}`}
-                            className="inline-flex items-center text-sm text-slate-500 hover:text-[#0b3e63] transition-colors mb-4"
+                            className="inline-flex items-center text-sm text-slate-500 hover:text-brand-600 transition-colors mb-4"
                         >
                             <ArrowLeft className="w-4 h-4 mr-1" /> Back to Tour Details
                         </Link>
-                        <h1 className="text-3xl md:text-4xl font-bold text-[#0b3e63]">Secure Checkout</h1>
+                        <h1 className="text-3xl md:text-4xl font-bold text-brand-600">Secure Checkout</h1>
                         <p className="text-slate-600 mt-2">Complete your booking for your dream holiday.</p>
                     </div>
 
@@ -78,7 +78,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
                                 </div>
 
                                 <div className="p-6">
-                                    <h3 className="font-bold text-lg text-[#0b3e63] mb-2">{mainTitle}</h3>
+                                    <h3 className="font-bold text-lg text-brand-600 mb-2">{mainTitle}</h3>
                                     <p className="text-sm text-slate-500 mb-4">{subTitle}</p>
 
                                     <div className="space-y-3 pt-4 border-t border-slate-100">
@@ -98,7 +98,7 @@ export default function CheckoutPage({ params }: { params: { id: string } }) {
 
                                     <div className="mt-6 pt-4 border-t border-slate-100 flex justify-between items-end">
                                         <div className="text-sm text-slate-500">Starting price from</div>
-                                        <div className="text-2xl font-bold text-[#0b3e63]">{tour.startingPrice}</div>
+                                        <div className="text-2xl font-bold text-brand-600">{tour.startingPrice}</div>
                                     </div>
                                 </div>
                             </div>

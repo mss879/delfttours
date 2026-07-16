@@ -91,6 +91,7 @@ export default function Footer() {
                         alt={social.label}
                         width={20}
                         height={20}
+                        loading="eager"
                         className="h-5 w-5 opacity-80 group-hover:opacity-100 transition-opacity"
                         unoptimized
                       />
@@ -202,7 +203,7 @@ export default function Footer() {
               >
                 <span>AI &amp; Web Design Agency in Sri Lanka by</span>
                 <span className="inline-block relative h-10 w-28 translate-y-0.5 opacity-80 hover:opacity-100 transition-opacity">
-                  <Image src="/arc-logo.webp" alt="ARC AI" fill className="object-contain object-left" />
+                  <Image src="/arc-logo.webp" alt="ARC AI" fill sizes="112px" loading="eager" className="object-contain object-left" />
                 </span>
               </a>
             </div>

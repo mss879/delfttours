@@ -145,7 +145,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                     <CheckCircle2 className="w-12 h-12 text-green-600" />
                 </div>
                 <div className="text-center space-y-2">
-                    <h2 className="text-2xl font-bold text-[#0b3e63]">Booking Request Received!</h2>
+                    <h2 className="text-2xl font-bold text-brand-600">Booking Request Received!</h2>
                     <p className="text-slate-600 max-w-md mx-auto">
                         Thank you for booking <strong>{tourTitle}</strong>.
                         {isPBL
@@ -157,7 +157,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
 
                 {isPBL ? (
                     <div className="bg-brand-50 p-6 rounded-xl border border-brand-200 w-full max-w-md">
-                        <h3 className="font-semibold text-[#0b3e63] mb-3 flex items-center">
+                        <h3 className="font-semibold text-brand-600 mb-3 flex items-center">
                             <Link2 className="w-5 h-5 mr-2" />
                             Pay by Link
                         </h3>
@@ -168,7 +168,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                     </div>
                 ) : (
                     <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 w-full max-w-md">
-                        <h3 className="font-semibold text-[#0b3e63] mb-4 flex items-center">
+                        <h3 className="font-semibold text-brand-600 mb-4 flex items-center">
                             <Building className="w-5 h-5 mr-2" />
                             Bank Transfer Details
                         </h3>
@@ -204,7 +204,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                     }
                 </p>
 
-                <Button onClick={() => window.location.href = '/'} className="bg-[#0b3e63] mt-4">
+                <Button onClick={() => window.location.href = '/'} className="bg-brand-600 mt-4">
                     Return to Home
                 </Button>
             </div>
@@ -216,13 +216,13 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
             {/* Progress Bar */}
             <div className="bg-slate-50 border-b border-slate-100 p-4">
                 <div className="flex items-center justify-center space-x-4">
-                    <div className={`flex items-center ${step >= 1 ? 'text-[#0b3e63]' : 'text-slate-400'}`}>
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-2 ${step >= 1 ? 'bg-[#0b3e63] text-white' : 'bg-slate-200'}`}>1</div>
+                    <div className={`flex items-center ${step >= 1 ? 'text-brand-600' : 'text-slate-400'}`}>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-2 ${step >= 1 ? 'bg-brand-600 text-white' : 'bg-slate-200'}`}>1</div>
                         <span className="text-sm font-medium hidden sm:inline">Your Details</span>
                     </div>
                     <div className="w-12 h-px bg-slate-300"></div>
-                    <div className={`flex items-center ${step >= 2 ? 'text-[#0b3e63]' : 'text-slate-400'}`}>
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-2 ${step >= 2 ? 'bg-[#0b3e63] text-white' : 'bg-slate-200'}`}>2</div>
+                    <div className={`flex items-center ${step >= 2 ? 'text-brand-600' : 'text-slate-400'}`}>
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-2 ${step >= 2 ? 'bg-brand-600 text-white' : 'bg-slate-200'}`}>2</div>
                         <span className="text-sm font-medium hidden sm:inline">Payment</span>
                     </div>
                 </div>
@@ -352,7 +352,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                             />
 
                             <div className="flex justify-end pt-4">
-                                <Button type="button" onClick={nextStep} className="bg-[#0b3e63] hover:bg-[#0a3554] w-full md:w-auto">
+                                <Button type="button" onClick={nextStep} className="bg-brand-600 hover:bg-brand-700 w-full md:w-auto">
                                     Next: Payment <ArrowRight className="ml-2 w-4 h-4" />
                                 </Button>
                             </div>
@@ -398,10 +398,10 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                                             <RadioGroupItem value="bank_transfer" id="bank_transfer" className="peer sr-only" />
                                                             <label
                                                                 htmlFor="bank_transfer"
-                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-brand-50/30 cursor-pointer transition-all"
+                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-brand-600 peer-data-[state=checked]:bg-brand-50/30 cursor-pointer transition-all"
                                                             >
                                                                 <div className="flex items-center space-x-3">
-                                                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0b3e63]">
+                                                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-brand-600">
                                                                         <Building className="w-5 h-5" />
                                                                     </div>
                                                                     <div>
@@ -409,7 +409,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                                                         <div className="text-xs text-slate-500">Pay directly to our bank account</div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="h-5 w-5 rounded-full border border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-[#0b3e63] flex items-center justify-center mt-2.5">
+                                                                <div className="h-5 w-5 rounded-full border border-slate-300 peer-data-[state=checked]:border-brand-600 peer-data-[state=checked]:bg-brand-600 flex items-center justify-center mt-2.5">
                                                                     <div className="h-2 w-2 rounded-full bg-white" />
                                                                 </div>
                                                             </label>
@@ -423,10 +423,10 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                                             <RadioGroupItem value="pay_by_link" id="pay_by_link" className="peer sr-only" />
                                                             <label
                                                                 htmlFor="pay_by_link"
-                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-brand-50/30 cursor-pointer transition-all"
+                                                                className="flex items-start justify-between p-4 rounded-xl border-2 border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 peer-data-[state=checked]:border-brand-600 peer-data-[state=checked]:bg-brand-50/30 cursor-pointer transition-all"
                                                             >
                                                                 <div className="flex items-center space-x-3">
-                                                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#0b3e63]">
+                                                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-brand-600">
                                                                         <Link2 className="w-5 h-5" />
                                                                     </div>
                                                                     <div>
@@ -434,7 +434,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                                                         <div className="text-xs text-slate-500">Receive a secure payment link via email</div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="h-5 w-5 rounded-full border border-slate-300 peer-data-[state=checked]:border-[#0b3e63] peer-data-[state=checked]:bg-[#0b3e63] flex items-center justify-center mt-2.5">
+                                                                <div className="h-5 w-5 rounded-full border border-slate-300 peer-data-[state=checked]:border-brand-600 peer-data-[state=checked]:bg-brand-600 flex items-center justify-center mt-2.5">
                                                                     <div className="h-2 w-2 rounded-full bg-white" />
                                                                 </div>
                                                             </label>
@@ -455,13 +455,13 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                     {/* Terms & Conditions Dialog */}
                                     <Dialog>
                                         <DialogTrigger asChild>
-                                            <button type="button" className="font-semibold text-[#0b3e63] hover:text-[#0a3554] underline underline-offset-2 transition-colors">
+                                            <button type="button" className="font-semibold text-brand-600 hover:text-brand-700 underline underline-offset-2 transition-colors">
                                                 Terms &amp; Conditions
                                             </button>
                                         </DialogTrigger>
                                         <DialogContent className="max-w-2xl max-h-[80vh]">
                                             <DialogHeader>
-                                                <DialogTitle className="text-xl text-[#0b3e63]">Terms &amp; Conditions</DialogTitle>
+                                                <DialogTitle className="text-xl text-brand-600">Terms &amp; Conditions</DialogTitle>
                                             </DialogHeader>
                                             <ScrollArea className="max-h-[60vh] pr-4">
                                                 <div className="space-y-4 text-sm text-slate-700 leading-relaxed">
@@ -508,13 +508,13 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                     {/* Refund Policy Dialog */}
                                     <Dialog>
                                         <DialogTrigger asChild>
-                                            <button type="button" className="font-semibold text-[#0b3e63] hover:text-[#0a3554] underline underline-offset-2 transition-colors">
+                                            <button type="button" className="font-semibold text-brand-600 hover:text-brand-700 underline underline-offset-2 transition-colors">
                                                 Refund Policy
                                             </button>
                                         </DialogTrigger>
                                         <DialogContent className="max-w-2xl max-h-[80vh]">
                                             <DialogHeader>
-                                                <DialogTitle className="text-xl text-[#0b3e63]">Refund Policy</DialogTitle>
+                                                <DialogTitle className="text-xl text-brand-600">Refund Policy</DialogTitle>
                                             </DialogHeader>
                                             <ScrollArea className="max-h-[60vh] pr-4">
                                                 <div className="space-y-4 text-sm text-slate-700 leading-relaxed">
@@ -566,7 +566,7 @@ export default function TourCheckoutForm({ tourId, tourTitle, tourPrice, classNa
                                 <Button type="button" variant="outline" onClick={() => setStep(1)} className="w-full md:w-auto">
                                     <ArrowLeft className="mr-2 w-4 h-4" /> Back to Details
                                 </Button>
-                                <Button type="submit" className="bg-[#0b3e63] hover:bg-[#0a3554] w-full md:w-auto" disabled={isSubmitting}>
+                                <Button type="submit" className="bg-brand-600 hover:bg-brand-700 w-full md:w-auto" disabled={isSubmitting}>
                                     {isSubmitting ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
