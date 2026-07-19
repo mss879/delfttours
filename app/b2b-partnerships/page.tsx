@@ -119,9 +119,9 @@ const strengths = [
   },
   {
     icon: Award,
-    title: "10+ Years of Experience",
+    title: "30+ Years of Experience",
     description:
-      "Over a decade of delivering dependable destination management services across Sri Lanka.",
+      "Over three decades of delivering dependable destination management services across Sri Lanka.",
   },
   {
     icon: Network,
@@ -183,7 +183,7 @@ export default function B2BPartnershipsPage() {
             <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed">
               Helping international tour operators expand their Sri Lanka
               portfolio through dependable ground operations, commercial
-              flexibility, and over 10 years of destination expertise.
+              flexibility, and over 30 years of destination expertise.
             </p>
           </div>
         </section>
