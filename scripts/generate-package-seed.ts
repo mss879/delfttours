@@ -215,6 +215,22 @@ function eqArr(a: unknown[] = [], b: unknown[] = []): boolean {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
+// jsonb reorders object keys, so compare days/photos field-by-field (order of
+// the arrays still matters; order of the keys within an object does not).
+function photosEqual(a: any[] = [], b: any[] = []): boolean {
+  if (a.length !== b.length) return false;
+  return a.every((p, i) => p?.label === b[i]?.label && p?.image === b[i]?.image);
+}
+function daysEqual(a: any[] = [], b: any[] = []): boolean {
+  if (a.length !== b.length) return false;
+  return a.every(
+    (d, i) =>
+      d?.title === b[i]?.title &&
+      d?.description === b[i]?.description &&
+      photosEqual(d?.highlights ?? [], b[i]?.highlights ?? [])
+  );
+}
+
 async function verify() {
   const dotenv = await import('dotenv');
   dotenv.config({ path: '.env.local' });
@@ -257,7 +273,7 @@ async function verify() {
       ['themes', eqArr(r.themes, pkg.themes ?? [])],
       ['religions', eqArr(r.religions, pkg.religions ?? [])],
       ['activities', eqArr(r.activities, pkg.activities ?? [])],
-      ['days', JSON.stringify(r.days) === JSON.stringify(expectDays)],
+      ['days', daysEqual(r.days, expectDays)],
     ];
     for (const [field, ok] of checks) {
       if (!ok) problems.push(`${pkg.id}: ${field} mismatch`);
