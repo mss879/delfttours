@@ -64,7 +64,7 @@ export default function AboutHero() {
                     {/* Floating Badge overlay */}
                     <div className="absolute bottom-6 left-6 right-6 sm:left-auto sm:right-6 bg-white/95 backdrop-blur-md px-6 py-4 rounded-[24px] shadow-2xl flex items-center gap-5 transition-transform duration-500 hover:-translate-y-1 cursor-default">
                         <div className="w-14 h-14 rounded-[16px] bg-[#E8EEFF] flex items-center justify-center text-slate-900 border border-slate-100">
-                            <span className="text-xl font-black">10+</span>
+                            <span className="text-xl font-black">30+</span>
                         </div>
                         <div>
                             <div className="text-base font-bold text-slate-900">Years of</div>
