@@ -1,0 +1,205 @@
+'use server';
+
+import { createClient } from '@/lib/supabase/server';
+import { createPublicClient } from '@/lib/supabase/public';
+import { revalidatePath } from 'next/cache';
+import { tourDetails, type TourDetail } from '@/app/tours/tour-data';
+
+/**
+ * Server actions for tour packages.
+ *
+ * Public reads use the cookie-free client so /tours pages stay statically
+ * renderable / ISR-cacheable. If the `packages` table is missing (migration 012
+ * not applied yet) or the DB is unreachable, public reads FALL BACK to the
+ * original hard-coded `tourDetails` so the live site never breaks during the
+ * cut-over. Once the table exists, the DB is the source of truth — including an
+ * intentionally empty result when an admin unpublishes everything.
+ */
+
+// Shape a DB row into the TourDetail the front end already consumes. This is the
+// seam that keeps the detail page / listing / checkout / sitemap untouched.
+function rowToTourDetail(row: any): TourDetail {
+  return {
+    id: row.slug,
+    title: row.title,
+    description: row.description ?? '',
+    images: Array.isArray(row.images) ? row.images : [],
+    days: Array.isArray(row.days)
+      ? row.days.map((d: any) => ({
+          title: d?.title ?? '',
+          description: d?.description ?? '',
+          highlights: Array.isArray(d?.highlights) ? d.highlights : [],
+        }))
+      : [],
+    inclusions: Array.isArray(row.inclusions) ? row.inclusions : [],
+    mapImage: row.map_image ?? undefined,
+    countries: Array.isArray(row.countries) ? row.countries : undefined,
+    destinations: Array.isArray(row.destinations) ? row.destinations : undefined,
+    themes: Array.isArray(row.themes) ? row.themes : undefined,
+    religions: Array.isArray(row.religions) ? row.religions : undefined,
+    activities: Array.isArray(row.activities) ? row.activities : undefined,
+    startingPrice: row.starting_price ?? undefined,
+  };
+}
+
+/** Published packages for the public site (listing, sitemap, generateStaticParams). */
+export async function getPublishedPackages(): Promise<TourDetail[]> {
+  const supabase = createPublicClient();
+  if (!supabase) return tourDetails;
+
+  const { data, error } = await supabase
+    .from('packages')
+    .select('*')
+    .eq('is_published', true)
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: true });
+
+  if (error) {
+    console.warn('[packages] DB read failed — using static fallback:', error.message);
+    return tourDetails;
+  }
+
+  return (data ?? []).map(rowToTourDetail);
+}
+
+/** A single published package by its slug (detail + checkout pages). */
+export async function getPackageBySlug(slug: string): Promise<TourDetail | null> {
+  const supabase = createPublicClient();
+  if (!supabase) return tourDetails.find((t) => t.id === slug) ?? null;
+
+  const { data, error } = await supabase
+    .from('packages')
+    .select('*')
+    .eq('slug', slug)
+    .eq('is_published', true)
+    .maybeSingle();
+
+  if (error) {
+    console.warn('[packages] DB read failed — using static fallback:', error.message);
+    return tourDetails.find((t) => t.id === slug) ?? null;
+  }
+
+  return data ? rowToTourDetail(data) : null;
+}
+
+/** All packages (incl. hidden), raw rows, for the admin dashboard. */
+export async function getPackagesAdmin() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from('packages')
+    .select('*')
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching packages (admin):', error.message);
+    return [];
+  }
+
+  return data ?? [];
+}
+
+function parsePackage(formData: FormData) {
+  const jsonField = (key: string) => {
+    try {
+      const raw = (formData.get(key) as string) || '[]';
+      const val = JSON.parse(raw);
+      return Array.isArray(val) ? val : [];
+    } catch {
+      return [];
+    }
+  };
+  const str = (key: string) => ((formData.get(key) as string) ?? '').trim();
+  const sortRaw = parseInt((formData.get('sort_order') as string) || '0', 10);
+
+  return {
+    slug: str('slug'),
+    title: str('title'),
+    starting_price: str('starting_price') || null,
+    description: (formData.get('description') as string) ?? '',
+    days: jsonField('days'),
+    inclusions: jsonField('inclusions'),
+    images: jsonField('images'),
+    map_image: str('map_image') || null,
+    countries: jsonField('countries'),
+    destinations: jsonField('destinations'),
+    themes: jsonField('themes'),
+    religions: jsonField('religions'),
+    activities: jsonField('activities'),
+    sort_order: Number.isFinite(sortRaw) ? sortRaw : 0,
+    is_published: formData.get('is_published') === 'true',
+  };
+}
+
+// The DB enforces slug uniqueness; surface that as something an editor can act on.
+function friendlyError(error: { code?: string; message: string }) {
+  if (error.code === '23505') return 'That URL code / slug is already in use. Please choose a different one.';
+  return error.message;
+}
+
+function revalidatePackages() {
+  revalidatePath('/admin/dashboard/packages');
+  revalidatePath('/tours');
+  revalidatePath('/tours/[id]', 'page');
+  revalidatePath('/tours/[id]/checkout', 'page');
+  revalidatePath('/sitemap.xml');
+}
+
+export async function createPackage(formData: FormData) {
+  const supabase = await createClient();
+
+  const { error } = await supabase.from('packages').insert([parsePackage(formData)]);
+
+  if (error) {
+    return { success: false, error: friendlyError(error) };
+  }
+
+  revalidatePackages();
+  return { success: true };
+}
+
+export async function updatePackage(id: string, formData: FormData) {
+  const supabase = await createClient();
+
+  const { error } = await supabase
+    .from('packages')
+    .update({ ...parsePackage(formData), updated_at: new Date().toISOString() })
+    .eq('id', id);
+
+  if (error) {
+    return { success: false, error: friendlyError(error) };
+  }
+
+  revalidatePackages();
+  return { success: true };
+}
+
+export async function deletePackage(id: string) {
+  const supabase = await createClient();
+
+  const { error } = await supabase.from('packages').delete().eq('id', id);
+
+  if (error) {
+    return { success: false, error: error.message };
+  }
+
+  revalidatePackages();
+  return { success: true };
+}
+
+export async function togglePackagePublished(id: string, is_published: boolean) {
+  const supabase = await createClient();
+
+  const { error } = await supabase
+    .from('packages')
+    .update({ is_published, updated_at: new Date().toISOString() })
+    .eq('id', id);
+
+  if (error) {
+    return { success: false, error: error.message };
+  }
+
+  revalidatePackages();
+  return { success: true };
+}

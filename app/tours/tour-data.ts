@@ -3,7 +3,10 @@ export type TourDetail = {
   title: string;
   description: string;
   images: string[];
-  days: { title: string; description: string }[];
+  /** Day-by-day itinerary. `description` is HTML for DB-backed packages (rendered
+   *  in a prose container) or plain bulleted text for the legacy static fallback.
+   *  `highlights` are the per-day photo grid, embedded per package. */
+  days: { title: string; description: string; highlights?: { label: string; image: string }[] }[];
   inclusions: string[];
   mapImage?: string;
   /** Countries the tour covers. Every current package is Sri Lanka only; the

@@ -7,7 +7,8 @@ import {
     MapPin,
 } from "lucide-react";
 
-import { tourDetails, TourDetail } from "@/app/tours/tour-data";
+import { TourDetail } from "@/app/tours/tour-data";
+import { FacetKey, FACET_ORDER, buildOptions } from "@/app/tours/facets";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -59,128 +60,36 @@ function FilterCheckboxRow({
     );
 }
 
-type FacetKey = "countries" | "destinations" | "themes" | "religions" | "activities";
-
-// Preferred display order. Anything present in the data but not listed here still
-// gets shown (appended, alphabetical) — the data is the source of truth, this only
-// controls ordering.
-const FACET_ORDER: Record<FacetKey, string[]> = {
-    // The regional add-on countries Delft Tours sells alongside Sri Lanka. Every
-    // packaged tour today is Sri Lanka only, so the rest sit at 0 — see ALWAYS_SHOW.
-    countries: [
-        "Sri Lanka",
-        "Maldives",
-        "Vietnam",
-        "Indonesia",
-        "Dubai",
-        "Cambodia",
-        "Singapore",
-        "Malaysia",
-    ],
-    // Roughly west coast -> cultural triangle -> hill country -> south -> east.
-    destinations: [
-        "Colombo",
-        "Negombo",
-        "Pinnawala",
-        "Sigiriya",
-        "Dambulla",
-        "Habarana",
-        "Minneriya",
-        "Polonnaruwa",
-        "Anuradhapura",
-        "Wilpattu",
-        "Kandy",
-        "Nuwara Eliya",
-        "Ella",
-        "Haputale",
-        "Horton Plains",
-        "Yala",
-        "Udawalawe",
-        "Kalutara",
-        "Bentota",
-        "Hikkaduwa",
-        "Galle",
-        "Weligama",
-        "Mirissa",
-        "Tangalle",
-        "Hambantota",
-        "Trincomalee",
-    ],
-    themes: [
-        "Culture & Heritage",
-        "Wildlife & Nature",
-        "Beach & Relax",
-        "Hill Country",
-        "Honeymoon",
-        "Adventure",
-    ],
-    religions: ["Buddhism", "Hinduism", "Islam", "Christianity"],
-    activities: [
-        "Safari",
-        "Whale Watching",
-        "Tea Factory Visit",
-        "Train Ride",
-        "City Tour",
-        "Hiking/Trekking",
-        "Snorkeling/Diving",
-        "Cultural Show",
-        "Boat Ride",
-        "Nature Trails",
-        "Bird Watching",
-        "Cooking Class",
-        "Adams Peak",
-        "Heritage",
-    ],
-};
-
-// Facets whose full option list is shown even where no tour matches. Country is
-// the deliberate exception to the derive-from-data rule below: Delft Tours sells
-// these regional add-ons, so they stay visible (greyed out at 0 by
-// FilterCheckboxRow) as a signal of the offering rather than vanishing.
-const ALWAYS_SHOW: FacetKey[] = ["countries"];
-
-// Every other facet's options are derived from the tour data rather than
-// hardcoded, so the UI can never again advertise a facet no tour carries (the old
-// list offered Golf, Cycling, Photography and "Adams Peak" — each matched 0 tours
-// and silently blanked the grid).
-function buildOptions(key: FacetKey): string[] {
-    if (ALWAYS_SHOW.includes(key)) return FACET_ORDER[key];
-    const present = new Set<string>();
-    tourDetails.forEach((tour) => (tour[key] || []).forEach((v) => present.add(v)));
-    const ordered = FACET_ORDER[key].filter((o) => present.has(o));
-    const extras = Array.from(present)
-        .filter((p) => !FACET_ORDER[key].includes(p))
-        .sort();
-    return [...ordered, ...extras];
-}
+// FacetKey, FACET_ORDER, ALWAYS_SHOW and buildOptions now live in
+// @/app/tours/facets (shared with the admin editor).
 
 const selectedList = (sel: Record<string, boolean>) =>
     Object.entries(sel)
         .filter(([, v]) => v)
         .map(([k]) => k);
 
-export default function TourListing() {
+export default function TourListing({ tours }: { tours: TourDetail[] }) {
     const { convertPrice } = useCurrency();
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     // Longest tour actually in the catalogue. The slider used to run to a
     // hardcoded 21 while the longest tour is 15 days, leaving six dead notches.
     const maxDays = useMemo(
-        () => tourDetails.reduce((m, t) => Math.max(m, t.days.length), 0),
-        []
+        () => tours.reduce((m, t) => Math.max(m, t.days.length), 0),
+        [tours]
     );
     const minDays = useMemo(
-        () => tourDetails.reduce((m, t) => Math.min(m, t.days.length), Infinity),
-        []
+        () => tours.reduce((m, t) => Math.min(m, t.days.length), Infinity),
+        [tours]
     );
 
     const [days, setDays] = useState<number[]>([maxDays]);
 
-    const countries = useMemo(() => buildOptions("countries"), []);
-    const destinations = useMemo(() => buildOptions("destinations"), []);
-    const tourThemes = useMemo(() => buildOptions("themes"), []);
-    const religions = useMemo(() => buildOptions("religions"), []);
-    const activities = useMemo(() => buildOptions("activities"), []);
+    const countries = useMemo(() => buildOptions("countries", tours), [tours]);
+    const destinations = useMemo(() => buildOptions("destinations", tours), [tours]);
+    const tourThemes = useMemo(() => buildOptions("themes", tours), [tours]);
+    const religions = useMemo(() => buildOptions("religions", tours), [tours]);
+    const activities = useMemo(() => buildOptions("activities", tours), [tours]);
 
     const [selectedCountries, setSelectedCountries] = useState<
         Record<string, boolean>
@@ -249,8 +158,8 @@ export default function TourListing() {
     );
 
     const filteredTours = useMemo(
-        () => tourDetails.filter((tour) => matches(tour)),
-        [matches]
+        () => tours.filter((tour) => matches(tour)),
+        [matches, tours]
     );
 
     // How many tours you'd get by ticking this option, given the other filters.
@@ -258,10 +167,10 @@ export default function TourListing() {
     // silently emptying the page.
     const facetCount = useMemo(
         () => (key: FacetKey, option: string) =>
-            tourDetails.filter(
+            tours.filter(
                 (tour) => matches(tour, key) && (tour[key] || []).includes(option)
             ).length,
-        [matches]
+        [matches, tours]
     );
 
     const hasActiveFilters =

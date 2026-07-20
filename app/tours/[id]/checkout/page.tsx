@@ -1,12 +1,15 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { tourDetails } from '../../tour-data';
+import { getPublishedPackages, getPackageBySlug } from '@/app/actions/packages';
 import TourCheckoutForm from '@/components/TourCheckoutForm';
 import { ArrowLeft, CheckCircle2 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
+
+// Rebuild hourly; admin package edits also revalidate on write.
+export const revalidate = 3600;
 
 // Thin, per-booking pages — keep them out of the index but let link equity
 // flow back to the indexable /tours/[id] pages.
@@ -14,14 +17,13 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-export function generateStaticParams() {
-    return tourDetails.map((tour) => ({
-        id: tour.id,
-    }));
+export async function generateStaticParams() {
+    const tours = await getPublishedPackages();
+    return tours.map((tour) => ({ id: tour.id }));
 }
 
-export default function CheckoutPage({ params }: { params: { id: string } }) {
-    const tour = tourDetails.find((t) => t.id === params.id);
+export default async function CheckoutPage({ params }: { params: { id: string } }) {
+    const tour = await getPackageBySlug(params.id);
 
     if (!tour) {
         notFound();

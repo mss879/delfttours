@@ -11,6 +11,7 @@ import {
   CalendarDays,
   Newspaper,
   FileText,
+  Luggage,
   ChevronLeft,
   ChevronRight,
   LogOut,
@@ -24,6 +25,7 @@ interface AdminSidebarProps {
 
 const navItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/dashboard/packages', label: 'Packages', icon: Luggage },
   { href: '/admin/dashboard/inquiries', label: 'Inquiries', icon: MessageSquare },
   { href: '/admin/dashboard/bookings', label: 'Bookings', icon: CalendarCheck },
   { href: '/admin/dashboard/crm', label: 'CRM', icon: Kanban },

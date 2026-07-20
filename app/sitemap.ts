@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { tourDetails } from "./tours/tour-data";
+import { getPublishedPackages } from "./actions/packages";
 import { getArticles } from "./actions/articles";
 
 // published_date is nullable and admin-supplied; never let a bad value
@@ -40,8 +40,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: route === "" ? 1 : 0.8,
     }));
 
-    // Dynamic pages (Tour Packages)
-    const tourPages = tourDetails.map((tour) => ({
+    // Dynamic pages (Tour Packages) — sourced from Supabase (published only).
+    const tours = await getPublishedPackages();
+    const tourPages = tours.map((tour) => ({
         url: `${baseUrl}/tours/${tour.id}`,
         lastModified: new Date(),
         changeFrequency: "weekly" as const,

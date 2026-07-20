@@ -1,9 +1,10 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { UploadCloud, X, Loader2 } from 'lucide-react';
+import { UploadCloud, X, Loader2, Ruler } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+import { toWebp } from '@/lib/imageToWebp';
 
 const MAX_BYTES = 5 * 1024 * 1024; // 5 MB
 
@@ -15,6 +16,11 @@ interface ImageUploadProps {
   /** Optional sub-folder inside the bucket, e.g. "events", "newsroom". */
   folder?: string;
   label?: string;
+  /** How the preview fits its box. "contain" shows the whole image (good for
+   *  wide maps); "cover" fills and crops (good for cover photos). */
+  fit?: 'cover' | 'contain';
+  /** Tailwind height class for the preview box. */
+  heightClass?: string;
 }
 
 // Reusable admin image uploader. Uploads the chosen file client-side, straight
@@ -26,10 +32,19 @@ export default function ImageUpload({
   bucket = 'media',
   folder = '',
   label = 'Image',
+  fit = 'cover',
+  heightClass = 'h-40',
 }: ImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Natural pixel size of the current image, so the editor knows what
+  // dimensions to match when swapping it out.
+  const [dims, setDims] = useState<{ w: number; h: number } | null>(null);
+
+  useEffect(() => {
+    setDims(null);
+  }, [value]);
 
   const handleFile = async (file: File) => {
     setError(null);
@@ -38,15 +53,17 @@ export default function ImageUpload({
       setError('Please choose an image file.');
       return;
     }
-    if (file.size > MAX_BYTES) {
-      setError('Image is too large (max 5 MB).');
-      return;
-    }
 
     setUploading(true);
     try {
+      // Optimize to WebP (same dimensions) before upload so stored images stay small.
+      const upload = await toWebp(file);
+      if (upload.size > MAX_BYTES) {
+        setError('Image is too large (max 5 MB after optimization).');
+        return;
+      }
       const supabase = createClient();
-      const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+      const ext = upload.name.split('.').pop()?.toLowerCase() || 'webp';
       // Unique, collision-proof filename. Optional folder prefix keeps a shared
       // bucket organised; a dedicated bucket can skip it.
       const prefix = folder ? `${folder}/` : '';
@@ -54,7 +71,7 @@ export default function ImageUpload({
 
       const { error: uploadError } = await supabase.storage
         .from(bucket)
-        .upload(path, file, { cacheControl: '31536000', upsert: false });
+        .upload(path, upload, { cacheControl: '31536000', upsert: false, contentType: upload.type });
 
       if (uploadError) throw uploadError;
 
@@ -86,8 +103,27 @@ export default function ImageUpload({
 
       {value ? (
         <div className="relative w-full overflow-hidden rounded-lg border border-slate-200">
-          <div className="relative h-40 w-full bg-slate-50">
-            <Image src={value} alt="Uploaded preview" fill className="object-cover" unoptimized />
+          <div className="flex items-center gap-1.5 border-b border-slate-100 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-500">
+            <Ruler className="h-3.5 w-3.5" />
+            {dims ? (
+              <span>
+                {dims.w} × {dims.h} px
+              </span>
+            ) : (
+              <span className="text-slate-400">Reading size…</span>
+            )}
+          </div>
+          <div className={`relative ${heightClass} w-full bg-slate-50`}>
+            <Image
+              src={value}
+              alt="Uploaded preview"
+              fill
+              className={fit === 'contain' ? 'object-contain' : 'object-cover'}
+              unoptimized
+              onLoadingComplete={(img) => {
+                if (img.naturalWidth) setDims({ w: img.naturalWidth, h: img.naturalHeight });
+              }}
+            />
           </div>
           <div className="flex items-center justify-between gap-2 border-t border-slate-100 bg-white px-3 py-2">
             <button

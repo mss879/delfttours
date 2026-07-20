@@ -1,10 +1,13 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TourListing from '@/components/tours/TourListing';
+import { getPublishedPackages } from '@/app/actions/packages';
 
+// Rebuild hourly; admin package edits also revalidate /tours on write.
+export const revalidate = 3600;
 
-
-export default function ToursPage() {
+export default async function ToursPage() {
+  const tours = await getPublishedPackages();
   return (
     <div className="min-h-screen bg-gradient-to-br from-brand-50 via-white to-brand-100/60 selection:bg-brand-100 selection:text-brand-900">
       <Header />
@@ -19,7 +22,7 @@ export default function ToursPage() {
           </p>
         </div>
 
-        <TourListing />
+        <TourListing tours={tours} />
 
       </main>
 

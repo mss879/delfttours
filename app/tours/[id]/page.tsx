@@ -18,19 +18,39 @@ import { Button } from '@/components/ui/button';
 import QuoteDialog from '@/components/QuoteDialog';
 import StickyBookingCard from '@/components/StickyBookingCard';
 import MobileTourCta from '@/components/MobileTourCta';
-import { tourDetails } from '../tour-data';
+import { getPublishedPackages, getPackageBySlug } from '@/app/actions/packages';
 import { cityHighlights, extractCityFromDayTitle } from '../city-highlights';
 import { Metadata } from 'next';
 import { MapPin } from 'lucide-react';
 
-export function generateStaticParams() {
-  return tourDetails.map((tour) => ({
-    id: tour.id,
-  }));
+// Rebuild published pages hourly; admin edits also revalidate on write.
+export const revalidate = 3600;
+
+// A description/day body may be HTML (DB-backed packages) or plain bulleted text
+// (legacy static fallback). Detect so we render each correctly.
+function looksLikeHtml(s: string): boolean {
+  return /<\/?[a-z][\s\S]*>/i.test(s);
+}
+
+// Flatten HTML to clean text for <meta> / JSON-LD, which want plain strings.
+function toPlainText(s: string): string {
+  return s
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+export async function generateStaticParams() {
+  const tours = await getPublishedPackages();
+  return tours.map((tour) => ({ id: tour.id }));
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const tour = tourDetails.find((t) => t.id === params.id);
+  const tour = await getPackageBySlug(params.id);
 
   if (!tour) {
     return {
@@ -38,28 +58,30 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
     };
   }
 
+  const metaDescription = toPlainText(tour.description).slice(0, 300);
+
   return {
     title: `${tour.title} | Delft Tours`,
-    description: tour.description,
+    description: metaDescription,
     alternates: {
       canonical: `https://delfttours.com/tours/${params.id}`,
     },
     openGraph: {
       title: tour.title,
-      description: tour.description,
+      description: metaDescription,
       images: tour.images && tour.images.length > 0 ? [tour.images[0]] : [],
     },
     twitter: {
       card: 'summary_large_image',
       title: tour.title,
-      description: tour.description,
+      description: metaDescription,
       images: tour.images && tour.images.length > 0 ? [tour.images[0]] : [],
     },
   };
 }
 
-export default function TourPage({ params }: { params: { id: string } }) {
-  const tour = tourDetails.find((t) => t.id === params.id);
+export default async function TourPage({ params }: { params: { id: string } }) {
+  const tour = await getPackageBySlug(params.id);
 
   if (!tour) {
     notFound();
@@ -86,7 +108,7 @@ export default function TourPage({ params }: { params: { id: string } }) {
     '@context': 'https://schema.org',
     '@type': 'TouristTrip',
     name: tour.title,
-    description: tour.description,
+    description: toPlainText(tour.description),
     url: tourUrl,
     ...(absImages.length ? { image: absImages } : {}),
     ...(tour.themes && tour.themes.length ? { touristType: tour.themes } : {}),
@@ -214,9 +236,16 @@ export default function TourPage({ params }: { params: { id: string } }) {
               </div>
             </div>
             <div>
-              <p className="text-slate-600 text-[15px] leading-relaxed whitespace-pre-wrap">
-                {tour.description}
-              </p>
+              {looksLikeHtml(tour.description) ? (
+                <div
+                  className="prose prose-slate max-w-none text-slate-600 text-[15px] leading-relaxed prose-p:my-2 prose-ul:my-2 prose-headings:text-slate-900"
+                  dangerouslySetInnerHTML={{ __html: tour.description }}
+                />
+              ) : (
+                <p className="text-slate-600 text-[15px] leading-relaxed whitespace-pre-wrap">
+                  {tour.description}
+                </p>
+              )}
             </div>
 
             {/* Inclusions Grid */}
@@ -248,19 +277,33 @@ export default function TourPage({ params }: { params: { id: string } }) {
 
           {/* Itinerary Accordion */}
           {(() => {
-            // Pre-compute: each city's highlights appear only on the first day that mentions it
-            const shownCities = new Set<string>();
-            const dayHighlightsMap = new Map<number, { cityName: string; highlights: import('../city-highlights').CityHighlight[] }>();
-            tour.days.forEach((day, index) => {
-              const cityName = extractCityFromDayTitle(day.title);
-              if (cityName && !shownCities.has(cityName)) {
-                const highlights = cityHighlights[cityName] ?? [];
-                if (highlights.length > 0) {
-                  shownCities.add(cityName);
-                  dayHighlightsMap.set(index, { cityName, highlights });
+            // Per-day photo grids. DB-backed packages carry their own photos on
+            // each day (edited in the admin). The legacy static fallback instead
+            // matches a city per the first day that mentions it (longest name first).
+            const embedded = tour.days.some((d) => (d.highlights?.length ?? 0) > 0);
+            const dayHighlightsMap = new Map<number, { cityName: string | null; highlights: { label: string; image: string }[] }>();
+            if (embedded) {
+              tour.days.forEach((day, index) => {
+                if (day.highlights && day.highlights.length > 0) {
+                  dayHighlightsMap.set(index, {
+                    cityName: extractCityFromDayTitle(day.title),
+                    highlights: day.highlights,
+                  });
                 }
-              }
-            });
+              });
+            } else {
+              const shownCities = new Set<string>();
+              tour.days.forEach((day, index) => {
+                const cityName = extractCityFromDayTitle(day.title);
+                if (cityName && !shownCities.has(cityName)) {
+                  const highlights = cityHighlights[cityName] ?? [];
+                  if (highlights.length > 0) {
+                    shownCities.add(cityName);
+                    dayHighlightsMap.set(index, { cityName, highlights });
+                  }
+                }
+              });
+            }
 
             return (
               <div>
@@ -287,16 +330,23 @@ export default function TourPage({ params }: { params: { id: string } }) {
                         
                         <AccordionContent className="px-6 md:px-8 pb-8 pt-2">
                           <div className="pl-0 md:pl-[72px]">
-                            <div className="text-slate-600 text-[15px] leading-relaxed whitespace-pre-wrap prose prose-slate max-w-none">
-                              {day.description}
-                            </div>
+                            {looksLikeHtml(day.description) ? (
+                              <div
+                                className="text-slate-600 text-[15px] leading-relaxed prose prose-slate max-w-none prose-p:my-2 prose-ul:my-2 prose-li:my-0.5 prose-headings:text-slate-900"
+                                dangerouslySetInnerHTML={{ __html: day.description }}
+                              />
+                            ) : (
+                              <div className="text-slate-600 text-[15px] leading-relaxed whitespace-pre-wrap prose prose-slate max-w-none">
+                                {day.description}
+                              </div>
+                            )}
                             
                             {/* City Highlights Visualizer — shown only on first day mentioning this city */}
                             {dayHighlight && (
                               <div className="mt-10 border-t border-slate-100 pt-8">
                                 <h4 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
                                   <MapPin className="text-brand-600 h-5 w-5" />
-                                  Highlights in {dayHighlight.cityName}
+                                  Highlights{dayHighlight.cityName ? ` in ${dayHighlight.cityName}` : ''}
                                 </h4>
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                   {dayHighlight.highlights.map((highlight, idx) => (
@@ -334,7 +384,11 @@ export default function TourPage({ params }: { params: { id: string } }) {
               <h3 className="text-2xl font-bold text-slate-900 mb-6 font-serif">Journey Map</h3>
               <div className="w-full relative h-[300px] md:h-[500px] rounded-[1.5rem] overflow-hidden bg-[#82D8E8]">
                 <Image
-                  src={`/package maps/${tour.mapImage}`}
+                  src={
+                    tour.mapImage.startsWith('http') || tour.mapImage.startsWith('/')
+                      ? tour.mapImage
+                      : `/package maps/${tour.mapImage}`
+                  }
                   alt={`${tour.title} Map`}
                   fill
                   className="object-contain"
