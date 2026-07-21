@@ -35,7 +35,7 @@ export default function AboutSection() {
         <div className="relative mx-auto w-full max-w-[520px]">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[48px] bg-slate-200">
             <Image
-              src="/assets/about-safari.png"
+              src="/assets/about-safari.webp"
               alt="Couple on an authentic Sri Lankan safari in Yala National Park overlooking wild elephants"
               fill
               className="object-cover"
