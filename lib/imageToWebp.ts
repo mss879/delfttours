@@ -1,13 +1,19 @@
 /**
  * Client-side image optimizer. Re-encodes an uploaded image to WebP (same pixel
- * dimensions, lossy) before it goes to Supabase Storage, so admin uploads are
- * small and fast without any server round-trip.
+ * dimensions) before it goes to Supabase Storage, so admin uploads stay in a
+ * modern, well-compressed format without any server round-trip.
+ *
+ * Quality is deliberately high (0.92 ≈ visually lossless for photos): WebP alone
+ * shrinks files a lot versus JPEG/PNG, so there's no need to also crush detail.
+ * End-user delivery stays fast because the public site serves these through
+ * Next.js image optimization (responsive, further-compressed variants) — the
+ * high-quality original is only ever read by the optimizer, not the browser.
  *
  * Left untouched: files already WebP, and GIFs (a canvas re-encode would flatten
  * the animation). If the browser can't encode WebP, or anything fails, the
  * original file is returned so uploads never break.
  */
-export async function toWebp(file: File, quality = 0.82): Promise<File> {
+export async function toWebp(file: File, quality = 0.92): Promise<File> {
   if (typeof window === 'undefined') return file;
   if (!file.type.startsWith('image/')) return file;
   if (file.type === 'image/webp' || file.type === 'image/gif') return file;

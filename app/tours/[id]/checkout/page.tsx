@@ -69,6 +69,7 @@ export default async function CheckoutPage({ params }: { params: { id: string } 
                                         src={tour.images && tour.images.length > 0 ? tour.images[0] : '/assets/external/placeholder-tour.webp'}
                                         alt={tour.title}
                                         fill
+                                        quality={90}
                                         className="object-cover"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

@@ -206,6 +206,7 @@ export default async function TourPage({ params }: { params: { id: string } }) {
                     fill
                     className="object-cover transition-transform duration-1000 group-hover:scale-105"
                     sizes="100vw"
+                    quality={90}
                     priority={idx === 0}
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500" />
@@ -391,6 +392,7 @@ export default async function TourPage({ params }: { params: { id: string } }) {
                   }
                   alt={`${tour.title} Map`}
                   fill
+                  quality={90}
                   className="object-contain"
                 />
               </div>

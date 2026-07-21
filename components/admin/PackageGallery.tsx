@@ -6,7 +6,7 @@ import { UploadCloud, X, Loader2, ChevronLeft, ChevronRight, Star } from 'lucide
 import { createClient } from '@/lib/supabase/client';
 import { toWebp } from '@/lib/imageToWebp';
 
-const MAX_BYTES = 5 * 1024 * 1024; // 5 MB
+const MAX_BYTES = 10 * 1024 * 1024; // 10 MB (headroom for high-quality WebP)
 
 /**
  * Ordered multi-image editor for a package's hero/gallery. Uploads straight into
@@ -45,7 +45,7 @@ export default function PackageGallery({
         // Optimize to WebP (same dimensions) before upload.
         const upload = await toWebp(file);
         if (upload.size > MAX_BYTES) {
-          setError(`"${file.name}" is too large (max 5 MB after optimization).`);
+          setError(`"${file.name}" is too large (max 10 MB after optimization).`);
           continue;
         }
         const ext = upload.name.split('.').pop()?.toLowerCase() || 'webp';
@@ -151,7 +151,7 @@ export default function PackageGallery({
           <>
             <UploadCloud className="h-5 w-5" />
             <span className="text-sm font-medium">Click to add image(s)</span>
-            <span className="text-xs text-slate-400">PNG, JPG or WEBP · up to 5 MB each</span>
+            <span className="text-xs text-slate-400">PNG, JPG or WEBP · up to 10 MB each</span>
           </>
         )}
       </button>

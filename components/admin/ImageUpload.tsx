@@ -6,7 +6,7 @@ import { UploadCloud, X, Loader2, Ruler } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { toWebp } from '@/lib/imageToWebp';
 
-const MAX_BYTES = 5 * 1024 * 1024; // 5 MB
+const MAX_BYTES = 10 * 1024 * 1024; // 10 MB (headroom for high-quality WebP)
 
 interface ImageUploadProps {
   value: string | null;
@@ -59,7 +59,7 @@ export default function ImageUpload({
       // Optimize to WebP (same dimensions) before upload so stored images stay small.
       const upload = await toWebp(file);
       if (upload.size > MAX_BYTES) {
-        setError('Image is too large (max 5 MB after optimization).');
+        setError('Image is too large (max 10 MB after optimization).');
         return;
       }
       const supabase = createClient();
@@ -159,7 +159,7 @@ export default function ImageUpload({
             <>
               <UploadCloud className="h-6 w-6" />
               <span className="text-sm font-medium">Click to upload an image</span>
-              <span className="text-xs text-slate-400">PNG, JPG or WEBP · up to 5 MB</span>
+              <span className="text-xs text-slate-400">PNG, JPG or WEBP · up to 10 MB</span>
             </>
           )}
         </button>
