@@ -33,11 +33,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         "/events",
         "/newsroom",
         "/b2b-partnerships",
+        "/privacy-policy",
+        "/terms-and-conditions",
+        "/cancellation-policy",
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
         changeFrequency: "monthly" as const,
-        priority: route === "" ? 1 : 0.8,
+        // Legal pages are low-churn and low-priority relative to marketing pages.
+        priority: route === "" ? 1 : route.match(/privacy-policy|terms-and-conditions|cancellation-policy/) ? 0.3 : 0.8,
     }));
 
     // Dynamic pages (Tour Packages) — sourced from Supabase (published only).

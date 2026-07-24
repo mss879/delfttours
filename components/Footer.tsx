@@ -39,9 +39,16 @@ const exploreLinks = [
 
 const companyLinks = [
   { href: '/about-us', label: 'About Us' },
+  { href: '/b2b-partnerships', label: 'B2B Partnerships' },
   { href: '/success-stories', label: 'Testimonials' },
   { href: '/faq', label: 'FAQ' },
   { href: '/contact-us', label: 'Contact Us' },
+];
+
+const legalLinks = [
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/terms-and-conditions', label: 'Terms & Conditions' },
+  { href: '/cancellation-policy', label: 'Cancellation Policy' },
 ];
 
 function LinkTag({ href, label }: { href: string; label: string }) {
@@ -70,7 +77,7 @@ export default function Footer() {
                 </span>
               </Link>
               <h3 className="text-xl font-medium text-white/90 leading-relaxed max-w-sm">
-                Follow the latest travel destination updates and discover Sri Lanka with us.
+                Creating exceptional Sri Lanka journeys for travellers and trusted destination management solutions for travel professionals.
               </h3>
               <div className="flex gap-3 pt-2">
                 {socialLinks.map((social) => (
@@ -188,27 +195,43 @@ export default function Footer() {
       {/* Copyright & Utilities Bottom Bar */}
       <section className="bg-black">
         <div className="mx-auto w-full max-w-7xl px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-sm text-white/50 order-2 md:order-1 text-center md:text-left">
-              &copy; {new Date().getFullYear()} Delft Tours & Travels Pvt Ltd.<br className="md:hidden" /> All rights reserved.
-            </div>
-            
-            <div className="order-1 md:order-2">
-              <a
-                href="https://www.arcai.agency"
-                target="_blank"
-                rel="noopener"
-                title="ARC AI — AI Automation & Web Design Agency in Sri Lanka"
-                className="inline-flex items-center gap-2 text-xs text-white/40 transition-colors duration-300 hover:text-white"
-              >
-                <span>AI &amp; Web Design Agency in Sri Lanka by</span>
-                <span className="inline-block relative h-10 w-28 translate-y-0.5 opacity-80 hover:opacity-100 transition-opacity">
-                  <Image src="/arc-logo.webp" alt="ARC AI" fill sizes="112px" loading="eager" className="object-contain object-left" />
-                </span>
-              </a>
+          <div className="flex flex-col gap-5">
+            {/* Legal links */}
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 md:justify-start">
+              {legalLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-xs font-medium text-white/50 transition-colors duration-300 hover:text-white"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
 
+            <div className="h-px w-full bg-white/10" />
 
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-sm text-white/50 order-2 md:order-1 text-center md:text-left">
+                &copy; {new Date().getFullYear()} Delft Tours & Travels Pvt Ltd. All rights reserved.
+                <span className="mt-1 block text-xs text-white/35">Company Reg. No. PV 00350473</span>
+              </div>
+
+              <div className="order-1 md:order-2">
+                <a
+                  href="https://www.arcai.agency"
+                  target="_blank"
+                  rel="noopener"
+                  title="ARC AI — AI Automation & Web Design Agency in Sri Lanka"
+                  className="inline-flex items-center gap-2 text-xs text-white/40 transition-colors duration-300 hover:text-white"
+                >
+                  <span>AI &amp; Web Design Agency in Sri Lanka by</span>
+                  <span className="inline-block relative h-10 w-28 translate-y-0.5 opacity-80 hover:opacity-100 transition-opacity">
+                    <Image src="/arc-logo.webp" alt="ARC AI" fill sizes="112px" loading="eager" className="object-contain object-left" />
+                  </span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
