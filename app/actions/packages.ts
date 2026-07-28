@@ -38,6 +38,7 @@ function rowToTourDetail(row: any): TourDetail {
     themes: Array.isArray(row.themes) ? row.themes : undefined,
     religions: Array.isArray(row.religions) ? row.religions : undefined,
     activities: Array.isArray(row.activities) ? row.activities : undefined,
+    suitable_for: Array.isArray(row.suitable_for) ? row.suitable_for : undefined,
     startingPrice: row.starting_price ?? undefined,
   };
 }
@@ -127,6 +128,7 @@ function parsePackage(formData: FormData) {
     themes: jsonField('themes'),
     religions: jsonField('religions'),
     activities: jsonField('activities'),
+    suitable_for: jsonField('suitable_for'),
     sort_order: Number.isFinite(sortRaw) ? sortRaw : 0,
     is_published: formData.get('is_published') === 'true',
   };

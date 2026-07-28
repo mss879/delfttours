@@ -19,6 +19,7 @@ export type TourDetail = {
   themes?: string[];
   religions?: string[];
   activities?: string[];
+  suitable_for?: string[];
   startingPrice?: string;
 };
 

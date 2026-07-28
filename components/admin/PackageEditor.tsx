@@ -43,6 +43,7 @@ const FACETS: { key: FacetKey; label: string; help?: string }[] = [
   { key: 'themes', label: 'Themes' },
   { key: 'religions', label: 'Religions' },
   { key: 'activities', label: 'Activities' },
+  { key: 'suitable_for', label: 'Suitable For', help: 'Who this package is suitable for (Family, Couples, Friends, etc.).' },
 ];
 
 export default function PackageEditor({
@@ -84,6 +85,7 @@ export default function PackageEditor({
     themes: Array.isArray(pkg?.themes) ? pkg.themes : [],
     religions: Array.isArray(pkg?.religions) ? pkg.religions : [],
     activities: Array.isArray(pkg?.activities) ? pkg.activities : [],
+    suitable_for: Array.isArray(pkg?.suitable_for) ? pkg.suitable_for : [],
   });
   const [sortOrder, setSortOrder] = useState<number>(pkg?.sort_order ?? nextSortOrder);
   const [isPublished, setIsPublished] = useState<boolean>(pkg?.is_published ?? true);

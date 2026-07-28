@@ -5,7 +5,7 @@ import type { TourDetail } from "@/app/tours/tour-data";
 // existing tag values) read from ONE source of truth. Pure data/functions —
 // safe to import from both client and server components.
 
-export type FacetKey = "countries" | "destinations" | "themes" | "religions" | "activities";
+export type FacetKey = "countries" | "destinations" | "themes" | "religions" | "activities" | "suitable_for";
 
 // Preferred display order. Anything present in the data but not listed here still
 // gets shown (appended, alphabetical) — the data is the source of truth, this only
@@ -77,6 +77,14 @@ export const FACET_ORDER: Record<FacetKey, string[]> = {
         "Adams Peak",
         "Heritage",
     ],
+    suitable_for: [
+        "Family",
+        "Couples",
+        "Friends",
+        "Solo Travelers",
+        "Honeymooners",
+        "Group",
+    ],
 };
 
 // Facets whose full option list is shown even where no tour matches. Country is
@@ -99,7 +107,7 @@ export function buildOptions(key: FacetKey, tours: TourDetail[]): string[] {
     return [...ordered, ...extras];
 }
 
-export const FACET_KEYS: FacetKey[] = ["countries", "destinations", "themes", "religions", "activities"];
+export const FACET_KEYS: FacetKey[] = ["countries", "destinations", "themes", "religions", "activities", "suitable_for"];
 
 // Suggested tag values for the admin editor: the curated FACET_ORDER union with
 // every value already present across the given package rows. Accepts raw DB rows

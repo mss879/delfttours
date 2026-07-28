@@ -232,10 +232,15 @@ export default async function TourPage({ params }: { params: { id: string } }) {
               <h2 className="text-2xl font-bold text-slate-900 md:order-first order-last md:mt-0 mt-4 font-serif">
                 Tour Overview
               </h2>
-              {/* Dynamically extract "Suitable For" if included in description */}
+              {/* Display "Suitable For" from tags array or description fallback */}
               {(() => {
-                const match = tour.description?.match(/Suitable\s*For:\s*([^<:\n]+)/i);
-                const suitableText = match ? match[1].trim() : 'Family, Couple & Friends';
+                let suitableText = '';
+                if (Array.isArray(tour.suitable_for) && tour.suitable_for.length > 0) {
+                  suitableText = tour.suitable_for.join(', ');
+                } else {
+                  const match = tour.description?.match(/Suitable\s*For:\s*([^<:\n]+)/i);
+                  suitableText = match ? match[1].trim() : 'Family, Couple & Friends';
+                }
                 return (
                   <div className="flex items-center justify-center bg-white px-4 py-2 rounded-full shadow-sm text-sm border border-slate-100">
                     <p className="text-slate-500">Suitable for: <span className="font-semibold text-brand-900">{suitableText}</span></p>
