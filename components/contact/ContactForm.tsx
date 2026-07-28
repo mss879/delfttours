@@ -87,7 +87,7 @@ export default function ContactForm() {
                                 <div>
                                     <h3 className="font-semibold text-slate-900">Phone</h3>
                                     <p className="mt-1 text-slate-600">
-                                        Mon-Fri from 8am to 5pm
+                                        Mon-Fri 9am-6pm IST
                                     </p>
                                     <a
                                         href="tel:+94769220306"

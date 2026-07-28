@@ -512,7 +512,7 @@ export default function TourListing({ tours }: { tours: TourDetail[] }) {
                         if (!fullDetail) return null;
                         return (
                             <div key={tour.id} className="group relative flex flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer border border-slate-100 h-full">
-                                    {/* Full-card navigation link — stretched, sits under the interactive controls */}
+                                    {/* Full-card navigation link — stretched across entire card */}
                                     <Link
                                         href={`/tours/${tour.id}`}
                                         aria-label={`View details for ${tour.title}`}
@@ -520,7 +520,7 @@ export default function TourListing({ tours }: { tours: TourDetail[] }) {
                                     />
                                     {/* Image Container */}
                                     <div className="relative aspect-[4/3] overflow-hidden">
-                                        <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
+                                        <div className="absolute top-4 left-4 z-10 pointer-events-none flex flex-wrap gap-2">
                                             <Badge className="bg-white/90 text-slate-900 backdrop-blur-md hover:bg-white shadow-sm border-none px-3 py-1 text-xs font-bold uppercase tracking-wider">
                                                 {tour.tag}
                                             </Badge>
@@ -559,7 +559,7 @@ export default function TourListing({ tours }: { tours: TourDetail[] }) {
                                         )}
 
                                         {/* Overlay Gradient */}
-                                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
+                                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent opacity-60 pointer-events-none" />
                                     </div>
 
                                     {/* Content */}
@@ -583,12 +583,12 @@ export default function TourListing({ tours }: { tours: TourDetail[] }) {
                                                     {convertPrice(tour.detail?.startingPrice)}
                                                 </span>
                                             </div>
-                                            <Button
-                                                size="sm"
-                                                className="rounded-full px-5 bg-slate-900 group-hover:bg-brand-600 transition-colors"
+                                            <Link
+                                                href={`/tours/${tour.id}`}
+                                                className="relative z-20 inline-flex items-center justify-center rounded-full px-5 py-2 text-xs font-semibold bg-slate-900 text-white group-hover:bg-brand-600 transition-colors shadow-sm"
                                             >
                                                 View Details
-                                            </Button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

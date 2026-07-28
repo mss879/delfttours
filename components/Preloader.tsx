@@ -4,25 +4,34 @@ import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 
-// The branded intro must ONLY ever appear on the homepage ("/").
-//
-// This component lives in the root layout, which does NOT remount on
-// client-side navigation. Previously the intro ran on every fresh mount of the
-// app — i.e. every hard page load / refresh of ANY route — which made it appear
-// to "randomly" replay on tours, about, etc. whenever a visitor arrived there
-// via a full page load rather than a client-side link.
-//
-// Gating on the pathname and mounting the animated overlay in its own child
-// component fixes both requirements at once:
-//   • Other routes render `null` — the intro never shows anywhere but "/".
-//   • The overlay mounts fresh every time the visitor lands on or refreshes the
-//     homepage, so the intro plays each time (refresh included).
+// The branded intro must ONLY appear ONCE per session on the homepage ("/").
 export default function Preloader() {
   const pathname = usePathname();
+  const [shouldShow, setShouldShow] = useState(false);
+  const [checked, setChecked] = useState(false);
 
-  // Only the homepage gets the intro. This also naturally excludes /admin and
-  // every other public route.
-  if (pathname !== '/') return null;
+  useEffect(() => {
+    if (pathname === '/') {
+      try {
+        const hasSeen = sessionStorage.getItem('hasSeenPreloader');
+        if (!hasSeen) {
+          sessionStorage.setItem('hasSeenPreloader', 'true');
+          setShouldShow(true);
+        } else {
+          setShouldShow(false);
+        }
+      } catch (e) {
+        // If sessionStorage is disabled/blocked, fallback to showing intro once on mount
+        setShouldShow(true);
+      }
+    } else {
+      setShouldShow(false);
+    }
+    setChecked(true);
+  }, [pathname]);
+
+  // Only render if checked, shouldShow is true, and on homepage
+  if (!checked || !shouldShow || pathname !== '/') return null;
 
   return <HomeIntro />;
 }
