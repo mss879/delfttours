@@ -19,11 +19,13 @@ export default function PackageGallery({
   onChange,
   folder = 'hero',
   label = 'Gallery images',
+  maxCount,
 }: {
   value: string[];
   onChange: (next: string[]) => void;
   folder?: string;
   label?: string;
+  maxCount?: number;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -31,13 +33,25 @@ export default function PackageGallery({
   // Natural pixel size per image URL, so the client knows what to match.
   const [dimsByUrl, setDimsByUrl] = useState<Record<string, { w: number; h: number }>>({});
 
+  const isMaxReached = typeof maxCount === 'number' && value.length >= maxCount;
+
   const handleFiles = async (files: FileList) => {
     setError(null);
+    if (typeof maxCount === 'number' && value.length >= maxCount) {
+      setError(`Maximum limit of ${maxCount} images reached.`);
+      return;
+    }
     const supabase = createClient();
     setUploading(true);
     const added: string[] = [];
+    let fileList = Array.from(files);
+    if (typeof maxCount === 'number' && value.length + fileList.length > maxCount) {
+      const allowedCount = maxCount - value.length;
+      fileList = fileList.slice(0, allowedCount);
+      setError(`Only the first ${allowedCount} image(s) were selected to respect the limit of ${maxCount}.`);
+    }
     try {
-      for (const file of Array.from(files)) {
+      for (const file of fileList) {
         if (!file.type.startsWith('image/')) {
           setError('Only image files are allowed.');
           continue;
@@ -78,7 +92,7 @@ export default function PackageGallery({
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-slate-700">{label}</label>
+      {label && <label className="text-sm font-medium text-slate-700">{label}</label>}
 
       <input
         ref={inputRef}
@@ -139,18 +153,23 @@ export default function PackageGallery({
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
-        disabled={uploading}
-        className="flex w-full flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 py-4 text-slate-500 transition-colors hover:border-[#0b3e63] hover:text-[#0b3e63] disabled:opacity-60"
+        disabled={uploading || isMaxReached}
+        className="flex w-full flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed border-slate-300 bg-slate-50 py-4 text-slate-500 transition-colors hover:border-[#0b3e63] hover:text-[#0b3e63] disabled:opacity-60 disabled:pointer-events-none"
       >
         {uploading ? (
           <>
             <Loader2 className="h-5 w-5 animate-spin" />
             <span className="text-sm">Uploading…</span>
           </>
+        ) : isMaxReached ? (
+          <>
+            <span className="text-sm font-medium text-amber-600">Maximum limit reached ({value.length}/{maxCount})</span>
+            <span className="text-xs text-slate-400">Remove an image to upload a new one</span>
+          </>
         ) : (
           <>
             <UploadCloud className="h-5 w-5" />
-            <span className="text-sm font-medium">Click to add image(s)</span>
+            <span className="text-sm font-medium">Click to add image(s){typeof maxCount === 'number' ? ` (${value.length}/${maxCount})` : ''}</span>
             <span className="text-xs text-slate-400">PNG, JPG or WEBP · up to 10 MB each</span>
           </>
         )}

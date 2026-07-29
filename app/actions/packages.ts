@@ -24,6 +24,7 @@ function rowToTourDetail(row: any): TourDetail {
     title: row.title,
     description: row.description ?? '',
     images: Array.isArray(row.images) ? row.images : [],
+    heroImages: Array.isArray(row.hero_images) ? row.hero_images : [],
     days: Array.isArray(row.days)
       ? row.days.map((d: any) => ({
           title: d?.title ?? '',
@@ -122,6 +123,7 @@ function parsePackage(formData: FormData) {
     days: jsonField('days'),
     inclusions: jsonField('inclusions'),
     images: jsonField('images'),
+    hero_images: jsonField('hero_images'),
     map_image: str('map_image') || null,
     countries: jsonField('countries'),
     destinations: jsonField('destinations'),

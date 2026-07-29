@@ -3,6 +3,7 @@ export type TourDetail = {
   title: string;
   description: string;
   images: string[];
+  heroImages?: string[];
   /** Day-by-day itinerary. `description` is HTML for DB-backed packages (rendered
    *  in a prose container) or plain bulleted text for the legacy static fallback.
    *  `highlights` are the per-day photo grid, embedded per package. */

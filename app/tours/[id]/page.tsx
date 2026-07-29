@@ -92,10 +92,13 @@ export default async function TourPage({ params }: { params: { id: string } }) {
   const mainTitle = titleMatch ? titleMatch[1] : tour.title;
   const subTitle = titleMatch ? `(${titleMatch[2]})` : '';
 
-  // Get images for carousel
-  const carouselImages = tour.images && tour.images.length > 0
-    ? tour.images
-    : ["/assets/external/placeholder-tour.webp", "/assets/external/placeholder-tour.webp", "/assets/external/placeholder-tour.webp"];
+  // Get images for hero carousel (prioritize dedicated heroImages up to 4, fallback to tour images or placeholders)
+  const carouselImages =
+    tour.heroImages && tour.heroImages.length > 0
+      ? tour.heroImages.slice(0, 4)
+      : tour.images && tour.images.length > 0
+      ? tour.images
+      : ["/assets/external/placeholder-tour.webp", "/assets/external/placeholder-tour.webp", "/assets/external/placeholder-tour.webp"];
 
   // --- Structured data (SEO / rich results) ---
   const tourUrl = `https://delfttours.com/tours/${params.id}`;

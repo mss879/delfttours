@@ -65,6 +65,9 @@ export default function PackageEditor({
   const [startingPrice, setStartingPrice] = useState<string>(pkg?.starting_price ?? '');
   const [description, setDescription] = useState<string>(pkg?.description ?? '');
   const [images, setImages] = useState<string[]>(Array.isArray(pkg?.images) ? pkg.images : []);
+  const [heroImages, setHeroImages] = useState<string[]>(
+    Array.isArray(pkg?.hero_images) ? pkg.hero_images : Array.isArray(pkg?.heroImages) ? pkg.heroImages : []
+  );
   const [inclusionsText, setInclusionsText] = useState<string>(
     Array.isArray(pkg?.inclusions) ? pkg.inclusions.join('\n') : ''
   );
@@ -142,6 +145,7 @@ export default function PackageEditor({
         )
       );
       fd.append('images', JSON.stringify(images));
+      fd.append('hero_images', JSON.stringify(heroImages));
       fd.append('map_image', mapImage ?? '');
       (Object.keys(tags) as FacetKey[]).forEach((k) => fd.append(k, JSON.stringify(tags[k])));
       fd.append('sort_order', String(sortOrder));
@@ -186,8 +190,13 @@ export default function PackageEditor({
         </button>
       </div>
 
-      {/* Hero gallery */}
-      <Section title="Hero Images" subtitle="Shown in the carousel at the top of the package page. The first image is the main / card image.">
+      {/* Hero Carousel Images */}
+      <Section title="Hero Carousel Images (Max 4)" subtitle="Uploaded images (up to 4) used exclusively in the top slider carousel on the package detail page.">
+        <PackageGallery value={heroImages} onChange={setHeroImages} folder="hero_carousel" maxCount={4} label="" />
+      </Section>
+
+      {/* Package Card / Gallery Images */}
+      <Section title="Package Card & Gallery Images" subtitle="Images used for tour listing cards and secondary galleries. The first image is the main card thumbnail.">
         <PackageGallery value={images} onChange={setImages} folder="hero" label="" />
       </Section>
 
