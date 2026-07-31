@@ -54,9 +54,9 @@ export default function Header() {
           { href: '/articles', label: 'Articles' },
           { href: '/events', label: 'Events' },
           { href: '/newsroom', label: 'Newsroom' },
+          { href: '/faq', label: 'FAQ' },
         ],
       },
-      { href: '/faq', label: 'FAQ' },
     ],
     []
   );

@@ -53,10 +53,10 @@ CREATE POLICY "Authenticated users can manage packages"
 --    ON CONFLICT (slug) DO NOTHING keeps this safely re-runnable: once an admin
 --    edits a package in the dashboard, re-running this file will NOT clobber it.
 
--- 1. SL-3D2N-CTY-01 — 3 Day Quick Tour of 2 Cities
+-- 1. 3-day-quick-tour-of-2-cities — 3 Day Quick Tour of 2 Cities
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-3D2N-CTY-01$x$,
+  $x$3-day-quick-tour-of-2-cities$x$,
   $x$3 Day Quick Tour of 2 Cities$x$,
   $x$$290$x$,
   $x$<p>Duration: 3 days / 2 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Short stays, add ons, couples, families, transit guests</p>$x$,
@@ -74,10 +74,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 2. SL-4D3N-STD-01 — Essence of Sri Lanka (4 days)
+-- 2. essence-of-sri-lanka-4-days — Essence of Sri Lanka (4 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-4D3N-STD-01$x$,
+  $x$essence-of-sri-lanka-4-days$x$,
   $x$Essence of Sri Lanka (4 days)$x$,
   $x$$450$x$,
   $x$<p>Duration: 4 days / 3 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Families, couples, and friends</p>$x$,
@@ -95,10 +95,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 3. SL-5D4N-STD-01 — Essence of Sri Lanka (5 days)
+-- 3. essence-of-sri-lanka-5-days — Essence of Sri Lanka (5 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-5D4N-STD-01$x$,
+  $x$essence-of-sri-lanka-5-days$x$,
   $x$Essence of Sri Lanka (5 days)$x$,
   $x$$800$x$,
   $x$<p>Duration: 5 days / 4 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Families, couples, and friends</p>$x$,
@@ -116,10 +116,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 4. SL-5D4N-STD-02 — Island Escape (5 days)
+-- 4. island-escape-5-days — Island Escape (5 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-5D4N-STD-02$x$,
+  $x$island-escape-5-days$x$,
   $x$Island Escape (5 days)$x$,
   $x$$585$x$,
   $x$<p>Duration: 5 days / 4 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Families</p>$x$,
@@ -137,10 +137,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 5. SL-5D4N-WLD-03 — Temples, Wildlife and Beach (5 days)
+-- 5. temples-wildlife-and-beach-5-days — Temples, Wildlife and Beach (5 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-5D4N-WLD-03$x$,
+  $x$temples-wildlife-and-beach-5-days$x$,
   $x$Temples, Wildlife and Beach (5 days)$x$,
   $x$$800$x$,
   $x$<p>Duration: 5 days / 4 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Families</p>$x$,
@@ -158,10 +158,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 6. SL-5D4N-BCH-04 — Taste of Paradise (5 days)
+-- 6. taste-of-paradise-5-days — Taste of Paradise (5 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-5D4N-BCH-04$x$,
+  $x$taste-of-paradise-5-days$x$,
   $x$Taste of Paradise (5 days)$x$,
   $x$$750$x$,
   $x$<p>Duration: 5 days / 4 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Families, couples, and friends</p>$x$,
@@ -179,10 +179,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 7. SL-5D4N-STD-05 — 5 Days Island Escape (High Tea Variation)
+-- 7. 5-days-island-escape-high-tea-variation — 5 Days Island Escape (High Tea Variation)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-5D4N-STD-05$x$,
+  $x$5-days-island-escape-high-tea-variation$x$,
   $x$5 Days Island Escape (High Tea Variation)$x$,
   NULL,
   $x$<p>Duration: 5 days / 4 nights</p><p>Type: Tailor-made private tour</p><p>Suitable For: Family</p>$x$,
@@ -200,10 +200,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 8. SL-5D4N-HNM-06 — Romantic Days in Paradise (5 days)
+-- 8. romantic-days-in-paradise-5-days — Romantic Days in Paradise (5 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-5D4N-HNM-06$x$,
+  $x$romantic-days-in-paradise-5-days$x$,
   $x$Romantic Days in Paradise (5 days)$x$,
   $x$$1,850$x$,
   $x$<p>Duration: 5 days / 4 nights</p><p>Type: Superior private honeymoon tour</p><p>Suitable For: Couples</p>$x$,
@@ -221,10 +221,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 9. SL-6D5N-STD-01 — Island Charm Express (6 days)
+-- 9. island-charm-express-6-days — Island Charm Express (6 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-6D5N-STD-01$x$,
+  $x$island-charm-express-6-days$x$,
   $x$Island Charm Express (6 days)$x$,
   $x$$890$x$,
   $x$<p>Duration: 6 days / 5 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Family, Couple, Friends</p>$x$,
@@ -242,10 +242,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 10. SL-6D5N-STD-02 — Tropical Trails (6 days)
+-- 10. tropical-trails-6-days — Tropical Trails (6 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-6D5N-STD-02$x$,
+  $x$tropical-trails-6-days$x$,
   $x$Tropical Trails (6 days)$x$,
   $x$$980$x$,
   $x$<p>Duration: 6 days / 5 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Family, Couple, Friends</p>$x$,
@@ -263,10 +263,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 11. SL-6D5N-WLD-03 — Temples, Wildlife and Beach (6 days)
+-- 11. temples-wildlife-and-beach-6-days — Temples, Wildlife and Beach (6 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-6D5N-WLD-03$x$,
+  $x$temples-wildlife-and-beach-6-days$x$,
   $x$Temples, Wildlife and Beach (6 days)$x$,
   $x$$730$x$,
   $x$<p>Duration: 6 days / 5 nights</p><p>Type: Tailor-made private tour</p><p>Suitable For: Families</p>$x$,
@@ -284,10 +284,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 12. SL-7D6N-HNM-01 — Love and Adventure (7 days)
+-- 12. love-and-adventure-7-days — Love and Adventure (7 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-7D6N-HNM-01$x$,
+  $x$love-and-adventure-7-days$x$,
   $x$Love and Adventure (7 days)$x$,
   $x$$3,470$x$,
   $x$<p>Duration: 7 days / 6 nights</p><p>Type: Private luxury honeymoon tour</p><p>Suitable For: Couples</p>$x$,
@@ -305,10 +305,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 13. SL-7D6N-NGBE-02 — Whispers of Lanka (7 days)
+-- 13. whispers-of-lanka-7-days — Whispers of Lanka (7 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-7D6N-NGBE-02$x$,
+  $x$whispers-of-lanka-7-days$x$,
   $x$Whispers of Lanka (7 days)$x$,
   $x$$1,100$x$,
   $x$<p>Duration: 7 days / 6 nights</p><p>Type: Private luxury honeymoon tour</p><p>Suitable For: Couples</p>$x$,
@@ -326,10 +326,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 14. SL-7D6N-STD-02 — Rhythms of Ceylon (8 days)
+-- 14. rhythms-of-ceylon-8-days — Rhythms of Ceylon (8 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-7D6N-STD-02$x$,
+  $x$rhythms-of-ceylon-8-days$x$,
   $x$Rhythms of Ceylon (8 days)$x$,
   $x$$1,250$x$,
   $x$<p>Duration: 7 days / 6 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Families, couples, and friends</p>$x$,
@@ -347,10 +347,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 15. SL-9D8N-STD-01 — Pearl Island Getaway (9 days)
+-- 15. pearl-island-getaway-9-days — Pearl Island Getaway (9 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-9D8N-STD-01$x$,
+  $x$pearl-island-getaway-9-days$x$,
   $x$Pearl Island Getaway (9 days)$x$,
   $x$$1,360$x$,
   $x$<p>Duration: 9 days / a8 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Family, Couple, Friends</p>$x$,
@@ -368,10 +368,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 16. SL-10D9N-STD-01 — Sri Lanka Dream Route (10 days)
+-- 16. sri-lanka-dream-route-10-days — Sri Lanka Dream Route (10 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-10D9N-STD-01$x$,
+  $x$sri-lanka-dream-route-10-days$x$,
   $x$Sri Lanka Dream Route (10 days)$x$,
   $x$$1,500$x$,
   $x$<p>Duration: 10 days / 9 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Family, Couple, Friends</p>$x$,
@@ -389,10 +389,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 17. SL-10D9N-STD-02 — Amazing Sri Lanka Tour (10 days)
+-- 17. amazing-sri-lanka-tour-10-days — Amazing Sri Lanka Tour (10 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-10D9N-STD-02$x$,
+  $x$amazing-sri-lanka-tour-10-days$x$,
   $x$Amazing Sri Lanka Tour (10 days)$x$,
   $x$$1,500$x$,
   $x$<p>Duration: 10 days / 9 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Couples, families, friends, solo travelers</p>$x$,
@@ -410,10 +410,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 18. SL-11D10N-STD-01 — Full Spectrum Journey (11 days)
+-- 18. full-spectrum-journey-11-days — Full Spectrum Journey (11 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-11D10N-STD-01$x$,
+  $x$full-spectrum-journey-11-days$x$,
   $x$Full Spectrum Journey (11 days)$x$,
   $x$$2,000$x$,
   $x$<p>Duration: 11 days / 10 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Family, Couple, Friends</p>$x$,
@@ -431,10 +431,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 19. SL-12D11N-STD-01 — Ceylon Panorama Journey (12 days)
+-- 19. ceylon-panorama-journey-12-days — Ceylon Panorama Journey (12 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-12D11N-STD-01$x$,
+  $x$ceylon-panorama-journey-12-days$x$,
   $x$Ceylon Panorama Journey (12 days)$x$,
   $x$$1,800$x$,
   $x$<p>Duration: 12 days / 11 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Families, couples, and friends</p>$x$,
@@ -452,10 +452,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 20. SL-12D11N-HNM-02 — Dreamy Honeymoon Days (12 days)
+-- 20. dreamy-honeymoon-days-12-days — Dreamy Honeymoon Days (12 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-12D11N-HNM-02$x$,
+  $x$dreamy-honeymoon-days-12-days$x$,
   $x$Dreamy Honeymoon Days (12 days)$x$,
   $x$$4,850$x$,
   $x$<p>Duration: 12 days / 11 nights</p><p>Type: Private honeymoon tour</p><p>Suitable For: Couples</p>$x$,
@@ -473,10 +473,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 21. SL-14D13N-CLT-01 — Journey Culture and Nature (14 days)
+-- 21. journey-culture-and-nature-14-days — Journey Culture and Nature (14 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-14D13N-CLT-01$x$,
+  $x$journey-culture-and-nature-14-days$x$,
   $x$Journey Culture and Nature (14 days)$x$,
   $x$$2,670$x$,
   $x$<p>Duration: 14 days / 13 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Couples, families</p>$x$,
@@ -494,10 +494,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 22. SL-13D12N-STD-01 — Sri Lanka Grand Discovery Tour (13 days)
+-- 22. sri-lanka-grand-discovery-tour-13-days — Sri Lanka Grand Discovery Tour (13 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-13D12N-STD-01$x$,
+  $x$sri-lanka-grand-discovery-tour-13-days$x$,
   $x$Sri Lanka Grand Discovery Tour (13 days)$x$,
   $x$$1,880$x$,
   $x$<p>Duration: 13 days / 12 nights</p><p>Type: Private escorted tour</p><p>Suitable For: Anyone</p>$x$,
@@ -515,10 +515,10 @@ VALUES (
 )
 ON CONFLICT (slug) DO NOTHING;
 
--- 23. SL-15D14N-HNM-01 — Romantic Bliss (15 days)
+-- 23. romantic-bliss-15-days — Romantic Bliss (15 days)
 INSERT INTO packages (slug, title, starting_price, description, days, inclusions, images, map_image, countries, destinations, themes, religions, activities, sort_order, is_published)
 VALUES (
-  $x$SL-15D14N-HNM-01$x$,
+  $x$romantic-bliss-15-days$x$,
   $x$Romantic Bliss (15 days)$x$,
   $x$$6,190$x$,
   $x$<p>Duration: 15 days / 14 nights</p><p>Type: Tailor-made private honeymoon tour</p><p>Suitable For: Couples</p>$x$,

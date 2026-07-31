@@ -208,15 +208,32 @@ export default function PackageEditor({
             <input value={title} onChange={(e) => setTitle(e.target.value)} className={inputCls} placeholder="e.g. Essence of Sri Lanka (4 days)" />
           </div>
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-slate-700">URL Code / Slug</label>
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium text-slate-700">URL Code / Slug</label>
+              <button
+                type="button"
+                onClick={() => {
+                  const autoSlug = title
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .replace(/[^\w-]/g, '')
+                    .replace(/--+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+                  if (autoSlug) setSlug(autoSlug);
+                }}
+                className="text-xs text-[#0b3e63] font-medium hover:underline cursor-pointer"
+              >
+                Auto-generate from title
+              </button>
+            </div>
             <div className="flex items-center rounded-lg border focus-within:ring-2 focus-within:ring-[#0b3e63]/20 focus-within:border-[#0b3e63]">
               <span className="pl-3 pr-1 text-sm text-slate-400 select-none">/tours/</span>
-              <input value={slug} onChange={(e) => setSlug(e.target.value)} className="flex-1 min-w-0 py-2 pr-3 bg-transparent outline-none font-mono text-sm" placeholder="SL-4D3N-STD-01" />
+              <input value={slug} onChange={(e) => setSlug(e.target.value)} className="flex-1 min-w-0 py-2 pr-3 bg-transparent outline-none font-mono text-sm" placeholder="3-day-quick-tour-of-2-cities" />
             </div>
             <p className="text-xs text-slate-500">
               {editing
-                ? 'This package is live. Changing the code changes its URL and loses its search ranking.'
-                : 'The tour code that becomes the page URL. Keep the SL-… format.'}
+                ? 'This package is live. Changing the slug updates its URL and affects search ranking.'
+                : 'The descriptive URL slug derived from the tour name (e.g. 3-day-quick-tour-of-2-cities).'}
             </p>
           </div>
           <div className="space-y-1.5">

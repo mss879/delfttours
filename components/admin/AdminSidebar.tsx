@@ -17,6 +17,7 @@ import {
   LogOut,
   Menu,
   X,
+  HelpCircle,
 } from 'lucide-react';
 
 interface AdminSidebarProps {
@@ -33,6 +34,7 @@ const navItems = [
   { href: '/admin/dashboard/events', label: 'Events', icon: CalendarDays },
   { href: '/admin/dashboard/newsroom', label: 'Newsroom', icon: Newspaper },
   { href: '/admin/dashboard/articles', label: 'Articles', icon: FileText },
+  { href: '/admin/dashboard/faqs', label: 'FAQs', icon: HelpCircle },
 ];
 
 export default function AdminSidebar({ userEmail }: AdminSidebarProps) {

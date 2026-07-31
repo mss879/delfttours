@@ -3,3 +3,4 @@
 
 ALTER TABLE packages
 ADD COLUMN IF NOT EXISTS hero_images TEXT[] NOT NULL DEFAULT '{}';
+

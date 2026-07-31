@@ -79,32 +79,37 @@ export default function Footer() {
               <h3 className="text-xl font-medium text-white/90 leading-relaxed max-w-sm">
                 Creating exceptional Sri Lanka journeys for travellers and trusted destination management solutions for travel professionals.
               </h3>
-              <div className="flex gap-3 pt-2">
-                {socialLinks.map((social) => (
-                  <Link
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-900/40 hover:border-cyan-500/30 hover:shadow-[0_0_15px_rgba(34,211,238,0.2)]"
-                    aria-label={social.label}
-                  >
-                    {/* @ts-ignore */}
-                    {social.icon ? (
-                      social.icon
-                    ) : (
-                      <Image
-                        src={social.src!}
-                        alt={social.label}
-                        width={20}
-                        height={20}
-                        loading="eager"
-                        className="h-5 w-5 opacity-80 group-hover:opacity-100 transition-opacity"
-                        unoptimized
-                      />
-                    )}
-                  </Link>
-                ))}
+              <div className="space-y-3 pt-2">
+                <p className="text-xs text-white/50 font-medium tracking-wide">
+                  Company Reg. No. PV 00350473
+                </p>
+                <div className="flex gap-3">
+                  {socialLinks.map((social) => (
+                    <Link
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex h-11 w-11 items-center justify-center rounded-full bg-white/5 border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-900/40 hover:border-cyan-500/30 hover:shadow-[0_0_15px_rgba(34,211,238,0.2)]"
+                      aria-label={social.label}
+                    >
+                      {/* @ts-ignore */}
+                      {social.icon ? (
+                        social.icon
+                      ) : (
+                        <Image
+                          src={social.src!}
+                          alt={social.label}
+                          width={20}
+                          height={20}
+                          loading="eager"
+                          className="h-5 w-5 opacity-80 group-hover:opacity-100 transition-opacity"
+                          unoptimized
+                        />
+                      )}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -214,7 +219,6 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="text-sm text-white/50 order-2 md:order-1 text-center md:text-left">
                 &copy; {new Date().getFullYear()} Delft Tours & Travels Pvt Ltd. All rights reserved.
-                <span className="mt-1 block text-xs text-white/35">Company Reg. No. PV 00350473</span>
               </div>
 
               <div className="order-1 md:order-2">

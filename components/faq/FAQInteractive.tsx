@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
     Accordion,
     AccordionContent,
@@ -12,8 +12,9 @@ import { Search, MessageCircle, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { FAQItem } from "@/app/actions/faqs";
 
-const faqCategories = [
+const defaultFaqCategories = [
     {
         title: "General Information",
         items: [
@@ -105,8 +106,37 @@ const faqCategories = [
     },
 ];
 
-export default function FAQInteractive() {
+interface FAQInteractiveProps {
+    initialFaqs?: FAQItem[];
+}
+
+export default function FAQInteractive({ initialFaqs }: FAQInteractiveProps) {
     const [searchQuery, setSearchQuery] = useState("");
+
+    const faqCategories = useMemo(() => {
+        if (!initialFaqs || initialFaqs.length === 0) {
+            return defaultFaqCategories;
+        }
+
+        // Group dynamic FAQs from database by category
+        const categoryMap = new Map<string, { question: string; answer: string }[]>();
+
+        initialFaqs.forEach((faq) => {
+            const cat = faq.category || "General Information";
+            if (!categoryMap.has(cat)) {
+                categoryMap.set(cat, []);
+            }
+            categoryMap.get(cat)!.push({
+                question: faq.question,
+                answer: faq.answer,
+            });
+        });
+
+        return Array.from(categoryMap.entries()).map(([title, items]) => ({
+            title,
+            items,
+        }));
+    }, [initialFaqs]);
 
     // Filter logic
     const filteredCategories = faqCategories

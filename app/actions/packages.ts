@@ -64,21 +64,48 @@ export async function getPublishedPackages(): Promise<TourDetail[]> {
   return (data ?? []).map(rowToTourDetail);
 }
 
-/** A single published package by its slug (detail + checkout pages). */
-export async function getPackageBySlug(slug: string): Promise<TourDetail | null> {
+const LEGACY_CODE_TO_SLUG: Record<string, string> = {
+  'SL-3D2N-CTY-01': '3-day-quick-tour-of-2-cities',
+  'SL-4D3N-STD-01': 'essence-of-sri-lanka-4-days',
+  'SL-5D4N-STD-01': 'essence-of-sri-lanka-5-days',
+  'SL-5D4N-STD-02': 'island-escape-5-days',
+  'SL-5D4N-WLD-03': 'temples-wildlife-and-beach-5-days',
+  'SL-5D4N-BCH-04': 'taste-of-paradise-5-days',
+  'SL-5D4N-STD-05': '5-days-island-escape-high-tea-variation',
+  'SL-5D4N-HNM-06': 'romantic-days-in-paradise-5-days',
+  'SL-6D5N-STD-01': 'island-charm-express-6-days',
+  'SL-6D5N-STD-02': 'tropical-trails-6-days',
+  'SL-6D5N-WLD-03': 'temples-wildlife-and-beach-6-days',
+  'SL-7D6N-HNM-01': 'love-and-adventure-7-days',
+  'SL-7D6N-NGBE-02': 'whispers-of-lanka-7-days',
+  'SL-7D6N-STD-02': 'rhythms-of-ceylon-8-days',
+  'SL-9D8N-STD-01': 'pearl-island-getaway-9-days',
+  'SL-10D9N-STD-01': 'sri-lanka-dream-route-10-days',
+  'SL-10D9N-STD-02': 'amazing-sri-lanka-tour-10-days',
+  'SL-11D10N-STD-01': 'full-spectrum-journey-11-days',
+  'SL-12D11N-STD-01': 'ceylon-panorama-journey-12-days',
+  'SL-12D11N-HNM-02': 'dreamy-honeymoon-days-12-days',
+  'SL-14D13N-CLT-01': 'journey-culture-and-nature-14-days',
+  'SL-13D12N-STD-01': 'sri-lanka-grand-discovery-tour-13-days',
+  'SL-15D14N-HNM-01': 'romantic-bliss-15-days',
+};
+
+/** A single published package by its slug or legacy code (detail + checkout pages). */
+export async function getPackageBySlug(slugInput: string): Promise<TourDetail | null> {
+  const targetSlug = LEGACY_CODE_TO_SLUG[slugInput] || slugInput;
   const supabase = createPublicClient();
-  if (!supabase) return tourDetails.find((t) => t.id === slug) ?? null;
+  if (!supabase) return tourDetails.find((t) => t.id === targetSlug || t.id === slugInput) ?? null;
 
   const { data, error } = await supabase
     .from('packages')
     .select('*')
-    .eq('slug', slug)
+    .eq('slug', targetSlug)
     .eq('is_published', true)
     .maybeSingle();
 
   if (error) {
     console.warn('[packages] DB read failed — using static fallback:', error.message);
-    return tourDetails.find((t) => t.id === slug) ?? null;
+    return tourDetails.find((t) => t.id === targetSlug || t.id === slugInput) ?? null;
   }
 
   return data ? rowToTourDetail(data) : null;

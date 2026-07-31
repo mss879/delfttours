@@ -6,7 +6,7 @@
 // Tour Data embedded directly
 const TOUR_DATA = [
     {
-        "id": "SL-3D2N-CTY-01",
+        "id": "3-day-quick-tour-of-2-cities",
         "title": "A 3 Day Quick Tour of 2 Cities",
         "description": "Enjoy a captivating 3-day journey through the tropical island paradise of Sri Lanka — a perfect blend of culture, history, and scenic beauty across Kandy and Colombo.",
         "days": 3,
@@ -14,7 +14,7 @@ const TOUR_DATA = [
         "inclusions": ["Private Driver/Guide", "Private Luxury Car", "Breakfast Included"]
     },
     {
-        "id": "SL-4D3N-STD-01",
+        "id": "essence-of-sri-lanka-4-days",
         "title": "4 Days - Essence of Sri Lanka",
         "description": "A 4-day tour covering Kandy, Nuwara Eliya, Bentota, and Colombo.",
         "days": 4,
@@ -22,7 +22,7 @@ const TOUR_DATA = [
         "inclusions": ["Private Driver/Guide", "Private Luxury Car", "Breakfast Included"]
     },
     {
-        "id": "SL-5D4N-STD-01",
+        "id": "essence-of-sri-lanka-5-days",
         "title": "5 Days - Essence of Sri Lanka",
         "description": "Extensive 5-day tour covering Kandy, Nuwara Eliya, Bentota, and Colombo.",
         "days": 5,
@@ -30,7 +30,7 @@ const TOUR_DATA = [
         "inclusions": ["Private Driver/Guide", "Private Luxury Car", "Breakfast Included"]
     },
     {
-        "id": "SL-5D4N-STD-02",
+        "id": "island-escape-5-days",
         "title": "5 Days - Island Escape",
         "description": "Focuses on Sigiriya, Kandy, and Bentota.",
         "days": 5,
@@ -38,7 +38,7 @@ const TOUR_DATA = [
         "inclusions": ["Private Driver/Guide", "Private Luxury Car", "Breakfast Included"]
     },
     {
-        "id": "SL-5D4N-WLD-03",
+        "id": "temples-wildlife-and-beach-5-days",
         "title": "5 Days Tour Package: Temples, Wildlife and Beach",
         "description": "Mix of culture, nature and beach.",
         "days": 5,
@@ -46,7 +46,7 @@ const TOUR_DATA = [
         "inclusions": ["Private Driver/Guide", "Private Luxury Car", "Breakfast Included"]
     },
     {
-        "id": "SL-6D5N-STD-01",
+        "id": "island-charm-express-6-days",
         "title": "6 Days Tour Package: Island Charm Express",
         "description": "Sigiriya, Kandy, Nuwara Eliya, Yala, Bentota.",
         "days": 6,
