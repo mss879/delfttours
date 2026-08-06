@@ -19,8 +19,9 @@ import { tourDetails, type TourDetail } from '@/app/tours/tour-data';
 // Shape a DB row into the TourDetail the front end already consumes. This is the
 // seam that keeps the detail page / listing / checkout / sitemap untouched.
 function rowToTourDetail(row: any): TourDetail {
+  const safeSlug = typeof row.slug === 'string' && row.slug.trim() ? row.slug.trim() : row.id;
   return {
-    id: row.slug,
+    id: safeSlug,
     title: row.title,
     description: row.description ?? '',
     images: Array.isArray(row.images) ? row.images : [],
@@ -42,6 +43,22 @@ function rowToTourDetail(row: any): TourDetail {
     suitable_for: Array.isArray(row.suitable_for) ? row.suitable_for : undefined,
     startingPrice: row.starting_price ?? undefined,
   };
+}
+
+function slugify(text: string): string {
+  return text
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start
+    .replace(/-+$/, '');            // Trim - from end
+}
+
+function isUUID(str: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(str);
 }
 
 /** Published packages for the public site (listing, sitemap, generateStaticParams). */
@@ -90,25 +107,83 @@ const LEGACY_CODE_TO_SLUG: Record<string, string> = {
   'SL-15D14N-HNM-01': 'romantic-bliss-15-days',
 };
 
-/** A single published package by its slug or legacy code (detail + checkout pages). */
+/** A single published package by its slug, legacy code, or ID (detail + checkout pages). */
 export async function getPackageBySlug(slugInput: string): Promise<TourDetail | null> {
-  const targetSlug = LEGACY_CODE_TO_SLUG[slugInput] || slugInput;
-  const supabase = createPublicClient();
-  if (!supabase) return tourDetails.find((t) => t.id === targetSlug || t.id === slugInput) ?? null;
+  if (!slugInput) return null;
 
-  const { data, error } = await supabase
+  const decodedInput = decodeURIComponent(slugInput).trim();
+  const targetSlug = LEGACY_CODE_TO_SLUG[decodedInput] || LEGACY_CODE_TO_SLUG[slugInput] || decodedInput;
+  const normalizedSlug = slugify(targetSlug);
+
+  const supabase = createPublicClient();
+  if (!supabase) {
+    return (
+      tourDetails.find(
+        (t) => t.id === targetSlug || t.id === decodedInput || t.id === slugInput || t.id === normalizedSlug
+      ) ?? null
+    );
+  }
+
+  // 1. Try exact slug match
+  let { data, error } = await supabase
     .from('packages')
     .select('*')
     .eq('slug', targetSlug)
     .eq('is_published', true)
     .maybeSingle();
 
-  if (error) {
-    console.warn('[packages] DB read failed — using static fallback:', error.message);
-    return tourDetails.find((t) => t.id === targetSlug || t.id === slugInput) ?? null;
+  // 2. Try normalized slug if different
+  if (!data && normalizedSlug && normalizedSlug !== targetSlug) {
+    const res = await supabase
+      .from('packages')
+      .select('*')
+      .eq('slug', normalizedSlug)
+      .eq('is_published', true)
+      .maybeSingle();
+    if (res.data) data = res.data;
   }
 
-  return data ? rowToTourDetail(data) : null;
+  // 3. If input looks like a UUID, try lookup by ID
+  if (!data && (isUUID(decodedInput) || isUUID(slugInput))) {
+    const uuidToUse = isUUID(decodedInput) ? decodedInput : slugInput;
+    const res = await supabase
+      .from('packages')
+      .select('*')
+      .eq('id', uuidToUse)
+      .eq('is_published', true)
+      .maybeSingle();
+    if (res.data) data = res.data;
+  }
+
+  // 4. Case-insensitive slug lookup
+  if (!data) {
+    const res = await supabase
+      .from('packages')
+      .select('*')
+      .ilike('slug', targetSlug)
+      .eq('is_published', true)
+      .maybeSingle();
+    if (res.data) data = res.data;
+  }
+
+  if (error && !data) {
+    console.warn('[packages] DB read failed — using static fallback:', error.message);
+    return (
+      tourDetails.find(
+        (t) => t.id === targetSlug || t.id === decodedInput || t.id === slugInput || t.id === normalizedSlug
+      ) ?? null
+    );
+  }
+
+  if (!data) {
+    return (
+      tourDetails.find(
+        (t) => t.id === targetSlug || t.id === decodedInput || t.id === slugInput || t.id === normalizedSlug
+      ) ?? null
+    );
+  }
+
+  return rowToTourDetail(data);
 }
 
 /** All packages (incl. hidden), raw rows, for the admin dashboard. */
@@ -141,9 +216,11 @@ function parsePackage(formData: FormData) {
   };
   const str = (key: string) => ((formData.get(key) as string) ?? '').trim();
   const sortRaw = parseInt((formData.get('sort_order') as string) || '0', 10);
+  const rawSlug = str('slug');
+  const cleanSlug = rawSlug ? slugify(rawSlug) : '';
 
   return {
-    slug: str('slug'),
+    slug: cleanSlug || rawSlug,
     title: str('title'),
     starting_price: str('starting_price') || null,
     description: (formData.get('description') as string) ?? '',
